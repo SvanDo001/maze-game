@@ -20,7 +20,7 @@ public class Player
     public Player()
     {
         // ImageIcon img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//player.png");
-        ImageIcon img = new ImageIcon(classloader.getSystemResource("resources/tiles/player.png"));
+        ImageIcon img = new ImageIcon(classloader.getSystemResource("resources/tiles/cpt_america.png"));
         player = img.getImage();
                 
         tileX = 1;
