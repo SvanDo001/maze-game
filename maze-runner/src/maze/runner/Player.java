@@ -9,6 +9,9 @@ import javax.swing.*;
  */
 public class Player
 {
+    //classloader om resource vanuit project resources te laden
+    ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+    
     private int x;
     private int y;
     private int tileX;
@@ -18,7 +21,8 @@ public class Player
     
     public Player()
     {
-        ImageIcon img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//player.png");
+        // ImageIcon img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//player.png");
+        ImageIcon img = new ImageIcon(classloader.getSystemResource("resources/tiles/player.png"));
         player = img.getImage();
         
         x = 32;

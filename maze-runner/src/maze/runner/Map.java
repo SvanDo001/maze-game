@@ -16,6 +16,9 @@ import javax.swing.*;
  */
 public class Map
 {
+    //classloader om resource vanuit project resources te laden
+    ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+    
     private Scanner map;
     
     private String[] Map = new String[14];
@@ -25,9 +28,11 @@ public class Map
     
     public Map()
     {
-        ImageIcon img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//grass.png");
+        // ImageIcon img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//grass.png");
+        ImageIcon img = new ImageIcon(classloader.getSystemResource("resources/tiles/grass.png"));
         grass = img.getImage();
-        img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//wall.png");
+        // img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//wall.png");
+        img = new ImageIcon(classloader.getSystemResource("resources/tiles/wall.png"));
         wall = img.getImage();
         
         openFile();
@@ -55,11 +60,15 @@ public class Map
     {
         try
         {
-            map = new Scanner(new File("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles////Map.txt"));
+            // map = new Scanner(new File("C://Users//Ken//Documents//Sourcetree//maze-runner//Tiles////Map.txt"));
+            // ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+            map = new Scanner(classloader.getResourceAsStream("resources/Map.txt"));
+            
         }
         catch (Exception e)
         {
             System.out.println("Error loading map");
+            System.out.println(e);
         }
     }
     
