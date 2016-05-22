@@ -5,15 +5,13 @@ import javax.swing.*;
 
 /**
  *
- * @author Stefan
+ * @author Stefan & Kenny
  */
 public class Player
 {
     //classloader om resource vanuit project resources te laden
     ClassLoader classloader = Thread.currentThread().getContextClassLoader();
     
-    private int x;
-    private int y;
     private int tileX;
     private int tileY;
     
@@ -24,30 +22,16 @@ public class Player
         // ImageIcon img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//player.png");
         ImageIcon img = new ImageIcon(classloader.getSystemResource("resources/tiles/player.png"));
         player = img.getImage();
-        
-        x = 32;
-        y = 32;
-        
-        tileX = 1;
-        tileY = 1;
                 
+        tileX = 1;
+        tileY = 1;     
     }
     
     public Image getPlayer()
     {
         return player;
     }
-    
-    public int getX()
-    {
-        return x;
-    }
-    
-    public int getY()
-    {
-        return y;
-    }
-    
+        
     public int getTileX()
     {
         return tileX;
@@ -58,12 +42,9 @@ public class Player
         return tileY;
     }
     
-    public void move(int dx, int dy, int tx, int ty)
+    public void move(int dx, int dy)
     {
-        x += dx;
-        y += dy;
-        
-        tileX += tx;
-        tileY += ty;
+        tileX += dx;
+        tileY += dy;
     }
 }
