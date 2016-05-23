@@ -11,20 +11,24 @@ import javax.swing.*;
  */
 public class Game extends ClickListener
 {    
-    private ArrayList <Level> starts; // Verschillende collecties mogelijk
+    private final ArrayList <Level> starts; // Verschillende collecties mogelijk
     final int FRAME_WIDTH = 464;
     final int FRAME_HEIGHT = 495;
     
-    JButton start = new JButton("Start");
-    JButton restart = new JButton("Restart");
-    JButton quit = new JButton("Quit");
-    
-    JFrame frame = new JFrame();
+    JFrame frame;
+    JButton start;
+    JButton restart;
+    JButton quit;
     
     // default constructor
     public Game()
     {        
         starts = new ArrayList <>();
+        
+        frame = new JFrame();
+        start = new JButton("Start");
+        restart = new JButton("Restart");
+        quit = new JButton("Quit");
     }
     
     // Starts new game and call's the exiting start method
@@ -49,12 +53,6 @@ public class Game extends ClickListener
     
     public void menu()
     {
-        JFrame frame = new JFrame();
-             
-        JButton start = new JButton("Start");
-        JButton restart = new JButton("Restart");
-        JButton quit = new JButton("Quit");
-        
         start.addActionListener(new ActionListener() {
 
         @Override
@@ -109,7 +107,6 @@ public class Game extends ClickListener
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setTitle("Maze Runner");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocationRelativeTo(null);
         
         frame.setVisible(true);
     }

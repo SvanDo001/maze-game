@@ -10,11 +10,12 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Stefan
+ * @author Stefan van Doodewaard
  */
 public class ClickListener implements ActionListener
 {
     public void actionPerformed(ActionEvent event)
     {
+        
     }
 }

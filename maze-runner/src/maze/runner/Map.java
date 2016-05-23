@@ -78,6 +78,9 @@ public class Map
         {
             for (int i = 0; i < 14; i++)
             {
+                // String a = map.next();
+                //if (a == "w") {
+                // Map[i] = new Muur();
                 Map[i] = map.next();
             }
             
