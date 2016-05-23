@@ -14,19 +14,14 @@ public abstract class EmptyFrameViewer
     
     public EmptyFrameViewer()
     {
-        this.FRAME_WIDTH = 500;
-        this.FRAME_HEIGHT = 400;
-    }
-    
-    public JFrame EmptyFrame()
-    {
+        this.FRAME_WIDTH = 464;
+        this.FRAME_HEIGHT = 495;
+        
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setTitle("An Empty Frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         
         frame.setVisible(true);
-        
-        return frame;
     }
 }

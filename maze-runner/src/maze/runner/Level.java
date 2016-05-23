@@ -11,7 +11,6 @@ import java.awt.*;
 public class Level extends JPanel implements ActionListener {
 
     private Timer timer;
-
     private Map map;
     private Player player;
 
