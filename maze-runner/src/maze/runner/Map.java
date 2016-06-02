@@ -1,68 +1,55 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maze.runner;
 
 import java.awt.*;
 import java.util.*;
-import java.io.*;
 import javax.swing.*;
 
 /**
  *
  * @author Stefan
  */
-public class Map
-{
+public final class Map {
     //classloader om resource vanuit project resources te laden
     ClassLoader classloader = Thread.currentThread().getContextClassLoader();
     
     private Scanner map;
     
-    private String[] Map = new String[14];
+    private final String[] MAP = new String[14];
     
-    private Image grass, 
-                  wall;
+    private final Image GRASS_TILE;
+    private final Image WALL_TILE;
     
-    public Map()
-    {
-        // ImageIcon img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//grass.png");
-        ImageIcon img = new ImageIcon(classloader.getSystemResource("resources/tiles/grass.png"));
-        grass = img.getImage();
-        // img = new ImageIcon("C://Users//Stefan//Documents//Sourcetree//maze-runner//Tiles//wall.png");
-        img = new ImageIcon(classloader.getSystemResource("resources/tiles/wall.png"));
-        wall = img.getImage();
+    public Map() {
+        ImageIcon img = new ImageIcon(ClassLoader.
+                getSystemResource("resources/tiles/grassTile.png"));
+        GRASS_TILE = img.getImage();
+        img = new ImageIcon(ClassLoader.
+                getSystemResource("resources/tiles/wallTile.png"));
+        WALL_TILE = img.getImage();
         
         openFile();
         readFile();
         closeFile();
     }
     
-    public Image getGrass()
-    {
-        return grass;
+    public Image getGrassTile() {
+        return GRASS_TILE;
     }
     
-    public Image getWall()
-    {
-        return wall;
+    public Image getWallTile() {
+        return WALL_TILE;
     }
     
-    public String getMap(int x, int y)
-    {
-        String index = Map[y].substring(x, x + 1);
-        return index;
+    public String getTile(int x, int y) {
+        String tileIndex = MAP[y].substring(x, x + 1);
+        return tileIndex;
     }
     
-    public void openFile()
-    {
+    private void openFile() {
         try
         {
-            // map = new Scanner(new File("C://Users//Ken//Documents//Sourcetree//maze-runner//Tiles////Map.txt"));
-            // ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-            map = new Scanner(classloader.getResourceAsStream("resources/Map.txt"));
+            map = new Scanner(classloader.
+                    getResourceAsStream("resources/Map.txt"));
             
         }
         catch (Exception e)
@@ -72,23 +59,18 @@ public class Map
         }
     }
     
-    public void readFile()
-    {
-        while(map.hasNext())
-        {
-            for (int i = 0; i < 14; i++)
-            {
+    private void readFile() {
+        while(map.hasNext()) {
+            for (int i = 0; i < 14; i++) {
                 // String a = map.next();
                 //if (a == "w") {
                 // Map[i] = new Muur();
-                Map[i] = map.next();
+                MAP[i] = map.next();
             }
-            
         }
     }
     
-    public void closeFile()
-    {
+    private void closeFile() {
         map.close();
     }
 }
