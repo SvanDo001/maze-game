@@ -39,12 +39,12 @@ public class EmptyFrameViewerTest {
     }
 
     /**
-     * Test of EmptyFrame method, of class EmptyFrameViewer.
+     * Test of EmptyFrame method, of class MazeFrame.
      */
     @Test
     public void testEmptyFrame() {
         System.out.println("EmptyFrame");
-        EmptyFrameViewer instance = new EmptyFrameViewerImpl();
+        MazeFrame instance = new EmptyFrameViewerImpl();
         JFrame expResult = null;
         JFrame result = instance.EmptyFrame();
         assertEquals(expResult, result);
@@ -52,7 +52,7 @@ public class EmptyFrameViewerTest {
         fail("The test case is a prototype.");
     }
 
-    public class EmptyFrameViewerImpl extends EmptyFrameViewer {
+    public class EmptyFrameViewerImpl extends MazeFrame {
     }
     
 }

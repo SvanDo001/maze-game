@@ -1,7 +1,6 @@
 package maze.runner;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
@@ -9,107 +8,55 @@ import javax.swing.*;
  *
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
-public class Game extends EmptyFrameViewer {
+public class Game extends GameFrame {
 
-    private final ArrayList<Level> starts; // Verschillende collecties mogelijk
-    final static int FRAME_WIDTH = 464;
-    final static int FRAME_HEIGHT = 495;
-
-    JFrame frame;
-    JButton start;
-    JButton restart;
-    JButton quit;
-
-    ActionListener listener;
-    private Level level;
+    private final ArrayList<Level> levels; // Verschillende collecties mogelijk
+    private JFrame frame;
 
     // default constructor
     public Game() {
-        starts = new ArrayList<>();
-
-        frame = new JFrame();
-        start = new JButton("Start");
-        restart = new JButton("Restart");
-        quit = new JButton("Quit");
-
-        level = new Level();
+        levels = new ArrayList<>();
+        frame = new GameFrame();
     }
-
-    // Starts new game and call's the exiting start method
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.menu();
-    }
-
+    
     // Add's a new Level to the Array of maze Levels
-    public void newMaze(Level maze) {
-        starts.add(maze);
+    public void addLevel(Level level) {
+        levels.add(level);
     }
 
     // Removes a existing Level to the Array of maze Levels
-    public void removeMaze(Level maze) {
-        starts.remove(maze);
+    public void removeLevel(Level level) {
+        levels.remove(level);
     }
 
-    public void menu() {
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                Game game = new Game();
-                game.start();
-            }
-        });
-
-        restart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                Game game = new Game();
-                game.restart();
-            }
-        });
-
-        quit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                Game game = new Game();
-                game.quit();
-            }
-        });
-
-        JPanel panelMenu = new JPanel();
-        panelMenu.add(start, BorderLayout.PAGE_END);
-        panelMenu.add(restart, BorderLayout.PAGE_END);
-        panelMenu.add(quit, BorderLayout.PAGE_END);
-        frame.add(panelMenu, BorderLayout.PAGE_START);
-
-        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+    public void game() {
+        frame.add(new Level());
+        frame.setVisible(true);
         frame.setTitle("Maze Runner");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-
-        frame.setVisible(true);
+        addLevel(new Level());
     }
 
     // Initiates a new Jframe 
     public void start() {
-        frame.add(level);
-
-        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setTitle("Maze Runner");
-
+        frame.add(new Level());
         frame.setVisible(true);
+        frame.setTitle("Maze Runner");
+        frame.setLocationRelativeTo(null);
+        addLevel(new Level());
     }
 
     public void restart() {
-        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        frame.setTitle("Maze Runner");
-        frame.add(this.level);
-
-        frame.setVisible(true);
     }
-
-    public void quit() {
-        quit.addActionListener(listener);
-        System.exit(0);
+    
+    public void about() {
+        JFrame frame = new GameFrame();
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel();
+        label.setText("A game by Kenny Dillewaard & Stefan van Doodewaard");
+        frame.setVisible(true);
+        panel.add(label, BorderLayout.CENTER);
+        frame.add(panel);
     }
 }
