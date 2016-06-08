@@ -5,6 +5,8 @@
  */
 package maze.runner;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Stefan
@@ -13,5 +15,11 @@ public interface Moveable {
     
     public void move(int dx, int dy);
     
-    public void stepCounter();
+    public ArrayList<Integer> getStepCounterTileX();
+
+    public void setStepCounterTileX();
+
+    public ArrayList<Integer> getStepCounterTileY(); 
+
+    public void setStepCounterTileY();
 }

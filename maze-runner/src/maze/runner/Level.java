@@ -18,6 +18,7 @@ public class Level extends JPanel implements ActionListener {
     public Level() {
         map = new Map();
         player = new Player();
+        enemy = new Enemy();
         addKeyListener(new Al());
         setFocusable(true);
         timer = new Timer(25, this);
@@ -80,7 +81,8 @@ public class Level extends JPanel implements ActionListener {
                     player.move(1, 0);
                 }
             }
-            player.stepCounter();
+            player.setStepCounterTileX();
+            player.setStepCounterTileY();
         }
     }
 }

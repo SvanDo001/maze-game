@@ -25,7 +25,7 @@ public class Player extends GameObject implements Moveable {
 
         historyTileX = new ArrayList<>();
         historyTileY = new ArrayList<>();
-        
+
         tileX = 1;
         tileY = 1;
     }
@@ -34,33 +34,32 @@ public class Player extends GameObject implements Moveable {
         return player;
     }
 
+    @Override
     public void move(int dx, int dy) {
         tileX += dx;
         tileY += dy;
     }
+    
+    @Override
+    public ArrayList<Integer> getStepCounterTileX() {
+        return historyTileX;
+    }
 
-    public void stepCounter() {
+    @Override
+    public void setStepCounterTileX() {
         historyTileX.add(tileX);
+        System.out.println(historyTileX.toString());
+    }
+
+    @Override
+    public ArrayList<Integer> getStepCounterTileY() {
+        return historyTileY;
+    }
+
+    @Override
+    public void setStepCounterTileY() {
         historyTileY.add(tileY);
-        int a = historyTileX.size() - 1;
-        int b = historyTileY.size() - 1;
-        System.out.println(historyTileX.get(a) + " "
-                + " " + historyTileY.get(b));
+        System.out.println(historyTileY.toString());
     }
-    
-    public void getPreviousPositionTileX(int steps, String access) {
-        int previousPositionX = historyTileX.size() - 1;
-        
-        previousPositionX = previousPositionX - steps;
-        
-        historyTileX.get(previousPositionX);       
-    }
-    
-    public void getPreviousPositionTileY(int steps) {
-        int previousPositionY = historyTileY.size() - 1;
-        
-        previousPositionY = previousPositionY - steps;
-        
-        historyTileY.get(previousPositionY);    
-    }
+
 }
