@@ -50,6 +50,18 @@ public class Level extends JPanel implements ActionListener {
                     player.getTileY() * 32, null);
         }
     }
+    
+    public void throwBackPlayer(int steps) {        
+        int currentPositionX = player.getStepCounterTileX().size() - 1;
+        int currentPositionY = player.getStepCounterTileY().size() - 1;
+      
+        int throwBackPositionX = player.getStepCounterTileX().
+                get(currentPositionX) - steps;
+        int throwBackPositionY = player.getStepCounterTileY().
+                get(currentPositionY) - steps;
+
+        player.move(throwBackPositionX, throwBackPositionY);
+    }
 
     public class Al extends KeyAdapter {
 
@@ -81,6 +93,10 @@ public class Level extends JPanel implements ActionListener {
                     player.move(1, 0);
                 }
             }
+            if (keycode == KeyEvent.VK_SPACE) {
+                throwBackPlayer(2);
+            }
+            
             player.setStepCounterTileX();
             player.setStepCounterTileY();
         }
