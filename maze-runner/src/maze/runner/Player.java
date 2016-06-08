@@ -1,14 +1,14 @@
 package maze.runner;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.*;
 import javax.swing.*;
 
 /**
  *
  * @author Stefan & Kenny
  */
-public class Player extends GameObject{
+public class Player extends GameObject implements Moveable {
 
     //classloader om resource vanuit project resources te laden
     ClassLoader classloader = Thread.currentThread().getContextClassLoader();
@@ -46,5 +46,21 @@ public class Player extends GameObject{
         int b = historyTileY.size() - 1;
         System.out.println(historyTileX.get(a) + " "
                 + " " + historyTileY.get(b));
+    }
+    
+    public void getPreviousPositionTileX(int steps, String access) {
+        int previousPositionX = historyTileX.size() - 1;
+        
+        previousPositionX = previousPositionX - steps;
+        
+        historyTileX.get(previousPositionX);       
+    }
+    
+    public void getPreviousPositionTileY(int steps) {
+        int previousPositionY = historyTileY.size() - 1;
+        
+        previousPositionY = previousPositionY - steps;
+        
+        historyTileY.get(previousPositionY);    
     }
 }

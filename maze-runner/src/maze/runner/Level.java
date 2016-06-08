@@ -13,6 +13,7 @@ public class Level extends JPanel implements ActionListener {
     private Timer timer;
     private Map map;
     private Player player;
+    private Enemy enemy;
 
     public Level() {
         map = new Map();
@@ -39,6 +40,9 @@ public class Level extends JPanel implements ActionListener {
                 }
                 if (map.getTile(x, y).equals("w")) {
                     g.drawImage(map.getWallTile(), x * 32, y * 32, null);
+                }
+                if (map.getTile(x, y).equals("e")) {
+                    g.drawImage(enemy.getEnemy(), x * 32, y * 32, null);
                 }
             }
             g.drawImage(player.getPlayer(), player.getTileX() * 32,
