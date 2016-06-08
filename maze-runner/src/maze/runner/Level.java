@@ -13,12 +13,14 @@ public class Level extends JPanel implements ActionListener {
     private Timer timer;
     private Map map;
     private Player player;
-    private Enemy enemy;
+    private Cheater cheater;
+    private Friend friend;
 
     public Level() {
         map = new Map();
         player = new Player();
-        enemy = new Enemy();
+        cheater = new Cheater();
+        friend = new Friend();
         addKeyListener(new Al());
         setFocusable(true);
         timer = new Timer(25, this);
@@ -43,7 +45,10 @@ public class Level extends JPanel implements ActionListener {
                     g.drawImage(map.getWallTile(), x * 32, y * 32, null);
                 }
                 if (map.getTile(x, y).equals("e")) {
-                    g.drawImage(enemy.getEnemy(), x * 32, y * 32, null);
+                    g.drawImage(cheater.getCheater(), x * 32, y * 32, null);
+                }
+                if (map.getTile(x, y).equals("f")) {
+                    g.drawImage(friend.getFriend(), x * 32, y * 32, null);
                 }
             }
             g.drawImage(player.getPlayer(), player.getTileX() * 32,

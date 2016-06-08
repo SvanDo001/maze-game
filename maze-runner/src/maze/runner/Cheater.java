@@ -7,20 +7,20 @@ import javax.swing.*;
  *
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
-public class Enemy extends GameObject {
+public class Cheater extends GameObject {
 
     //classloader om resource vanuit project resources te laden
     ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 
-    private Image enemy;
+    private Image cheater;
 
-    public Enemy() {
+    public Cheater() {
         ImageIcon img = new ImageIcon(classloader.
-                getSystemResource("resources/tiles/enemy.png"));
-        enemy = img.getImage();
+                getSystemResource("resources/tiles/cheater.png"));
+        cheater = img.getImage();
     }
 
-    public Image getEnemy() {
-        return enemy;
+    public Image getCheater() {
+        return cheater;
     }
 }

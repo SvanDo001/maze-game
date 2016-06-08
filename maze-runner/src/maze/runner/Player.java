@@ -20,7 +20,7 @@ public class Player extends GameObject implements Moveable {
 
     public Player() {
         ImageIcon img = new ImageIcon(classloader.
-                getSystemResource("resources/tiles/cpt_america.png"));
+                getSystemResource("resources/tiles/player.png"));
         player = img.getImage();
 
         historyTileX = new ArrayList<>();
