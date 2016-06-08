@@ -19,7 +19,7 @@ public class Game extends GameFrame {
         levels = new ArrayList<>();
         frame = new GameFrame(this);
     }
-    
+
     // Add's a new Level to the Array of maze Levels
     public void addLevel(Level level) {
         levels.add(level);
@@ -55,9 +55,9 @@ public class Game extends GameFrame {
         currentLevel = this.levels.get(levels.size() - 1);
         frame.add(currentLevel);
         frame.setVisible(true);
-        currentLevel.grabFocus();        
+        currentLevel.grabFocus();
     }
-    
+
     public void about() {
         JFrame frame = new GameFrame();
         JPanel panel = new JPanel();
