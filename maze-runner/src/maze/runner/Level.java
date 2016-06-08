@@ -12,7 +12,8 @@ public class Level extends JPanel implements ActionListener {
     private Timer timer;
     private Map map;
     private Player player;
-
+    boolean newMap = true;
+    
     public Level() {
         map = new Map();
         player = new Player();
@@ -39,10 +40,23 @@ public class Level extends JPanel implements ActionListener {
                 if (map.getTile(x, y).equals("w")) {
                     g.drawImage(map.getWallTile(), x * 32, y * 32, null);
                 }
+                
+                while (newMap == true)
+                {
+                    if (map.getTile(x, y).equals("p")) {
+                        g.drawImage(player.getPlayer(), x * 32, y * 32, null);
+                    }
+                    if (newMap == false)
+                    {
+                                                
+                    }
+                }
+                
             }
         }
         g.drawImage(player.getPlayer(), player.getTileX() * 32, 
                 player.getTileY() * 32, null);
+        
     }
 
     public class Al extends KeyAdapter {

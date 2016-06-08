@@ -11,8 +11,9 @@ import javax.swing.*;
 public class GameFrame extends JFrame {
     private static final int FRAME_WIDTH = 464;
     private static final int FRAME_HEIGHT = 518;
+    private Game game = null;
     
-    public GameFrame() {        
+    public GameFrame() {
         // Construct menu
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -21,6 +22,11 @@ public class GameFrame extends JFrame {
         
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         
+    }
+    
+    public GameFrame(Game game) {
+        this();
+        this.game = game;
     }
     
     class ExitItemListener implements ActionListener {
@@ -56,7 +62,6 @@ public class GameFrame extends JFrame {
         class NewGameItemListener implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent event) {
-                Game game = new Game();
                 game.start();
                 }
             }
@@ -71,7 +76,6 @@ public class GameFrame extends JFrame {
         class RestartGameItemListener implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent event) {
-                Game game = new Game();
                 game.restart();
             }
         }

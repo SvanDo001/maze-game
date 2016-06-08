@@ -12,11 +12,12 @@ public class Game extends GameFrame {
 
     private final ArrayList<Level> levels; // Verschillende collecties mogelijk
     private JFrame frame;
+    private Level currentLevel;
 
     // default constructor
     public Game() {
         levels = new ArrayList<>();
-        frame = new GameFrame();
+        frame = new GameFrame(this);
     }
     
     // Add's a new Level to the Array of maze Levels
@@ -30,24 +31,31 @@ public class Game extends GameFrame {
     }
 
     public void game() {
-        frame.add(new Level());
+        currentLevel = new Level();
+        frame.add(currentLevel);
         frame.setVisible(true);
         frame.setTitle("Maze Runner");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        addLevel(new Level());
+        currentLevel.grabFocus();
+        addLevel(currentLevel);
     }
 
-    // Initiates a new Jframe 
     public void start() {
-        frame.add(new Level());
+        frame.remove(currentLevel);
+        currentLevel = new Level();
+        frame.add(currentLevel);
         frame.setVisible(true);
-        frame.setTitle("Maze Runner");
-        frame.setLocationRelativeTo(null);
-        addLevel(new Level());
+        currentLevel.grabFocus();
+        addLevel(currentLevel);
     }
 
     public void restart() {
+        frame.remove(currentLevel);
+        currentLevel = this.levels.get(levels.size() - 1);
+        frame.add(currentLevel);
+        frame.setVisible(true);
+        currentLevel.grabFocus();        
     }
     
     public void about() {
