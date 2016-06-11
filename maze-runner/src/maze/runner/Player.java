@@ -14,11 +14,15 @@ public class Player extends GameObject implements Moveable {
     public ArrayList<Integer> historyTileY;
 
     private Image player;
+    private Image playerBazooka;
 
     public Player() {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/player.png"));
         player = img.getImage();
+        img = new ImageIcon(ClassLoader.
+                getSystemResource("resources/tiles/playerBazooka.png"));
+        playerBazooka = img.getImage();
 
         historyTileX = new ArrayList<>();
         historyTileY = new ArrayList<>();
@@ -34,6 +38,10 @@ public class Player extends GameObject implements Moveable {
     @Override
     public Image getGameObject() {
         return player;
+    }
+    
+    public Image getBazooka() {
+        return playerBazooka;
     }
 
     @Override
@@ -56,7 +64,6 @@ public class Player extends GameObject implements Moveable {
     @Override
     public void setStepCounterTileX() {
         historyTileX.add(tileX);
-        System.out.println("X : " + historyTileX.toString());
     }
 
     @Override
@@ -67,7 +74,5 @@ public class Player extends GameObject implements Moveable {
     @Override
     public void setStepCounterTileY() {
         historyTileY.add(tileY);
-        System.out.println("Y : " + historyTileY.toString());
     }
-
 }

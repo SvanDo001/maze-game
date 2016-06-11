@@ -21,8 +21,4 @@ public class Bazooka extends GameObject {
     public Image getGameObject() {
         return BAZOOKA;
     }
-    
-    public void shoot() {
-        
-    } 
 }

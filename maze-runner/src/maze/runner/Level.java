@@ -19,8 +19,10 @@ public class Level extends JPanel implements ActionListener {
     private Friend friend;
     private Helper helper;
     private Bazooka bazooka;
+    private Ammo ammo;
     private boolean newMap;
     private boolean optimalRoute;
+    private boolean bazookaPickUp;
 
     public Level() {
         timer = new Timer(25, this);
@@ -33,10 +35,12 @@ public class Level extends JPanel implements ActionListener {
         friend = new Friend();
         helper = new Helper();
         bazooka = new Bazooka();
+        ammo = new Ammo();
         addKeyListener(new Al());
         setFocusable(true);
         newMap = true;
         optimalRoute = false;
+        bazookaPickUp = false;
     }
 
     @Override
@@ -53,19 +57,11 @@ public class Level extends JPanel implements ActionListener {
                 if (map.getTile(x, y).equals("g")) {
                     g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                 }
-                if (map.getTile(x, y).equals("G")) {
+                if (map.getTile(x, y).equals("r")) {
                     if (optimalRoute == false) {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     } else {
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        g.drawImage(helper.getOptimalRoute(), x * 32, y * 32, null);
-=======
                         g.drawImage(helper.getOptimaleRoute(), x * 32, y * 32, null);
->>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
-=======
-                        g.drawImage(helper.getOptimaleRoute(), x * 32, y * 32, null);
->>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
                     }
                 }
                 if (map.getTile(x, y).equals("w")) {
@@ -100,8 +96,11 @@ public class Level extends JPanel implements ActionListener {
                     }
                 }
             }
-
-            g.drawImage(player.getGameObject(), player.getTileX() * 32, player.getTileY() * 32, null);
+            if (bazookaPickUp == false){
+                g.drawImage(player.getGameObject(), player.getTileX() * 32, player.getTileY() * 32, null);
+            } else {
+                g.drawImage(player.getBazooka(), player.getTileX() * 32, player.getTileY() * 32, null);
+            }
             g.drawImage(cheater.getGameObject(), cheater.getTileX() * 32, cheater.getTileY() * 32, null);
             g.drawImage(friend.getGameObject(), friend.getTileX() * 32, friend.getTileY() * 32, null);
             g.drawImage(bazooka.getGameObject(), bazooka.getTileX() * 32, bazooka.getTileY() * 32, null);
@@ -125,7 +124,7 @@ public class Level extends JPanel implements ActionListener {
         @Override
         public void keyPressed(KeyEvent event) {
             int keycode = event.getKeyCode();
-
+            
             if (keycode == KeyEvent.VK_UP) {
                 if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals("w")) {
                     player.move(0, -1);
@@ -146,6 +145,7 @@ public class Level extends JPanel implements ActionListener {
                     player.move(1, 0);
                 }
             }
+            
             player.setStepCounterTileX();
             player.setStepCounterTileY();
 
@@ -180,6 +180,7 @@ public class Level extends JPanel implements ActionListener {
         if (x == bazooka.getTileX() && y == bazooka.getTileY()) {
             System.out.println("Bazooka Bereikt!");
             bazooka.setGameObjectPosition(-1, -1);
+            bazookaPickUp = true;
         }
 
     }
