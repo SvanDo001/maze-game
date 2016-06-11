@@ -4,11 +4,10 @@ import java.util.*;
 
 /**
  *
- * @author Stefan van Doodewaard
+ * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public final class Map {
     
-    //classloader om resource vanuit project resources te laden
     ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 
     private Scanner map;

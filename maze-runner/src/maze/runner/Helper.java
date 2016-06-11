@@ -20,19 +20,10 @@ public class Helper extends GameObject {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/helper.png"));
         helper = img.getImage();
-        
-        tileX = 1;
-        tileY = 1;
     }
 
     @Override
     public Image getGameObject() {
         return helper;
-    }
-    
-    @Override
-    public void setGameObjectPosition(int x, int y) {
-        tileX = x;
-        tileY = y;
     }
 }
