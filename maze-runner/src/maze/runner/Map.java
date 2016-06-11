@@ -9,7 +9,7 @@ import javax.swing.*;
  * @author Stefan
  */
 public final class Map {
-
+    
     //classloader om resource vanuit project resources te laden
     ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 
@@ -17,28 +17,10 @@ public final class Map {
 
     private final String[] MAP = new String[14];
 
-    private final Image GRASS_TILE;
-    private final Image WALL_TILE;
-
     public Map() {
-        ImageIcon img = new ImageIcon(ClassLoader.
-                getSystemResource("resources/tiles/grassTile.png"));
-        GRASS_TILE = img.getImage();
-        img = new ImageIcon(ClassLoader.
-                getSystemResource("resources/tiles/wallTile.png"));
-        WALL_TILE = img.getImage();
-
         openFile();
         readFile();
         closeFile();
-    }
-
-    public Image getGrassTile() {
-        return GRASS_TILE;
-    }
-
-    public Image getWallTile() {
-        return WALL_TILE;
     }
 
     public String getTile(int x, int y) {
@@ -60,9 +42,6 @@ public final class Map {
     private void readFile() {
         while (map.hasNext()) {
             for (int i = 0; i < 14; i++) {
-                // String a = map.next();
-                //if (a == "w") {
-                // Map[i] = new Muur();
                 MAP[i] = map.next();
             }
         }

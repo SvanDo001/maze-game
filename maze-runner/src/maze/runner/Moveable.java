@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Stefan
+ * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public interface Moveable {
     

@@ -9,18 +9,16 @@ import javax.swing.*;
  */
 
 public class Friend extends GameObject {
-    
-    //classloader om resource vanuit project resources te laden
-    ClassLoader classloader = Thread.currentThread().getContextClassLoader();
 
-    private Image friend;
+    private final Image friend;
 
     public Friend() {
-        ImageIcon img = new ImageIcon(classloader.
+        ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/friend.png"));
         friend = img.getImage();
     }
 
+    @Override
     public Image getGameObject() {
         return friend;
     }

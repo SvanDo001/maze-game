@@ -10,16 +10,13 @@ import javax.swing.*;
  */
 public class Player extends GameObject implements Moveable {
 
-    //classloader om resource vanuit project resources te laden
-    ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-
     private ArrayList<Integer> historyTileX;
     private ArrayList<Integer> historyTileY;
 
     private Image player;
 
     public Player() {
-        ImageIcon img = new ImageIcon(classloader.
+        ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/player.png"));
         player = img.getImage();
 

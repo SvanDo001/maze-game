@@ -9,13 +9,10 @@ import javax.swing.*;
  */
 public class Cheater extends GameObject {
 
-    //classloader om resource vanuit project resources te laden
-    ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-
-    private Image cheater;
+    private final Image cheater;
 
     public Cheater() {
-        ImageIcon img = new ImageIcon(classloader.
+        ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/cheater.png"));
         cheater = img.getImage();
         
@@ -23,6 +20,7 @@ public class Cheater extends GameObject {
         tileY = 1;
     }
 
+    @Override
     public Image getGameObject() {
         return cheater;
     }

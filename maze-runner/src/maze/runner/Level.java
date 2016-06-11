@@ -15,6 +15,8 @@ public class Level extends JPanel implements ActionListener {
     private Player player;
     private Cheater cheater;
     private Friend friend;
+    private Wall wall;
+    private Grass grass;
     private boolean newMap;
 
     public Level() {
@@ -22,6 +24,8 @@ public class Level extends JPanel implements ActionListener {
         player = new Player();
         cheater = new Cheater();
         friend = new Friend();
+        wall = new Wall();
+        grass = new Grass();
         addKeyListener(new Al());
         setFocusable(true);
         timer = new Timer(25, this);
@@ -41,10 +45,10 @@ public class Level extends JPanel implements ActionListener {
         for (int y = 0; y < 14; y++) {
             for (int x = 0; x < 14; x++) {
                 if (map.getTile(x, y).equals("g")) {
-                    g.drawImage(map.getGrassTile(), x * 32, y * 32, null);
+                    g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                 }
                 if (map.getTile(x, y).equals("w")) {
-                    g.drawImage(map.getWallTile(), x * 32, y * 32, null);
+                    g.drawImage(wall.getGameObject(), x * 32, y * 32, null);
                 }
                 if (map.getTile(x, y).equals("c") && newMap == true) {
                     cheater.setCheaterPosition(x, y);
