@@ -139,7 +139,7 @@ public class Level extends JPanel implements ActionListener {
     public void keyEvent(int x, int y) {
         if (x == cheater.getTileX() && y == cheater.getTileY()) {
             System.out.println("Cheater Bereikt!");
-            throwBackPlayer(5);
+            throwBackPlayer(((int) (Math.random() * 10)+5));
             cheater.setGameObjectPosition(-1, -1);
         }
         if (x == friend.getTileX() && y == friend.getTileY()) {

@@ -24,12 +24,5 @@ public class Bazooka extends GameObject {
     
     public void shoot() {
         
-    }
-        
-    @Override
-    public void setGameObjectPosition(int x, int y) {
-        tileX = x;
-        tileY = y;
-    }
-    
+    } 
 }
