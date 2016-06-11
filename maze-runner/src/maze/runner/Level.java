@@ -50,22 +50,34 @@ public class Level extends JPanel implements ActionListener {
                 if (map.getTile(x, y).equals("w")) {
                     g.drawImage(wall.getGameObject(), x * 32, y * 32, null);
                 }
-                if (map.getTile(x, y).equals("c") && newMap == true) {
-                    cheater.setCheaterPosition(x, y);
-                    newMap = false;
-//                    g.drawImage(cheater.getCheater(), x * 32, y * 32, null);
-                    
+                if (map.getTile(x, y).equals("c")) {
+                    if (newMap == true) {
+                        cheater.setCheaterPosition(x, y);
+                    } 
+                    else {
+                        g.drawImage(map.getGrassTile(), x * 32, y * 32, null);
+                    }
                 }
                 if (map.getTile(x, y).equals("f")) {
-                    g.drawImage(friend.getGameObject(), x * 32, y * 32, null);
+                    if (newMap == true) {
+                        friend.setFriendPosition(x, y);
+                    } 
+                    else {
+                        g.drawImage(map.getGrassTile(), x * 32, y * 32, null);
+                    }
                 }
+                
             }
             g.drawImage(player.getGameObject(), player.getTileX() * 32,
                     player.getTileY() * 32, null);
             
             g.drawImage(cheater.getGameObject(), cheater.getTileX() * 32,
                     cheater.getTileY() * 32, null);
+            
+            g.drawImage(friend.getGameObject(), friend.getTileX() * 32,
+                    friend.getTileY() * 32, null);
         }
+        newMap = false;
     }
     
     public void throwBackPlayer(int steps) {        
@@ -104,16 +116,6 @@ public class Level extends JPanel implements ActionListener {
                 if (!map.getTile(player.getTileX(), player.getTileY() + 1).
                         equals("w")) {
                     player.move(0, 1, false);
-                    
-                    
-//                    if (map.getTile(player.getTileX(), player.getTileY() + 1).
-//                        equals("c")) {
-//                        System.out.println("Cheater Bereikt!");
-//                        throwBackPlayer(15);
-//                    } else {
-//                        player.move(0, 1, false);
-//                    }
-                    
                 }
             }
             if (keycode == KeyEvent.VK_LEFT) {
