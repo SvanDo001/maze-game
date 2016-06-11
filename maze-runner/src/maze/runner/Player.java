@@ -10,8 +10,8 @@ import javax.swing.*;
  */
 public class Player extends GameObject implements Moveable {
 
-    private ArrayList<Integer> historyTileX;
-    private ArrayList<Integer> historyTileY;
+    public ArrayList<Integer> historyTileX;
+    public ArrayList<Integer> historyTileY;
 
     private Image player;
 

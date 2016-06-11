@@ -129,10 +129,6 @@ public class Level extends JPanel implements ActionListener {
                     player.move(1, 0);
                 }
             }
-            if (keycode == KeyEvent.VK_SPACE) {
-                cheater.setGameObjectPosition(1, 1);
-            }
-
             player.setStepCounterTileX();
             player.setStepCounterTileY();
 
@@ -148,6 +144,10 @@ public class Level extends JPanel implements ActionListener {
         }
         if (x == friend.getTileX() && y == friend.getTileY()) {
             System.out.println("Vriend Bereikt!");
+            int steps = player.historyTileX.size() - 1;
+            JOptionPane.showMessageDialog(null, "Congratulations, you have " +
+                    "reached your friend! " + "You did it in " + steps 
+                    + " steps.");
             friend.setGameObjectPosition(-1, -1);
         }
         if (x == helper.getTileX() && y == helper.getTileY()) {
