@@ -21,10 +21,6 @@ public class Helper extends GameObject {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/helper.png"));
         helper = img.getImage();
-<<<<<<< HEAD
-=======
-
->>>>>>> 46710b11e7f9fe32ff7d9ff9b131131a5aada6fc
         img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/routeTile.png"));
         helperRoute = img.getImage();
