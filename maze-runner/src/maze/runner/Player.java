@@ -35,9 +35,15 @@ public class Player extends GameObject implements Moveable {
     }
 
     @Override
-    public void move(int dx, int dy) {
-        tileX += dx;
-        tileY += dy;
+    public void move(int dx, int dy, boolean throwBack) {
+        if (throwBack == false) {
+            tileX += dx;
+            tileY += dy;
+        }
+        if (throwBack == true) {
+            tileX = dx;
+            tileY = dy;
+        }
     }
     
     @Override
@@ -48,7 +54,7 @@ public class Player extends GameObject implements Moveable {
     @Override
     public void setStepCounterTileX() {
         historyTileX.add(tileX);
-        System.out.println(historyTileX.toString());
+        System.out.println("X : " + historyTileX.toString());
     }
 
     @Override
@@ -59,7 +65,7 @@ public class Player extends GameObject implements Moveable {
     @Override
     public void setStepCounterTileY() {
         historyTileY.add(tileY);
-        System.out.println(historyTileY.toString());
+        System.out.println("Y : " + historyTileY.toString());
     }
 
 }

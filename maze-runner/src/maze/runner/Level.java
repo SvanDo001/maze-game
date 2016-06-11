@@ -57,15 +57,23 @@ public class Level extends JPanel implements ActionListener {
     }
     
     public void throwBackPlayer(int steps) {        
-        int currentPositionX = player.getStepCounterTileX().size() - 1;
-        int currentPositionY = player.getStepCounterTileY().size() - 1;
-      
+        int ArraySizeTileX = player.getStepCounterTileX().size();
+        int ArraySizeTileY = player.getStepCounterTileY().size();
+        
+        //debugging
+        System.out.println("ArraySizeTileX : " + ArraySizeTileX);
+        System.out.println("ArraySizeTileY : " + ArraySizeTileY);
+        
         int throwBackPositionX = player.getStepCounterTileX().
-                get(currentPositionX) - steps;
+                get(ArraySizeTileX - steps);
         int throwBackPositionY = player.getStepCounterTileY().
-                get(currentPositionY) - steps;
-
-        player.move(throwBackPositionX, throwBackPositionY);
+                get(ArraySizeTileY - steps);
+        
+        //debugging
+        System.out.println("throwBackPositionX : " + throwBackPositionX);
+        System.out.println("throwBackPositionY : " + throwBackPositionY);
+        
+        player.move(throwBackPositionX, throwBackPositionY, true);
     }
 
     public class Al extends KeyAdapter {
@@ -77,29 +85,29 @@ public class Level extends JPanel implements ActionListener {
             if (keycode == KeyEvent.VK_UP) {
                 if (!map.getTile(player.getTileX(), player.getTileY() - 1).
                         equals("w")) {
-                    player.move(0, -1);
+                    player.move(0, -1, false);
                 }
             }
             if (keycode == KeyEvent.VK_DOWN) {
                 if (!map.getTile(player.getTileX(), player.getTileY() + 1).
                         equals("w")) {
-                    player.move(0, 1);
+                    player.move(0, 1, false);
                 }
             }
             if (keycode == KeyEvent.VK_LEFT) {
                 if (!map.getTile(player.getTileX() - 1, player.getTileY()).
                         equals("w")) {
-                    player.move(-1, 0);
+                    player.move(-1, 0, false);
                 }
             }
             if (keycode == KeyEvent.VK_RIGHT) {
                 if (!map.getTile(player.getTileX() + 1, player.getTileY()).
                         equals("w")) {
-                    player.move(1, 0);
+                    player.move(1, 0, false);
                 }
             }
             if (keycode == KeyEvent.VK_SPACE) {
-                throwBackPlayer(2);
+                throwBackPlayer(15);
             }
             
             player.setStepCounterTileX();
