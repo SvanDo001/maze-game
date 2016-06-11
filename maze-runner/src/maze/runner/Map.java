@@ -1,12 +1,10 @@
 package maze.runner;
 
-import java.awt.*;
 import java.util.*;
-import javax.swing.*;
 
 /**
  *
- * @author Stefan
+ * @author Stefan van Doodewaard
  */
 public final class Map {
     
@@ -16,8 +14,15 @@ public final class Map {
     private Scanner map;
 
     private final String[] MAP = new String[14];
+    
+    ArrayList<String> locatie;
 
     public Map() {
+        locatie = new ArrayList<>();
+        locatie.add("resources/Map.txt");
+        locatie.add("resources/Map2.txt");
+        locatie.add("resources/Map3.txt");
+        
         openFile();
         readFile();
         closeFile();
@@ -27,12 +32,12 @@ public final class Map {
         String tileIndex = MAP[y].substring(x, x + 1);
         return tileIndex;
     }
-
+    
     private void openFile() {
         try {
             map = new Scanner(classloader.
-                    getResourceAsStream("resources/Map.txt"));
-
+                    getResourceAsStream(locatie.
+                            get((int) (Math.random() * 3))));
         } catch (Exception e) {
             System.out.println("Error loading map");
             System.out.println(e);

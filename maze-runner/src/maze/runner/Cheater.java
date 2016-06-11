@@ -30,6 +30,4 @@ public class Cheater extends GameObject {
         tileX = x;
         tileY = y;
     }
-    
-    
 }
