@@ -56,7 +56,6 @@ public class Player extends GameObject implements Moveable {
     @Override
     public void setStepCounterTileX() {
         historyTileX.add(tileX);
-        System.out.println("X : " + historyTileX.toString());
     }
 
     @Override
@@ -67,7 +66,6 @@ public class Player extends GameObject implements Moveable {
     @Override
     public void setStepCounterTileY() {
         historyTileY.add(tileY);
-        System.out.println("Y : " + historyTileY.toString());
     }
 
 }

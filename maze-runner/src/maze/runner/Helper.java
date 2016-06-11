@@ -21,14 +21,7 @@ public class Helper extends GameObject {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/helper.png"));
         helper = img.getImage();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-        
->>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
-=======
-        
->>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
+
         img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/routeTile.png"));
         helperRoute = img.getImage();
@@ -39,15 +32,7 @@ public class Helper extends GameObject {
         return helper;
     }
     
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public Image getOptimalRoute() {
-=======
     public Image getOptimaleRoute() {
->>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
-=======
-    public Image getOptimaleRoute() {
->>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
         return helperRoute;
     }
 }
