@@ -22,7 +22,13 @@ public class Level extends JPanel implements ActionListener {
     private Ammo ammo;
     private boolean newMap;
     private boolean optimalRoute;
+<<<<<<< HEAD
     private boolean bazookaPickUp;
+=======
+    private int breakX, breakY;
+    
+    private String lastDirection;
+>>>>>>> 46710b11e7f9fe32ff7d9ff9b131131a5aada6fc
 
     public Level() {
         timer = new Timer(25, this);
@@ -40,7 +46,14 @@ public class Level extends JPanel implements ActionListener {
         setFocusable(true);
         newMap = true;
         optimalRoute = false;
+<<<<<<< HEAD
         bazookaPickUp = false;
+=======
+        
+        //debugging
+        breakX = -1;
+        breakY = -1;
+>>>>>>> 46710b11e7f9fe32ff7d9ff9b131131a5aada6fc
     }
 
     @Override
@@ -65,7 +78,11 @@ public class Level extends JPanel implements ActionListener {
                     }
                 }
                 if (map.getTile(x, y).equals("w")) {
-                    g.drawImage(wall.getGameObject(), x * 32, y * 32, null);
+                    if (x == breakX && y == breakY) {
+                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                    } else {
+                        g.drawImage(wall.getGameObject(), x * 32, y * 32, null);
+                    }
                 }
                 if (map.getTile(x, y).equals("c")) {
                     if (newMap == true) {
@@ -126,26 +143,36 @@ public class Level extends JPanel implements ActionListener {
             int keycode = event.getKeyCode();
             
             if (keycode == KeyEvent.VK_UP) {
+                lastDirection = "UP";
                 if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals("w")) {
                     player.move(0, -1);
                 }
             }
             if (keycode == KeyEvent.VK_DOWN) {
+                lastDirection = "DOWN";
                 if (!map.getTile(player.getTileX(), player.getTileY() + 1).equals("w")) {
                     player.move(0, 1);
                 }
             }
             if (keycode == KeyEvent.VK_LEFT) {
+                lastDirection = "LEFT";
                 if (!map.getTile(player.getTileX() - 1, player.getTileY()).equals("w")) {
                     player.move(-1, 0);
                 }
             }
             if (keycode == KeyEvent.VK_RIGHT) {
+                lastDirection = "RIGHT";
                 if (!map.getTile(player.getTileX() + 1, player.getTileY()).equals("w")) {
                     player.move(1, 0);
                 }
             }
+<<<<<<< HEAD
             
+=======
+            if (keycode == KeyEvent.VK_SPACE) {
+                destroyWall();
+            }
+>>>>>>> 46710b11e7f9fe32ff7d9ff9b131131a5aada6fc
             player.setStepCounterTileX();
             player.setStepCounterTileY();
 
@@ -184,4 +211,42 @@ public class Level extends JPanel implements ActionListener {
         }
 
     }
+    
+    public void destroyWall() { 
+        int currentTileX = player.getTileX();
+        int currentTileY = player.getTileY();
+        
+        if (lastDirection.equalsIgnoreCase("UP")) {
+            System.out.println("last direction was up");
+            boolean check = true;
+            
+            System.out.println("==== player ====");
+            while (check == true)  {
+                if (!map.getTile(currentTileX, currentTileY-1).equals("w")) {
+                    System.out.println("grass");
+                    currentTileY--;
+                } else if (map.getTile(currentTileX, currentTileY-1).equals("w")) {
+                    check = false;
+                    System.out.println("===== wall =====");
+                }
+            }
+        } 
+        
+        if (lastDirection.equalsIgnoreCase("DOWN")) {
+            System.out.println("last direction was down");
+            boolean check = true;
+            
+            System.out.println("==== player ====");
+            while (check == true)  {
+                if (!map.getTile(currentTileX, currentTileY+1).equals("w")) {
+                    System.out.println("grass");
+                    currentTileY++;
+                } else {
+                    check = false;
+                    System.out.println("===== wall =====");
+                }
+            }
+        } 
+    }
 }
+
