@@ -5,7 +5,7 @@ import javax.swing.*;
 
 /**
  *
- * @author Stefan van Doodewaard
+ * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public class GameFrame extends JFrame {
 
@@ -95,7 +95,7 @@ public class GameFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                //game.manual();
+                game.manual();
             }
         }
 

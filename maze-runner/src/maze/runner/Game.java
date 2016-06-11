@@ -58,13 +58,21 @@ public class Game extends GameFrame {
         currentLevel.grabFocus();
     }
 
+    public void manual() {
+        JOptionPane.showMessageDialog (null, 
+                "In order to finish the maze, navigate the player towards the \n" +
+                "friend. Avoid the cheater for he will send you back a random \n" +
+                "amount of steps. You can also use the bazooka to destroy a \n" +
+                "wall in the direction you last moved or have the helper show \n" +
+                "you the optimal route.\n\n" +
+                "Controls:\n" +
+                "- Arrow keys to move\n" +
+                "- Space bar to shoot bazooka"
+        , "Manual", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     public void about() {
-        JFrame frame = new GameFrame();
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel();
-        label.setText("A game by Kenny Dillewaard & Stefan van Doodewaard");
-        frame.setVisible(true);
-        panel.add(label, BorderLayout.CENTER);
-        frame.add(panel);
+        JOptionPane.showMessageDialog(null, "A game by Kenny Dillewaard & Stefan van Doodewaard");
+
     }
 }
