@@ -22,4 +22,9 @@ public class Friend extends GameObject {
     public Image getGameObject() {
         return friend;
     }
+    
+    public void setFriendPosition(int x, int y) {
+        tileX = x;
+        tileY = y;
+    }
 }

@@ -55,7 +55,7 @@ public class Level extends JPanel implements ActionListener {
                         cheater.setCheaterPosition(x, y);
                     } 
                     else {
-                        g.drawImage(map.getGrassTile(), x * 32, y * 32, null);
+                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     }
                 }
                 if (map.getTile(x, y).equals("f")) {
@@ -63,7 +63,7 @@ public class Level extends JPanel implements ActionListener {
                         friend.setFriendPosition(x, y);
                     } 
                     else {
-                        g.drawImage(map.getGrassTile(), x * 32, y * 32, null);
+                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     }
                 }
                 
@@ -97,7 +97,7 @@ public class Level extends JPanel implements ActionListener {
         System.out.println("throwBackPositionX : " + throwBackPositionX);
         System.out.println("throwBackPositionY : " + throwBackPositionY);
         
-        player.move(throwBackPositionX, throwBackPositionY, true);
+        player.moveTo(throwBackPositionX, throwBackPositionY);
     }
 
     public class Al extends KeyAdapter {
@@ -109,25 +109,25 @@ public class Level extends JPanel implements ActionListener {
             if (keycode == KeyEvent.VK_UP) {
                 if (!map.getTile(player.getTileX(), player.getTileY() - 1).
                         equals("w")) {
-                    player.move(0, -1, false);
+                    player.move(0, -1);
                 }
             }
             if (keycode == KeyEvent.VK_DOWN) {
                 if (!map.getTile(player.getTileX(), player.getTileY() + 1).
                         equals("w")) {
-                    player.move(0, 1, false);
+                    player.move(0, 1);
                 }
             }
             if (keycode == KeyEvent.VK_LEFT) {
                 if (!map.getTile(player.getTileX() - 1, player.getTileY()).
                         equals("w")) {
-                    player.move(-1, 0, false);
+                    player.move(-1, 0);
                 }
             }
             if (keycode == KeyEvent.VK_RIGHT) {
                 if (!map.getTile(player.getTileX() + 1, player.getTileY()).
                         equals("w")) {
-                    player.move(1, 0, false);
+                    player.move(1, 0);
                 }
             }
             if (keycode == KeyEvent.VK_SPACE) {

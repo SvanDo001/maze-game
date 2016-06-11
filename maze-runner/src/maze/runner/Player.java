@@ -36,15 +36,10 @@ public class Player extends GameObject implements Moveable {
     }
 
     @Override
-    public void move(int dx, int dy, boolean throwBack) {
-        if (throwBack == false) {
+    public void move(int dx, int dy) {
             tileX += dx;
             tileY += dy;
         }
-        if (throwBack == true) {
-            
-        }
-    }
     
     @Override
     public void moveTo(int dx, int dy) {

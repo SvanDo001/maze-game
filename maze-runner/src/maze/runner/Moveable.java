@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public interface Moveable {
     
-    public void move(int dx, int dy, boolean throwBack);
+    public void move(int dx, int dy);
     
     public void moveTo(int dx, int dy);
     
