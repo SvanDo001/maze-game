@@ -57,7 +57,7 @@ public class Level extends JPanel implements ActionListener {
                     if (optimalRoute == false) {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     } else {
-                        g.drawImage(helper.getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(helper.getOptimalRoute(), x * 32, y * 32, null);
                     }
                 }
                 if (map.getTile(x, y).equals("w")) {
@@ -164,6 +164,8 @@ public class Level extends JPanel implements ActionListener {
         }
         if (x == helper.getTileX() && y == helper.getTileY()) {
             System.out.println("Helper Bereikt!");
+            JOptionPane.showMessageDialog(null, "Let me help you by show the "
+                    + "optimal route to your friend!");
             helper.setGameObjectPosition(-1, -1);
             optimalRoute = true;
         }

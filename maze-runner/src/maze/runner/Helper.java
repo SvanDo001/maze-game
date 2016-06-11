@@ -15,15 +15,23 @@ import javax.swing.ImageIcon;
 public class Helper extends GameObject {
 
     private Image helper;
+    private Image helperRoute;
 
     public Helper() {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/helper.png"));
         helper = img.getImage();
+        img = new ImageIcon(ClassLoader.
+                getSystemResource("resources/tiles/routeTile.png"));
+        helperRoute = img.getImage();
     }
 
     @Override
     public Image getGameObject() {
         return helper;
+    }
+    
+    public Image getOptimalRoute() {
+        return helperRoute;
     }
 }
