@@ -12,24 +12,26 @@ public class Level extends JPanel implements ActionListener {
 
     private Timer timer;
     private Map map;
+    private Wall wall;
+    private Grass grass;
     private Player player;
     private Cheater cheater;
     private Friend friend;
-    private Wall wall;
-    private Grass grass;
+    private Bazooka bazooka;
     private boolean newMap;
 
     public Level() {
+        timer = new Timer(25, this);
+        timer.start();
         map = new Map();
+        wall = new Wall();
+        grass = new Grass();
         player = new Player();
         cheater = new Cheater();
         friend = new Friend();
-        wall = new Wall();
-        grass = new Grass();
+        bazooka = new Bazooka();
         addKeyListener(new Al());
         setFocusable(true);
-        timer = new Timer(25, this);
-        timer.start();
         newMap = true;
     }
 
@@ -52,7 +54,7 @@ public class Level extends JPanel implements ActionListener {
                 }
                 if (map.getTile(x, y).equals("c")) {
                     if (newMap == true) {
-                        cheater.setCheaterPosition(x, y);
+                        cheater.setGameObjectPosition(x, y);
                     } 
                     else {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
@@ -60,10 +62,15 @@ public class Level extends JPanel implements ActionListener {
                 }
                 if (map.getTile(x, y).equals("f")) {
                     if (newMap == true) {
-                        friend.setFriendPosition(x, y);
+                        friend.setGameObjectPosition(x, y);
                     } 
                     else {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                    }
+                }
+                if (map.getTile(x, y).equals("b")) {
+                    if (newMap == true) {
+                        bazooka.setGameObjectPosition(x, y);
                     }
                 }
                 
@@ -76,6 +83,8 @@ public class Level extends JPanel implements ActionListener {
             
             g.drawImage(friend.getGameObject(), friend.getTileX() * 32,
                     friend.getTileY() * 32, null);
+            g.drawImage(bazooka.getGameObject(), bazooka.getTileX() * 32,
+                    bazooka.getTileY() * 32, null);
         }
         newMap = false;
     }
@@ -131,7 +140,7 @@ public class Level extends JPanel implements ActionListener {
                 }
             }
             if (keycode == KeyEvent.VK_SPACE) {
-                cheater.setCheaterPosition(1, 1);
+                cheater.setGameObjectPosition(1, 1);
             }
             
             player.setStepCounterTileX();

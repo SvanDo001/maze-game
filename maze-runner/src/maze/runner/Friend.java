@@ -10,7 +10,7 @@ import javax.swing.*;
 
 public class Friend extends GameObject {
 
-    private final Image friend;
+    private Image friend;
 
     public Friend() {
         ImageIcon img = new ImageIcon(ClassLoader.
@@ -23,7 +23,8 @@ public class Friend extends GameObject {
         return friend;
     }
     
-    public void setFriendPosition(int x, int y) {
+    @Override
+    public void setGameObjectPosition(int x, int y) {
         tileX = x;
         tileY = y;
     }

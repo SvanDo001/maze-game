@@ -21,4 +21,17 @@ public abstract class GameObject {
     public int getTileY() {
         return tileY;
     }
+    
+    public void active() {
+        active = true;
+    }
+    
+    public void inactive() {
+        active = false;
+    }
+    
+    public void setGameObjectPosition(int x, int y) {
+        tileX = x;
+        tileY = y;
+    }
 }

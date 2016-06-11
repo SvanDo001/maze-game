@@ -31,6 +31,7 @@ public class Player extends GameObject implements Moveable {
         tileY = 1;
     }
 
+    @Override
     public Image getGameObject() {
         return player;
     }
