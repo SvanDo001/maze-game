@@ -58,7 +58,11 @@ public class Level extends JPanel implements ActionListener {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     } else {
 <<<<<<< HEAD
+<<<<<<< HEAD
                         g.drawImage(helper.getOptimalRoute(), x * 32, y * 32, null);
+=======
+                        g.drawImage(helper.getOptimaleRoute(), x * 32, y * 32, null);
+>>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
 =======
                         g.drawImage(helper.getOptimaleRoute(), x * 32, y * 32, null);
 >>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e

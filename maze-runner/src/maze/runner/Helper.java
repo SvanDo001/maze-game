@@ -22,6 +22,10 @@ public class Helper extends GameObject {
                 getSystemResource("resources/tiles/helper.png"));
         helper = img.getImage();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
 =======
         
 >>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
@@ -36,7 +40,11 @@ public class Helper extends GameObject {
     }
     
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Image getOptimalRoute() {
+=======
+    public Image getOptimaleRoute() {
+>>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
 =======
     public Image getOptimaleRoute() {
 >>>>>>> 4cb8e82917794890f98db688112dfa812f9a309e
