@@ -23,7 +23,7 @@ public class Cheater extends GameObject {
         tileY = 1;
     }
 
-    public Image getCheater() {
+    public Image getGameObject() {
         return cheater;
     }
     

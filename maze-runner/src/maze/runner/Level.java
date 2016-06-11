@@ -53,13 +53,13 @@ public class Level extends JPanel implements ActionListener {
                     
                 }
                 if (map.getTile(x, y).equals("f")) {
-                    g.drawImage(friend.getFriend(), x * 32, y * 32, null);
+                    g.drawImage(friend.getGameObject(), x * 32, y * 32, null);
                 }
             }
-            g.drawImage(player.getPlayer(), player.getTileX() * 32,
+            g.drawImage(player.getGameObject(), player.getTileX() * 32,
                     player.getTileY() * 32, null);
             
-            g.drawImage(cheater.getCheater(), cheater.getTileX() * 32,
+            g.drawImage(cheater.getGameObject(), cheater.getTileX() * 32,
                     cheater.getTileY() * 32, null);
         }
     }

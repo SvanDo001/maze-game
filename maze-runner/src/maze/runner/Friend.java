@@ -21,7 +21,7 @@ public class Friend extends GameObject {
         friend = img.getImage();
     }
 
-    public Image getFriend() {
+    public Image getGameObject() {
         return friend;
     }
 }

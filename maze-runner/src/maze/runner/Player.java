@@ -34,7 +34,7 @@ public class Player extends GameObject implements Moveable {
         tileY = 1;
     }
 
-    public Image getPlayer() {
+    public Image getGameObject() {
         return player;
     }
 
