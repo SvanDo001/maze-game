@@ -15,6 +15,7 @@ public class Level extends JPanel implements ActionListener {
     private Player player;
     private Cheater cheater;
     private Friend friend;
+    private boolean newMap;
 
     public Level() {
         map = new Map();
@@ -25,6 +26,7 @@ public class Level extends JPanel implements ActionListener {
         setFocusable(true);
         timer = new Timer(25, this);
         timer.start();
+        newMap = true;
     }
 
     @Override
@@ -44,8 +46,11 @@ public class Level extends JPanel implements ActionListener {
                 if (map.getTile(x, y).equals("w")) {
                     g.drawImage(map.getWallTile(), x * 32, y * 32, null);
                 }
-                if (map.getTile(x, y).equals("e")) {
-                    g.drawImage(cheater.getCheater(), x * 32, y * 32, null);
+                if (map.getTile(x, y).equals("c") && newMap == true) {
+                    cheater.setCheaterPosition(x, y);
+                    newMap = false;
+//                    g.drawImage(cheater.getCheater(), x * 32, y * 32, null);
+                    
                 }
                 if (map.getTile(x, y).equals("f")) {
                     g.drawImage(friend.getFriend(), x * 32, y * 32, null);
@@ -53,12 +58,15 @@ public class Level extends JPanel implements ActionListener {
             }
             g.drawImage(player.getPlayer(), player.getTileX() * 32,
                     player.getTileY() * 32, null);
+            
+            g.drawImage(cheater.getCheater(), cheater.getTileX() * 32,
+                    cheater.getTileY() * 32, null);
         }
     }
     
     public void throwBackPlayer(int steps) {        
-        int ArraySizeTileX = player.getStepCounterTileX().size();
-        int ArraySizeTileY = player.getStepCounterTileY().size();
+        int ArraySizeTileX = player.getStepCounterTileX().size() - 1;
+        int ArraySizeTileY = player.getStepCounterTileY().size() - 1;
         
         //debugging
         System.out.println("ArraySizeTileX : " + ArraySizeTileX);
@@ -92,6 +100,16 @@ public class Level extends JPanel implements ActionListener {
                 if (!map.getTile(player.getTileX(), player.getTileY() + 1).
                         equals("w")) {
                     player.move(0, 1, false);
+                    
+                    
+//                    if (map.getTile(player.getTileX(), player.getTileY() + 1).
+//                        equals("c")) {
+//                        System.out.println("Cheater Bereikt!");
+//                        throwBackPlayer(15);
+//                    } else {
+//                        player.move(0, 1, false);
+//                    }
+                    
                 }
             }
             if (keycode == KeyEvent.VK_LEFT) {
@@ -107,7 +125,7 @@ public class Level extends JPanel implements ActionListener {
                 }
             }
             if (keycode == KeyEvent.VK_SPACE) {
-                throwBackPlayer(15);
+                cheater.setCheaterPosition(1, 1);
             }
             
             player.setStepCounterTileX();

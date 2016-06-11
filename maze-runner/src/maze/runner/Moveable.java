@@ -15,6 +15,8 @@ public interface Moveable {
     
     public void move(int dx, int dy, boolean throwBack);
     
+    public void moveTo(int dx, int dy);
+    
     public ArrayList<Integer> getStepCounterTileX();
 
     public void setStepCounterTileX();

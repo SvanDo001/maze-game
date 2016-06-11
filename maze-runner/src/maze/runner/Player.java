@@ -25,6 +25,10 @@ public class Player extends GameObject implements Moveable {
 
         historyTileX = new ArrayList<>();
         historyTileY = new ArrayList<>();
+        
+        //toevoegen van startpositie X & Y
+        historyTileX.add(1);
+        historyTileY.add(1);
 
         tileX = 1;
         tileY = 1;
@@ -41,9 +45,14 @@ public class Player extends GameObject implements Moveable {
             tileY += dy;
         }
         if (throwBack == true) {
-            tileX = dx;
-            tileY = dy;
+            
         }
+    }
+    
+    @Override
+    public void moveTo(int dx, int dy) {
+        tileX = dx;
+        tileY = dy;
     }
     
     @Override

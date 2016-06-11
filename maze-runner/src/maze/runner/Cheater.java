@@ -18,9 +18,19 @@ public class Cheater extends GameObject {
         ImageIcon img = new ImageIcon(classloader.
                 getSystemResource("resources/tiles/cheater.png"));
         cheater = img.getImage();
+        
+        tileX = 1;
+        tileY = 1;
     }
 
     public Image getCheater() {
         return cheater;
     }
+    
+    public void setCheaterPosition(int x, int y) {
+        tileX = x;
+        tileY = y;
+    }
+    
+    
 }
