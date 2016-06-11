@@ -20,6 +20,7 @@ public class Level extends JPanel implements ActionListener {
     private Helper helper;
     private Bazooka bazooka;
     private boolean newMap;
+    private boolean optimalRoute;
 
     public Level() {
         timer = new Timer(25, this);
@@ -35,6 +36,7 @@ public class Level extends JPanel implements ActionListener {
         addKeyListener(new Al());
         setFocusable(true);
         newMap = true;
+        optimalRoute = false;
     }
 
     @Override
@@ -50,6 +52,13 @@ public class Level extends JPanel implements ActionListener {
             for (int x = 0; x < 14; x++) {
                 if (map.getTile(x, y).equals("g")) {
                     g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                }
+                if (map.getTile(x, y).equals("G")) {
+                    if (optimalRoute == false) {
+                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                    } else {
+                        g.drawImage(helper.getGameObject(), x * 32, y * 32, null);
+                    }
                 }
                 if (map.getTile(x, y).equals("w")) {
                     g.drawImage(wall.getGameObject(), x * 32, y * 32, null);
@@ -156,6 +165,7 @@ public class Level extends JPanel implements ActionListener {
         if (x == helper.getTileX() && y == helper.getTileY()) {
             System.out.println("Helper Bereikt!");
             helper.setGameObjectPosition(-1, -1);
+            optimalRoute = true;
         }
         if (x == bazooka.getTileX() && y == bazooka.getTileY()) {
             System.out.println("Bazooka Bereikt!");
