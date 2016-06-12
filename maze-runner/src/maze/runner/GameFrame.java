@@ -110,7 +110,6 @@ public class GameFrame extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent event) {
-                Game game = new Game();
                 game.about();
             }
         }

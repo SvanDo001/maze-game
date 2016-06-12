@@ -139,11 +139,15 @@ public class Level extends JPanel implements ActionListener {
                 lastDirection = "UP";
                 if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals("w")) {
                     player.move(0, -1);
+                } else if (player.getTileX() == breakX && (player.getTileY() - 1) == breakY) {
+                    player.move(0, -1);
                 }
             }
             if (keycode == KeyEvent.VK_DOWN) {
                 lastDirection = "DOWN";
                 if (!map.getTile(player.getTileX(), player.getTileY() + 1).equals("w")) {
+                    player.move(0, 1);
+                } else if (player.getTileX() == breakX && (player.getTileY() + 1) == breakY) {
                     player.move(0, 1);
                 }
             }
@@ -151,23 +155,23 @@ public class Level extends JPanel implements ActionListener {
                 lastDirection = "LEFT";
                 if (!map.getTile(player.getTileX() - 1, player.getTileY()).equals("w")) {
                     player.move(-1, 0);
+                } else if ((player.getTileX() - 1) == breakX && player.getTileY() == breakY) {
+                    player.move(-1, 0);
                 }
             }
             if (keycode == KeyEvent.VK_RIGHT) {
                 lastDirection = "RIGHT";
                 if (!map.getTile(player.getTileX() + 1, player.getTileY()).equals("w")) {
                     player.move(1, 0);
+                } else if ((player.getTileX() + 1) == breakX && player.getTileY() == breakY) {
+                    player.move(1, 0);
                 }
             }
             
             //dit werkt nog voor geen meter :P
-            if (keycode == KeyEvent.VK_SPACE) {
-                if (bazookaPickUp = true) {
+            if (keycode == KeyEvent.VK_SPACE && bazookaPickUp == true) {
                     destroyWall();
                     bazookaPickUp = false;
-                } else {
-                    System.out.println("do nothing");
-                }
             }
 
             player.setStepCounterTileX();
