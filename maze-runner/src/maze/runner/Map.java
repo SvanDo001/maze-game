@@ -8,14 +8,13 @@ import java.util.*;
  */
 public final class Map {
     
-    ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-
+    private ClassLoader classloader = Thread.currentThread().getContextClassLoader();
     private Scanner map;
-
-    private final String[] MAP = new String[14];
     
-    ArrayList<String> locatie;
-    int currentLevel;
+    private final String[] MAP = new String[14];
+    private ArrayList<String> locatie;
+    
+    private int currentLevel;
 
     public Map() {
         locatie = new ArrayList<>();

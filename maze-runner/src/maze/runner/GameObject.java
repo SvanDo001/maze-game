@@ -24,8 +24,4 @@ public abstract class GameObject {
         tileX = x;
         tileY = y;
     }
-    
-    public void reset() {
-        
-    }
 }

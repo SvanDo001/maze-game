@@ -90,7 +90,7 @@ public class GameFrame extends JFrame {
         return item;
     }
 
-    public JMenuItem createInfoManualItem() {
+        public JMenuItem createInfoManualItem() {
         class InfoManualItemListener implements ActionListener {
 
             @Override
