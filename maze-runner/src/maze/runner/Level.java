@@ -24,7 +24,6 @@ public class Level extends JPanel implements ActionListener {
     private boolean optimalRoute;
     private boolean bazookaPickUp;
     private int breakX, breakY;
-    
     private String lastDirection;
         
     public Level() {
@@ -140,11 +139,15 @@ public class Level extends JPanel implements ActionListener {
                 lastDirection = "UP";
                 if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals("w")) {
                     player.move(0, -1);
+                } else if (player.getTileX() == breakX && (player.getTileY() - 1) == breakY) {
+                    player.move(0, -1);
                 }
             }
             if (keycode == KeyEvent.VK_DOWN) {
                 lastDirection = "DOWN";
                 if (!map.getTile(player.getTileX(), player.getTileY() + 1).equals("w")) {
+                    player.move(0, 1);
+                } else if (player.getTileX() == breakX && (player.getTileY() + 1) == breakY) {
                     player.move(0, 1);
                 }
             }
@@ -152,16 +155,23 @@ public class Level extends JPanel implements ActionListener {
                 lastDirection = "LEFT";
                 if (!map.getTile(player.getTileX() - 1, player.getTileY()).equals("w")) {
                     player.move(-1, 0);
+                } else if ((player.getTileX() - 1) == breakX && player.getTileY() == breakY) {
+                    player.move(-1, 0);
                 }
             }
             if (keycode == KeyEvent.VK_RIGHT) {
                 lastDirection = "RIGHT";
                 if (!map.getTile(player.getTileX() + 1, player.getTileY()).equals("w")) {
                     player.move(1, 0);
+                } else if ((player.getTileX() + 1) == breakX && player.getTileY() == breakY) {
+                    player.move(1, 0);
                 }
             }
-            if (keycode == KeyEvent.VK_SPACE) {
-                destroyWall();
+            
+            //dit werkt nog voor geen meter :P
+            if (keycode == KeyEvent.VK_SPACE && bazookaPickUp == true) {
+                    destroyWall();
+                    bazookaPickUp = false;
             }
 
             player.setStepCounterTileX();
@@ -175,8 +185,8 @@ public class Level extends JPanel implements ActionListener {
         if (x == cheater.getTileX() && y == cheater.getTileY()) {
             System.out.println("Cheater Bereikt!");
             int random = ((int) (Math.random() * 10) + 5);
-            JOptionPane.showMessageDialog(null, "Whahaha, I will kick your " +
-                    "ass! Get back " + random + " steps!");
+            JOptionPane.showMessageDialog(null, "Whahaha, I will knock you " +
+                    "back " + random + " steps!");
             throwBackPlayer(random);
             cheater.setGameObjectPosition(-1, -1);
         }
@@ -184,13 +194,13 @@ public class Level extends JPanel implements ActionListener {
             System.out.println("Vriend Bereikt!");
             int steps = player.historyTileX.size() - 1;
             JOptionPane.showMessageDialog(null, "Congratulations, you have " 
-                    + "reached your friend! " + "You did it in " + steps 
-                    + " steps.");
+                    + "reached your friend! " + "\n    You have completed the maze in " 
+                    + steps + " steps.");
             friend.setGameObjectPosition(-1, -1);
         }
         if (x == helper.getTileX() && y == helper.getTileY()) {
             System.out.println("Helper Bereikt!");
-            JOptionPane.showMessageDialog(null, "Let me help you by show the "
+            JOptionPane.showMessageDialog(null, "Let me help you by showing you the "
                     + "optimal route to your friend!");
             helper.setGameObjectPosition(-1, -1);
             optimalRoute = true;
@@ -208,65 +218,57 @@ public class Level extends JPanel implements ActionListener {
         int currentTileY = player.getTileY();
         
         if (lastDirection.equalsIgnoreCase("UP")) {
-            System.out.println("last direction was up");
             boolean check = true;
             
-            System.out.println("==== player ====");
             while (check == true)  {
-                if (!map.getTile(currentTileX, currentTileY-1).equals("w")) {
-                    System.out.println("grass");
+                if (!map.getTile(currentTileX, currentTileY - 1).equals("w")) {
                     currentTileY--;
-                } else if (map.getTile(currentTileX, currentTileY-1).equals("w")) {
+                } else  {
                     check = false;
-                    System.out.println("===== wall =====");
+                    breakX = currentTileX;
+                    breakY = currentTileY - 1;
                 }
             }
         } 
         
         if (lastDirection.equalsIgnoreCase("DOWN")) {
-            System.out.println("last direction was down");
             boolean check = true;
             
-            System.out.println("==== player ====");
             while (check == true)  {
-                if (!map.getTile(currentTileX, currentTileY+1).equals("w")) {
-                    System.out.println("grass");
+                if (!map.getTile(currentTileX, currentTileY + 1).equals("w")) {
                     currentTileY++;
                 } else {
                     check = false;
-                    System.out.println("===== wall =====");
+                    breakX = currentTileX;
+                    breakY = currentTileY + 1;
                 }
             }
         }
         
-                if (lastDirection.equalsIgnoreCase("LEFT")) {
-            System.out.println("last direction was left");
+        if (lastDirection.equalsIgnoreCase("LEFT")) {
             boolean check = true;
             
-            System.out.println("==== player ====");
             while (check == true)  {
                 if (!map.getTile(currentTileX - 1, currentTileY).equals("w")) {
-                    System.out.println("grass");
                     currentTileX--;
                 } else {
                     check = false;
-                    System.out.println("===== wall =====");
+                    breakX = currentTileX - 1;
+                    breakY = currentTileY;
                 }
             }
         }
                 
-                if (lastDirection.equalsIgnoreCase("RIGHT")) {
-            System.out.println("last direction was right");
+        if (lastDirection.equalsIgnoreCase("RIGHT")) {
             boolean check = true;
             
-            System.out.println("==== player ====");
             while (check == true)  {
                 if (!map.getTile(currentTileX + 1, currentTileY).equals("w")) {
-                    System.out.println("grass");
                     currentTileX++;
                 } else {
                     check = false;
-                    System.out.println("===== wall =====");
+                    breakX = currentTileX + 1;
+                    breakY = currentTileY;
                 }
             }
         }
