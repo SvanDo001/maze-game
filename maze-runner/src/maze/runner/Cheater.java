@@ -22,4 +22,20 @@ public class Cheater extends GameObject {
     public Image getGameObject() {
         return cheater;
     }
+    
+    public void throwBackPlayer(Player player) {
+        System.out.println("Cheater Bereikt!");
+        int random = ((int) (Math.random() * 10) + 5);
+        JOptionPane.showMessageDialog(null, "Whahaha, I will knock you " +
+                "back " + random + " steps!");
+            
+        int ArraySizeTileX = player.getStepCounterTileX().size() - 1;
+        int ArraySizeTileY = player.getStepCounterTileY().size() - 1;
+
+        int steps = player.historyTileX.size() - 1;
+        int throwBackPositionX = player.getStepCounterTileX().get(ArraySizeTileX - steps);
+        int throwBackPositionY = player.getStepCounterTileY().get(ArraySizeTileY - steps);
+
+        player.moveTo(throwBackPositionX, throwBackPositionY);
+    }
 }

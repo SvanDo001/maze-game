@@ -117,16 +117,6 @@ public class Level extends JPanel implements ActionListener {
         newMap = false;
     }
 
-    public void throwBackPlayer(int steps) {
-        int ArraySizeTileX = player.getStepCounterTileX().size() - 1;
-        int ArraySizeTileY = player.getStepCounterTileY().size() - 1;
-
-        int throwBackPositionX = player.getStepCounterTileX().get(ArraySizeTileX - steps);
-        int throwBackPositionY = player.getStepCounterTileY().get(ArraySizeTileY - steps);
-
-        player.moveTo(throwBackPositionX, throwBackPositionY);
-    }
-
     public class Al extends KeyAdapter {
 
         @Override
@@ -182,20 +172,16 @@ public class Level extends JPanel implements ActionListener {
     }
     
     /**
-     * Checks whether the player has reach another GameObject and gives back
-     * a message with an specific action attached to it. Places the reached
+     * Checks whether the player has reached another GameObject and gives back
+     * a message with a specific action attached to it. Places the reached
      * GameObject outside of the grid.
      * 
-     * @param x the coordinate of the x ass
-     * @param y the coordinate of the y ass
+     * @param x the coordinate of the x axis
+     * @param y the coordinate of the y axis
      */
     public void keyEvent(int x, int y) {
         if (x == cheater.getTileX() && y == cheater.getTileY()) {
-            System.out.println("Cheater Bereikt!");
-            int random = ((int) (Math.random() * 10) + 5);
-            JOptionPane.showMessageDialog(null, "Whahaha, I will knock you " +
-                    "back " + random + " steps!");
-            throwBackPlayer(random);
+            cheater.throwBackPlayer(player);
             cheater.setGameObjectPosition(-1, -1);
         }
         if (x == friend.getTileX() && y == friend.getTileY()) {
