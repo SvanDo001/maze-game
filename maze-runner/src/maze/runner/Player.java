@@ -12,7 +12,7 @@ public class Player extends GameObject implements Moveable {
 
     public ArrayList<Integer> historyTileX;
     public ArrayList<Integer> historyTileY;
-
+ 
     private Image player;
     private Image playerBazooka;
 

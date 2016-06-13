@@ -10,7 +10,7 @@ import javax.swing.*;
  */
 public class Game extends GameFrame {
 
-    private final ArrayList<Level> levels; // Verschillende collecties mogelijk
+    private ArrayList<Level> levels; // Verschillende collecties mogelijk
     private JFrame frame;
     private Level currentLevel;
 
