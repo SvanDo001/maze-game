@@ -52,7 +52,7 @@ public class Game extends GameFrame {
 
     public void restart() {
         frame.remove(currentLevel);
-        currentLevel = this.levels.get(levels.size() - 1);
+        currentLevel.reset();
         frame.add(currentLevel);
         frame.setVisible(true);
         currentLevel.grabFocus();

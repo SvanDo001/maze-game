@@ -15,6 +15,7 @@ public final class Map {
     private final String[] MAP = new String[14];
     
     ArrayList<String> locatie;
+    int currentLevel;
 
     public Map() {
         locatie = new ArrayList<>();
@@ -34,9 +35,10 @@ public final class Map {
     
     private void openFile() {
         try {
+            currentLevel = ((int) (Math.random() * 3));
             map = new Scanner(classloader.
                     getResourceAsStream(locatie.
-                            get((int) (Math.random() * 3))));
+                            get(currentLevel)));
         } catch (Exception e) {
             System.out.println("Error loading map");
             System.out.println(e);

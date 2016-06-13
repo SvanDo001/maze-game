@@ -19,7 +19,6 @@ public class Level extends JPanel implements ActionListener {
     private Friend friend;
     private Helper helper;
     private Bazooka bazooka;
-    private Ammo ammo;
     private boolean newMap;
     private boolean optimalRoute;
     private boolean bazookaPickUp;
@@ -37,7 +36,6 @@ public class Level extends JPanel implements ActionListener {
         friend = new Friend();
         helper = new Helper();
         bazooka = new Bazooka();
-        ammo = new Ammo();
         addKeyListener(new Al());
         setFocusable(true);
         newMap = true;
@@ -168,7 +166,9 @@ public class Level extends JPanel implements ActionListener {
                 }
             }
             
-            //dit werkt nog voor geen meter :P
+            /* Destroys a wall tile when space is hit and player is carrying a 
+            /  bazooka. False otherwise.
+            */
             if (keycode == KeyEvent.VK_SPACE && bazookaPickUp == true) {
                     destroyWall();
                     bazookaPickUp = false;
@@ -180,7 +180,15 @@ public class Level extends JPanel implements ActionListener {
             keyEvent(player.getTileX(), player.getTileY());
         }
     }
-
+    
+    /**
+     * Checks whether the player has reach another GameObject and gives back
+     * a message with an specific action attached to it. Places the reached
+     * GameObject outside of the grid.
+     * 
+     * @param x the coordinate of the x ass
+     * @param y the coordinate of the y ass
+     */
     public void keyEvent(int x, int y) {
         if (x == cheater.getTileX() && y == cheater.getTileY()) {
             System.out.println("Cheater Bereikt!");
@@ -272,6 +280,15 @@ public class Level extends JPanel implements ActionListener {
                 }
             }
         }
+    }
+    
+    public void reset() {
+        newMap = true;
+        optimalRoute = false;
+        bazookaPickUp = false;
+        breakX = -1;
+        breakX = -1;
+        player.moveTo(1, 1);
     }
 }
 
