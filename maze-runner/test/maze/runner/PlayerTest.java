@@ -2,7 +2,6 @@ package maze.runner;
 
 import java.awt.Image;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,8 +14,14 @@ import static org.junit.Assert.*;
  * @author Ken
  */
 public class PlayerTest{
+        
+        public ArrayList<Integer> testX = new ArrayList<>();
+        public ArrayList<Integer> testY = new ArrayList<>();
     
     public PlayerTest() {
+        //GameObjects always recieve a start position (x:1 & y:1)
+        testX.add(1);
+        testY.add(1);
     }
     
     @BeforeClass
@@ -29,6 +34,7 @@ public class PlayerTest{
     
     @Before
     public void setUp() {
+        
     }
     
     @After
@@ -82,35 +88,56 @@ public class PlayerTest{
     }
  
     @Test
-    public void testGetStepCounterTileX() {
-        System.out.println("getStepCounterTileX");
-        Player instance = new Player();
-        ArrayList<Integer> expResult = null;
-        ArrayList<Integer> result = instance.getStepCounterTileX();
-        assertEquals(expResult, result);
-    }
-
-    @Test
     public void testSetStepCounterTileX() {
         System.out.println("setStepCounterTileX");
         Player instance = new Player();
+        
+        //test position in test array
+        testX.add(4);
+        
+        //sets the actual X position of player
+        instance.tileX = 4;
+        
+        //saves the current X position of player in array
         instance.setStepCounterTileX();
+        
+        assertEquals(instance.getStepCounterTileX(), testX);
     }
-
-    @Test
-    public void testGetStepCounterTileY() {
-        System.out.println("getStepCounterTileY");
-        Player instance = new Player();
-        ArrayList<Integer> expResult = null;
-        ArrayList<Integer> result = instance.getStepCounterTileY();
-        assertEquals(expResult, result);
-    }
-
+    
     @Test
     public void testSetStepCounterTileY() {
         System.out.println("setStepCounterTileY");
         Player instance = new Player();
+        
+        //test position in test array
+        testY.add(4);
+        
+        //sets the actual Y position of player
+        instance.tileY = 4;
+        
+        //saves the current X position of player in array
         instance.setStepCounterTileY();
+        
+        assertEquals(instance.getStepCounterTileY(), testY);
     }
     
+    @Test
+    public void testGetStepCounterTileX() {
+        System.out.println("getStepCounterTileX");
+        Player instance = new Player();
+        
+        ArrayList<Integer> result = instance.getStepCounterTileX();
+        
+        assertEquals(testX, result);
+    }
+    
+    @Test
+    public void testGetStepCounterTileY() {
+        System.out.println("getStepCounterTileY");
+        Player instance = new Player();
+        
+        ArrayList<Integer> result = instance.getStepCounterTileY();
+        
+        assertEquals(testY, result);
+    }
 }
