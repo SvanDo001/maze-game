@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maze.runner;
 
 import java.awt.Image;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,7 +14,7 @@ import static org.junit.Assert.*;
  *
  * @author Ken
  */
-public class PlayerTest {
+public class PlayerTest{
     
     public PlayerTest() {
     }
@@ -38,51 +35,22 @@ public class PlayerTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getPlayer method, of class Player.
-     */
     @Test
-    public void testGetPlayer() {
-        System.out.println("getPlayer");
+    public void testGetGameObject() {
+        System.out.println("getGameObject");
         Player instance = new Player();
-        Image expResult = null;
-        Image result = instance.getPlayer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Image result = instance.getGameObject();
+        assertNotNull(result);
     }
 
-    /**
-     * Test of getTileX method, of class Player.
-     */
     @Test
-    public void testGetTileX() {
-        System.out.println("getTileX");
+    public void testGetBazooka() {
+        System.out.println("getBazooka");
         Player instance = new Player();
-        int expResult = 0;
-        int result = instance.getTileX();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Image result = instance.getBazooka();
+        assertNotNull(result);
     }
 
-    /**
-     * Test of getTileY method, of class Player.
-     */
-    @Test
-    public void testGetTileY() {
-        System.out.println("getTileY");
-        Player instance = new Player();
-        int expResult = 0;
-        int result = instance.getTileY();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of move method, of class Player.
-     */
     @Test
     public void testMove() {
         System.out.println("move");
@@ -90,8 +58,59 @@ public class PlayerTest {
         int dy = 0;
         Player instance = new Player();
         instance.move(dx, dy);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+
+    @Test
+    public void testMoveTo() {
+        System.out.println("moveTo");
+        int dx = 0;
+        int dy = 0;
+        Player instance = new Player();
+        instance.moveTo(dx, dy);
+    }
+
+    @Test
+    public void testSetGameObjectPosition() {
+        System.out.println("setGameObjectPosition");
+        int x = 5;
+        int y = 5;
+        Player instance = new Player();
+        instance.setGameObjectPosition(x, y);
+
+        assertEquals(instance.tileX, x);
+        assertEquals(instance.tileY, y);
+    }
+ 
+    @Test
+    public void testGetStepCounterTileX() {
+        System.out.println("getStepCounterTileX");
+        Player instance = new Player();
+        ArrayList<Integer> expResult = null;
+        ArrayList<Integer> result = instance.getStepCounterTileX();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetStepCounterTileX() {
+        System.out.println("setStepCounterTileX");
+        Player instance = new Player();
+        instance.setStepCounterTileX();
+    }
+
+    @Test
+    public void testGetStepCounterTileY() {
+        System.out.println("getStepCounterTileY");
+        Player instance = new Player();
+        ArrayList<Integer> expResult = null;
+        ArrayList<Integer> result = instance.getStepCounterTileY();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testSetStepCounterTileY() {
+        System.out.println("setStepCounterTileY");
+        Player instance = new Player();
+        instance.setStepCounterTileY();
     }
     
 }
