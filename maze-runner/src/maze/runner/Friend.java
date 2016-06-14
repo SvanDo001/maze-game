@@ -7,7 +7,6 @@ import javax.swing.*;
  *
  * @author Kenny Dillewaard & Stefan van Doodewaard
  */
-
 public class Friend extends GameObject {
 
     private Image friend;
@@ -22,4 +21,12 @@ public class Friend extends GameObject {
     public Image getGameObject() {
         return friend;
     }
-}
+
+    public void meetFriend(Player player) {
+        int steps = player.historyTileX.size() - 1;
+        JOptionPane.showMessageDialog(null, "Congratulations, you have "
+                + "reached your friend! " + "\n    You have completed the maze in "
+                + steps + " steps.");
+        
+    }
+    }

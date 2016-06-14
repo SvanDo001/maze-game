@@ -11,7 +11,7 @@ public class GameFrame extends JFrame {
 
     private static final int FRAME_WIDTH = 464;
     private static final int FRAME_HEIGHT = 518;
-    private Game game = null;
+    public Game game = null;
 
     public GameFrame() {
         // Construct menu

@@ -74,5 +74,5 @@ public class Game extends GameFrame {
     public void about() {
         JOptionPane.showMessageDialog(null, "A game by Kenny Dillewaard & Stefan van Doodewaard");
 
-    }
+    }   
 }

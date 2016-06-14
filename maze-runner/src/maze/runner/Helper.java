@@ -7,6 +7,7 @@ package maze.runner;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,5 +34,11 @@ public class Helper extends GameObject {
     
     public Image getOptimaleRoute() {
         return helperRoute;
+    }
+    
+    public void meetHelper() {
+            JOptionPane.showMessageDialog(null, "Let me help you by showing you the " +
+            "optimal route to your friend!");
+            setGameObjectPosition(-1, -1);
     }
 }

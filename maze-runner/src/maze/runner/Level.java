@@ -160,7 +160,7 @@ public class Level extends JPanel implements ActionListener {
             /  bazooka. False otherwise.
             */
             if (keycode == KeyEvent.VK_SPACE && bazookaPickUp == true) {
-                    destroyWall();
+                    bazooka.destroyWall(getLevel(), player , map);
                     bazookaPickUp = false;
             }
 
@@ -182,90 +182,19 @@ public class Level extends JPanel implements ActionListener {
     public void keyEvent(int x, int y) {
         if (x == cheater.getTileX() && y == cheater.getTileY()) {
             cheater.throwBackPlayer(player);
-            cheater.setGameObjectPosition(-1, -1);
         }
         if (x == friend.getTileX() && y == friend.getTileY()) {
-            System.out.println("Vriend Bereikt!");
-            int steps = player.historyTileX.size() - 1;
-            JOptionPane.showMessageDialog(null, "Congratulations, you have " 
-                    + "reached your friend! " + "\n    You have completed the maze in " 
-                    + steps + " steps.");
-            friend.setGameObjectPosition(-1, -1);
+            friend.meetFriend(player);
         }
         if (x == helper.getTileX() && y == helper.getTileY()) {
-            System.out.println("Helper Bereikt!");
-            JOptionPane.showMessageDialog(null, "Let me help you by showing you the "
-                    + "optimal route to your friend!");
-            helper.setGameObjectPosition(-1, -1);
+            helper.meetHelper();
             optimalRoute = true;
         }
         if (x == bazooka.getTileX() && y == bazooka.getTileY()) {
-            System.out.println("Bazooka Bereikt!");
             bazooka.setGameObjectPosition(-1, -1);
             bazookaPickUp = true;
         }
 
-    }
-    
-    public void destroyWall() { 
-        int currentTileX = player.getTileX();
-        int currentTileY = player.getTileY();
-        
-        if (lastDirection.equalsIgnoreCase("UP")) {
-            boolean check = true;
-            
-            while (check == true)  {
-                if (!map.getTile(currentTileX, currentTileY - 1).equals("w")) {
-                    currentTileY--;
-                } else  {
-                    check = false;
-                    breakX = currentTileX;
-                    breakY = currentTileY - 1;
-                }
-            }
-        } 
-        
-        if (lastDirection.equalsIgnoreCase("DOWN")) {
-            boolean check = true;
-            
-            while (check == true)  {
-                if (!map.getTile(currentTileX, currentTileY + 1).equals("w")) {
-                    currentTileY++;
-                } else {
-                    check = false;
-                    breakX = currentTileX;
-                    breakY = currentTileY + 1;
-                }
-            }
-        }
-        
-        if (lastDirection.equalsIgnoreCase("LEFT")) {
-            boolean check = true;
-            
-            while (check == true)  {
-                if (!map.getTile(currentTileX - 1, currentTileY).equals("w")) {
-                    currentTileX--;
-                } else {
-                    check = false;
-                    breakX = currentTileX - 1;
-                    breakY = currentTileY;
-                }
-            }
-        }
-                
-        if (lastDirection.equalsIgnoreCase("RIGHT")) {
-            boolean check = true;
-            
-            while (check == true)  {
-                if (!map.getTile(currentTileX + 1, currentTileY).equals("w")) {
-                    currentTileX++;
-                } else {
-                    check = false;
-                    breakX = currentTileX + 1;
-                    breakY = currentTileY;
-                }
-            }
-        }
     }
     
     public void reset() {
@@ -276,5 +205,27 @@ public class Level extends JPanel implements ActionListener {
         breakX = -1;
         player.moveTo(1, 1);
     }
+    
+    public String getLastDirection() {
+        return lastDirection;
+    }
+    
+    public int getBreakX() {
+        return breakX;
+    }
+    
+    public int getBreakY() {
+        return breakY;
+    }
+    
+    public void setBreakX_Y(int x, int y) {
+        breakX = x;
+        breakY = y;
+    }
+    
+    public Level getLevel() {
+        return Level.this;
+    }
+    
 }
 
