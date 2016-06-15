@@ -59,49 +59,60 @@ public class Level extends JPanel implements ActionListener {
         for (int y = 0; y < 14; y++) {
             for (int x = 0; x < 14; x++) {
                 
-                if (map.getTile(x, y).equals(grass)) {                    
-                    g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                // Grass tiles
+                if (map.getTile(x, y).equals(map.getTile(x, y))) {                    
+                    g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                 }
-                if (map.getTile(x, y).equals(helper)) {
+                    
+                // Route tiles
+                if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (optimalRoute == false) {
-                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     } else {
-                        g.drawImage(helper.getOptimaleRoute(), x * 32, y * 32, null);
+                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals(wall)) {
+                
+                // Wall check
+                if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (x == breakX && y == breakY) {
-                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     } else {
-                        g.drawImage(wall.getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals(cheater)) {
+                
+                // Cheater tile
+                if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (newMap == true) {
-                        cheater.setGameObjectPosition(x, y);
+                        map.getTile(x, y).setGameObjectPosition(x, y);
                     } else {
-                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals(friend)) {
+                
+                // Friend tile
+                if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (newMap == true) {
-                        friend.setGameObjectPosition(x, y);
+                        map.getTile(x, y).setGameObjectPosition(x, y);
                     } else {
-                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals(helper)) {
+                
+                // Helper tile
+                if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (newMap == true) {
-                        helper.setGameObjectPosition(x, y);
+                        map.getTile(x, y).setGameObjectPosition(x, y);
                     } else {
-                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals(bazooka)) {
+                if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (newMap == true) {
-                        bazooka.setGameObjectPosition(x, y);
+                        map.getTile(x, y).setGameObjectPosition(x, y);
                     } else {
-                        g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
             }
@@ -124,53 +135,53 @@ public class Level extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent event) {
             int keycode = event.getKeyCode();
             
-            if (keycode == KeyEvent.VK_UP) {
-                lastDirection = "UP";
-                if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals("w")) {
-                    player.move(0, -1);
-                } else if (player.getTileX() == breakX && (player.getTileY() - 1) == breakY) {
-                    player.move(0, -1);
-                }
-            }
-            if (keycode == KeyEvent.VK_DOWN) {
-                lastDirection = "DOWN";
-                if (!map.getTile(player.getTileX(), player.getTileY() + 1).equals("w")) {
-                    player.move(0, 1);
-                } else if (player.getTileX() == breakX && (player.getTileY() + 1) == breakY) {
-                    player.move(0, 1);
-                }
-            }
-            if (keycode == KeyEvent.VK_LEFT) {
-                lastDirection = "LEFT";
-                if (!map.getTile(player.getTileX() - 1, player.getTileY()).equals("w")) {
-                    player.move(-1, 0);
-                } else if ((player.getTileX() - 1) == breakX && player.getTileY() == breakY) {
-                    player.move(-1, 0);
-                }
-            }
-            if (keycode == KeyEvent.VK_RIGHT) {
-                lastDirection = "RIGHT";
-                if (!map.getTile(player.getTileX() + 1, player.getTileY()).equals("w")) {
-                    player.move(1, 0);
-                } else if ((player.getTileX() + 1) == breakX && player.getTileY() == breakY) {
-                    player.move(1, 0);
-                }
-            }
-            
-            /* Destroys a wall tile when space is hit and player is carrying a 
-            /  bazooka. False otherwise.
-            */
-            if (keycode == KeyEvent.VK_SPACE && bazookaPickUp == true) {
-                    bazooka.destroyWall(getLevel(), player , map);
-                    bazookaPickUp = false;
-            }
+                    if (keycode == KeyEvent.VK_UP) {
+                        lastDirection = "UP";
+                        if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals(wall)) {
+                            player.move(0, -1);
+                        } else if (player.getTileX() == breakX && (player.getTileY() - 1) == breakY) {
+                            player.move(0, -1);
+                        }
+                    }
+                    if (keycode == KeyEvent.VK_DOWN) {
+                        lastDirection = "DOWN";
+                        if (!map.getTile(player.getTileX(), player.getTileY() + 1).equals(wall)) {
+                            player.move(0, 1);
+                        } else if (player.getTileX() == breakX && (player.getTileY() + 1) == breakY) {
+                            player.move(0, 1);
+                        }
+                    }
+                    if (keycode == KeyEvent.VK_LEFT) {
+                        lastDirection = "LEFT";
+                        if (!map.getTile(player.getTileX() - 1, player.getTileY()).equals(wall)) {
+                            player.move(-1, 0);
+                        } else if ((player.getTileX() - 1) == breakX && player.getTileY() == breakY) {
+                            player.move(-1, 0);
+                        }
+                    }
+                    if (keycode == KeyEvent.VK_RIGHT) {
+                        lastDirection = "RIGHT";
+                        if (!map.getTile(player.getTileX() + 1, player.getTileY()).equals(wall)) {
+                            player.move(1, 0);
+                        } else if ((player.getTileX() + 1) == breakX && player.getTileY() == breakY) {
+                            player.move(1, 0);
+                        }
+                    }
 
-            player.setStepCounterTileX();
-            player.setStepCounterTileY();
+                    /* Destroys a wall tile when space is hit and player is carrying a 
+                    /  bazooka. False otherwise.
+                    */
+                    if (keycode == KeyEvent.VK_SPACE && bazookaPickUp == true) {
+                            bazooka.destroyWall(getLevel(), player , map);
+                            bazookaPickUp = false;
+                    }
 
-            keyEvent(player.getTileX(), player.getTileY());
-        }
-    }
+                    player.setStepCounterTileX();
+                    player.setStepCounterTileY();
+
+                    keyEvent(player.getTileX(), player.getTileY());
+                }
+            }
     
     /**
      * Checks whether the player has reached another GameObject and gives back

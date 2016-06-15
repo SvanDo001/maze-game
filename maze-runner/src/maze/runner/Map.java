@@ -29,7 +29,7 @@ public final class Map {
     }
     
     public GameObject getTile(int x, int y) {
-        GameObject gameObject = objects[y][x];
+        GameObject gameObject = objects[x][y];
         return gameObject;
         
         
