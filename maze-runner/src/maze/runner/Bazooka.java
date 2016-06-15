@@ -12,6 +12,7 @@ public class Bazooka extends GameObject {
     private final Image BAZOOKA;
 
     public Bazooka() {
+        active = false;
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/bazooka.png"));
         BAZOOKA = img.getImage();

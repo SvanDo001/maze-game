@@ -15,10 +15,9 @@ public class Player extends GameObject implements Moveable {
  
     private Image player;
     private Image playerBazooka;
-    private boolean bazookaPickup;
 
     public Player() {
-        bazookaPickup = false;
+        active = false;
         
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/player.png"));
@@ -40,21 +39,12 @@ public class Player extends GameObject implements Moveable {
 
     @Override
     public Image getGameObject() {
-        if (bazookaPickup == true) {
+        if (active == true) {
             return playerBazooka;
         } else {
             return player;
         }
     }   
-        
-    public void setBazookaPickup() {
-        if (bazookaPickup == false) {
-            bazookaPickup = true;
-        }
-        if (bazookaPickup == true) {
-            bazookaPickup = false;
-        }
-    }
 
     @Override
     public void move(int dx, int dy) {

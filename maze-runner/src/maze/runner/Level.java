@@ -18,10 +18,9 @@ public class Level extends JPanel implements ActionListener {
     private Cheater cheater;
     private Friend friend;
     private Helper helper;
+    private OptimalRoute optimalRoute;
     private Bazooka bazooka;
     private boolean newMap;
-    private boolean optimalRoute;
-    private boolean bazookaPickUp;
     private int breakX, breakY;
     private String lastDirection;
 
@@ -39,8 +38,6 @@ public class Level extends JPanel implements ActionListener {
         addKeyListener(new Al());
         setFocusable(true);
         newMap = true;
-        optimalRoute = false;
-        bazookaPickUp = false;
 
         //debugging
         breakX = -1;
@@ -66,11 +63,7 @@ public class Level extends JPanel implements ActionListener {
 
                 // Route tiles
                 if (map.getObject(x, y).equals(map.getObject(x, y))) {
-                    if (optimalRoute == false) {
-                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
-                    } else {
-                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
-                    }
+                    g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                 }
 
                 // Wall check
@@ -84,11 +77,7 @@ public class Level extends JPanel implements ActionListener {
 
                 // Cheater tile
                 if (map.getObject(x, y).equals(map.getObject(x, y))) {
-                    if (newMap == true) {
-                        map.getObject(x, y).setGameObjectPosition(x, y);
-                    } else {
-                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
-                    }
+                        g.drawImage(map.getObject(1, 1).getGameObject(), x * 32, y * 32, null);
                 }
 
                 // Friend tile
@@ -134,7 +123,7 @@ public class Level extends JPanel implements ActionListener {
 
                     if (keycode == KeyEvent.VK_UP) {
                         lastDirection = "UP";
-                        if (map.getObject(player.getTileX(), player.getTileY() - 1) instanceof Grass) {
+                        if (map.getObject(player.getTileX(), player.getTileY() - 1) instanceof Wall == false) {
                             player.move(0, -1);
                         } else if (player.getTileX() == breakX && (player.getTileY() - 1) == breakY) {
                             player.move(0, -1);
@@ -142,7 +131,7 @@ public class Level extends JPanel implements ActionListener {
                     }
                     if (keycode == KeyEvent.VK_DOWN) {
                         lastDirection = "DOWN";
-                        if (map.getObject(player.getTileX(), player.getTileY() + 1) instanceof Grass) {
+                        if (map.getObject(player.getTileX(), player.getTileY() + 1) instanceof Wall == false) {
                             player.move(0, 1);
                         } else if (player.getTileX() == breakX && (player.getTileY() + 1) == breakY) {
                             player.move(0, 1);
@@ -150,7 +139,7 @@ public class Level extends JPanel implements ActionListener {
                     }
                     if (keycode == KeyEvent.VK_LEFT) {
                         lastDirection = "LEFT";
-                        if (map.getObject(player.getTileX() - 1, player.getTileY()) instanceof Grass) {
+                        if (map.getObject(player.getTileX() - 1, player.getTileY()) instanceof Wall == false) {
                             player.move(-1, 0);
                         } else if ((player.getTileX() - 1) == breakX && player.getTileY() == breakY) {
                             player.move(-1, 0);
@@ -158,7 +147,7 @@ public class Level extends JPanel implements ActionListener {
                     }
                     if (keycode == KeyEvent.VK_RIGHT) {
                         lastDirection = "RIGHT";
-                        if (map.getObject(player.getTileX() + 1, player.getTileY()) instanceof Grass) {
+                        if (map.getObject(player.getTileX() + 1, player.getTileY()) instanceof Wall == false) {
                             player.move(1, 0);
                         } else if ((player.getTileX() + 1) == breakX && player.getTileY() == breakY) {
                             player.move(1, 0);
@@ -168,9 +157,9 @@ public class Level extends JPanel implements ActionListener {
                     /* Destroys a wall tile when space is hit and player is carrying a 
                     /  bazooka. False otherwise.
                      */
-                    if (keycode == KeyEvent.VK_SPACE && bazookaPickUp == true) {
+                    if (keycode == KeyEvent.VK_SPACE && bazooka.getActive() == true) {
                         bazooka.destroyWall(getLevel(), player, map);
-                        bazookaPickUp = false;
+                        bazooka.setActive();
                     }
 
                     player.setStepCounterTileX();
@@ -189,28 +178,31 @@ public class Level extends JPanel implements ActionListener {
      * @param y the coordinate of the y axis
      */
     public void keyEvent(int x, int y) {
-        if (x == cheater.getTileX() && y == cheater.getTileY()) {
+        if (map.getObject(x, y) instanceof Cheater) {
             cheater.throwBackPlayer(player);
+            cheater.setActive();
         }
-        if (x == friend.getTileX() && y == friend.getTileY()) {
+        if (map.getObject(x, y) instanceof Friend) {
             friend.meetFriend(player);
+            friend.setActive();
 
         }
-        if (x == helper.getTileX() && y == helper.getTileY()) {
+        if (map.getObject(x, y) instanceof Helper) {
             helper.meetHelper();
-            optimalRoute = true;
+            optimalRoute.setActive();
         }
-        if (x == bazooka.getTileX() && y == bazooka.getTileY()) {
+        if (map.getObject(x, y) instanceof Bazooka) {
             bazooka.setGameObjectPosition(-1, -1);
-            player.setBazookaPickup();
+            player.setActive();
+            bazooka.setActive();
         }
 
     }
 
     public void resetGameAttributes() {
         newMap = true;
-        optimalRoute = false;
-        bazookaPickUp = false;
+        optimalRoute.setActive();
+        player.setActive();
         breakX = -1;
         breakX = -1;
         player.moveTo(1, 1);

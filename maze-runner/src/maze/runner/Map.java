@@ -72,7 +72,7 @@ public final class Map {
                         objects[x][y] = new Bazooka();
                     }
                     if (character.contains("r")) {
-                        objects[x][y] = new Helper();
+                        objects[x][y] = new OptimalRoute();
                     }
                 }
             }

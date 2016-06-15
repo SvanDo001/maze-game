@@ -16,16 +16,29 @@ import javax.swing.JOptionPane;
 public class OptimalRoute extends GameObject {
     
     private Image optimaleRoute;
+    private Image grassRoute;
+    
+    private boolean active;
 
     public OptimalRoute() {
+        active = false;
 
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/routeTile.png"));
         optimaleRoute = img.getImage();
+        
+        img = new ImageIcon(ClassLoader.
+                getSystemResource("resources/tiles/grassTile.png"));
+        grassRoute = img.getImage();
     }
 
+    
     @Override
     public Image getGameObject() {
-        return optimaleRoute;
-    }
+        if (active == true) {
+            return optimaleRoute;
+        } else {
+            return grassRoute;
+        }
+    }   
 }

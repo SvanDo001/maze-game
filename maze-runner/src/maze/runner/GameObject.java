@@ -10,8 +10,22 @@ public abstract class GameObject {
 
     public int tileX;
     public int tileY;
+    public boolean active;
 
     public abstract Image getGameObject();
+    
+    public void setActive() {
+        if (active == false) {
+            active = true;
+        }
+        if (active == true) {
+            active = false;
+        }
+    }
+    
+    public boolean getActive() {
+        return active;
+    }
 
     public int getTileX() {
         return tileX;
