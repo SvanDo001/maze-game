@@ -135,9 +135,11 @@ public class Level extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent event) {
             int keycode = event.getKeyCode();
             
+            for (int y = 0; y < 14; y++) {
+                for (int x = 0; x < 14; x++) {
                     if (keycode == KeyEvent.VK_UP) {
                         lastDirection = "UP";
-                        if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals(wall)) {
+                        if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals(map.getTile(x, y).w)) {
                             player.move(0, -1);
                         } else if (player.getTileX() == breakX && (player.getTileY() - 1) == breakY) {
                             player.move(0, -1);
@@ -145,7 +147,7 @@ public class Level extends JPanel implements ActionListener {
                     }
                     if (keycode == KeyEvent.VK_DOWN) {
                         lastDirection = "DOWN";
-                        if (!map.getTile(player.getTileX(), player.getTileY() + 1).equals(wall)) {
+                        if (!map.getTile(player.getTileX(), player.getTileY() + 1).equals(map.getTile(x, y))) {
                             player.move(0, 1);
                         } else if (player.getTileX() == breakX && (player.getTileY() + 1) == breakY) {
                             player.move(0, 1);
@@ -153,7 +155,7 @@ public class Level extends JPanel implements ActionListener {
                     }
                     if (keycode == KeyEvent.VK_LEFT) {
                         lastDirection = "LEFT";
-                        if (!map.getTile(player.getTileX() - 1, player.getTileY()).equals(wall)) {
+                        if (!map.getTile(player.getTileX() - 1, player.getTileY()).equals(map.getTile(x, y))) {
                             player.move(-1, 0);
                         } else if ((player.getTileX() - 1) == breakX && player.getTileY() == breakY) {
                             player.move(-1, 0);
@@ -161,7 +163,7 @@ public class Level extends JPanel implements ActionListener {
                     }
                     if (keycode == KeyEvent.VK_RIGHT) {
                         lastDirection = "RIGHT";
-                        if (!map.getTile(player.getTileX() + 1, player.getTileY()).equals(wall)) {
+                        if (!map.getTile(player.getTileX() + 1, player.getTileY()).equals(map.getTile(x, y))) {
                             player.move(1, 0);
                         } else if ((player.getTileX() + 1) == breakX && player.getTileY() == breakY) {
                             player.move(1, 0);
@@ -182,6 +184,8 @@ public class Level extends JPanel implements ActionListener {
                     keyEvent(player.getTileX(), player.getTileY());
                 }
             }
+        }
+    }
     
     /**
      * Checks whether the player has reached another GameObject and gives back
