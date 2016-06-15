@@ -7,7 +7,7 @@ import javax.swing.*;
  *
  * @author Kenny Dillewaard & Stefan van Doodewaard
  */
-public class Friend extends GameObject{
+public class Friend extends GameObject {
 
     private Image friend;
 
@@ -16,7 +16,7 @@ public class Friend extends GameObject{
                 getSystemResource("resources/tiles/friend.png"));
         friend = img.getImage();
     }
-    
+
     @Override
     public Image getGameObject() {
         return friend;

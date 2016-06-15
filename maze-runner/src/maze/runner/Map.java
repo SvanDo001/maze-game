@@ -7,14 +7,14 @@ import java.util.*;
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public final class Map {
-    
+
     private ClassLoader classloader = Thread.currentThread().
             getContextClassLoader();
     private Scanner map;
-    
+
     private GameObject[][] objects;
     private ArrayList<String> locatie;
-    
+
     private int currentLevel;
 
     public Map() {
@@ -22,19 +22,18 @@ public final class Map {
         locatie.add("resources/Map.txt");
         locatie.add("resources/Map2.txt");
         locatie.add("resources/Map3.txt");
-        
+
         openFile();
         readFile();
         closeFile();
     }
-    
+
     public GameObject getTile(int x, int y) {
         GameObject gameObject = objects[x][y];
         return gameObject;
-        
-        
+
     }
-    
+
     private void openFile() {
         try {
             currentLevel = ((int) (Math.random() * 3));
@@ -49,12 +48,10 @@ public final class Map {
     private void readFile() {
         while (map.hasNext()) {
             objects = new GameObject[14][14];
-            
-            for (int y = 0; y < objects.length; y++)
-            {
+
+            for (int y = 0; y < objects.length; y++) {
                 String a = map.next();
-                for (int x = 0; x < objects[y].length; x++)
-                {
+                for (int x = 0; x < objects[y].length; x++) {
                     String character = a.substring(x, x + 1);
                     if (character.equals("w")) {
                         objects[x][y] = new Wall();
@@ -84,5 +81,5 @@ public final class Map {
 
     private void closeFile() {
         map.close();
-    }    
+    }
 }

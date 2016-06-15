@@ -8,9 +8,9 @@ import javax.swing.*;
  * @author Stefan van Doodewaard
  */
 public class Wall extends GameObject {
-    
-        private final Image WALL_TILE;
-    
+
+    private final Image WALL_TILE;
+
     public Wall() {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/wallTile.png"));
@@ -21,5 +21,4 @@ public class Wall extends GameObject {
     public Image getGameObject() {
         return WALL_TILE;
     }
-    
 }

@@ -24,7 +24,7 @@ public class Level extends JPanel implements ActionListener {
     private boolean bazookaPickUp;
     private int breakX, breakY;
     private String lastDirection;
-        
+
     public Level() {
         timer = new Timer(25, this);
         timer.start();
@@ -41,12 +41,12 @@ public class Level extends JPanel implements ActionListener {
         newMap = true;
         optimalRoute = false;
         bazookaPickUp = false;
-        
+
         //debugging
         breakX = -1;
         breakY = -1;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent event) {
         repaint();
@@ -58,18 +58,12 @@ public class Level extends JPanel implements ActionListener {
 
         for (int y = 0; y < 14; y++) {
             for (int x = 0; x < 14; x++) {
-                
-<<<<<<< HEAD
-                if (map.getTile(x, y).equals(grass)) {                    
-                    g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
-                    System.out.println("tile equals grass X:" + x + " Y:" + y);
-=======
+
                 // Grass tiles
-                if (map.getTile(x, y).equals(map.getTile(x, y))) {                    
+                if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
->>>>>>> d542d915095b07231d3a4e3f185963da63beb185
                 }
-                    
+
                 // Route tiles
                 if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (optimalRoute == false) {
@@ -78,7 +72,7 @@ public class Level extends JPanel implements ActionListener {
                         g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                
+
                 // Wall check
                 if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (x == breakX && y == breakY) {
@@ -87,7 +81,7 @@ public class Level extends JPanel implements ActionListener {
                         g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                
+
                 // Cheater tile
                 if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (newMap == true) {
@@ -96,7 +90,7 @@ public class Level extends JPanel implements ActionListener {
                         g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                
+
                 // Friend tile
                 if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (newMap == true) {
@@ -105,7 +99,7 @@ public class Level extends JPanel implements ActionListener {
                         g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                
+
                 // Helper tile
                 if (map.getTile(x, y).equals(map.getTile(x, y))) {
                     if (newMap == true) {
@@ -131,18 +125,18 @@ public class Level extends JPanel implements ActionListener {
         }
         newMap = false;
     }
-    
+
     public class Al extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent event) {
             int keycode = event.getKeyCode();
-            
+
             for (int y = 0; y < 14; y++) {
                 for (int x = 0; x < 14; x++) {
                     if (keycode == KeyEvent.VK_UP) {
                         lastDirection = "UP";
-                        if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals(map.getTile(x, y).w)) {
+                        if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals(map.getTile(x, y))) {
                             player.move(0, -1);
                         } else if (player.getTileX() == breakX && (player.getTileY() - 1) == breakY) {
                             player.move(0, -1);
@@ -175,10 +169,10 @@ public class Level extends JPanel implements ActionListener {
 
                     /* Destroys a wall tile when space is hit and player is carrying a 
                     /  bazooka. False otherwise.
-                    */
+                     */
                     if (keycode == KeyEvent.VK_SPACE && bazookaPickUp == true) {
-                            bazooka.destroyWall(getLevel(), player , map);
-                            bazookaPickUp = false;
+                        bazooka.destroyWall(getLevel(), player, map);
+                        bazookaPickUp = false;
                     }
 
                     player.setStepCounterTileX();
@@ -189,12 +183,12 @@ public class Level extends JPanel implements ActionListener {
             }
         }
     }
-    
+
     /**
-     * Checks whether the player has reached another GameObject and gives back
-     * a message with a specific action attached to it. Places the reached
+     * Checks whether the player has reached another GameObject and gives back a
+     * message with a specific action attached to it. Places the reached
      * GameObject outside of the grid.
-     * 
+     *
      * @param x the coordinate of the x axis
      * @param y the coordinate of the y axis
      */
@@ -204,7 +198,7 @@ public class Level extends JPanel implements ActionListener {
         }
         if (x == friend.getTileX() && y == friend.getTileY()) {
             friend.meetFriend(player);
-            
+
         }
         if (x == helper.getTileX() && y == helper.getTileY()) {
             helper.meetHelper();
@@ -216,7 +210,7 @@ public class Level extends JPanel implements ActionListener {
         }
 
     }
-    
+
     public void resetGameAttributes() {
         newMap = true;
         optimalRoute = false;
@@ -225,24 +219,24 @@ public class Level extends JPanel implements ActionListener {
         breakX = -1;
         player.moveTo(1, 1);
     }
-    
+
     public String getLastDirection() {
         return lastDirection;
     }
-    
+
     public int getBreakX() {
         return breakX;
     }
-    
+
     public int getBreakY() {
         return breakY;
     }
-    
+
     public void setBreakX_Y(int x, int y) {
         breakX = x;
         breakY = y;
     }
-    
+
     public Level getLevel() {
         return Level.this;
     }

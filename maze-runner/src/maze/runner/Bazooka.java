@@ -8,10 +8,9 @@ import javax.swing.*;
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public class Bazooka extends GameObject {
-    
+
     private final Image BAZOOKA;
-        
-    
+
     public Bazooka() {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/bazooka.png"));
@@ -22,28 +21,28 @@ public class Bazooka extends GameObject {
     public Image getGameObject() {
         return BAZOOKA;
     }
-    
-    public void destroyWall(Level level, Player player, Map map) { 
+
+    public void destroyWall(Level level, Player player, Map map) {
         int currentTileX = player.getTileX();
         int currentTileY = player.getTileY();
-        
+
         if (level.getLastDirection().equalsIgnoreCase("UP")) {
             boolean check = true;
-            
-            while (check == true)  {
+
+            while (check == true) {
                 if (!map.getTile(currentTileX, currentTileY - 1).equals("w")) {
                     currentTileY--;
-                } else  {
+                } else {
                     check = false;
                     level.setBreakX_Y(currentTileX, currentTileY - 1);
                 }
             }
-        } 
-        
+        }
+
         if (level.getLastDirection().equalsIgnoreCase("DOWN")) {
             boolean check = true;
-            
-            while (check == true)  {
+
+            while (check == true) {
                 if (!map.getTile(currentTileX, currentTileY + 1).equals("w")) {
                     currentTileY++;
                 } else {
@@ -52,11 +51,11 @@ public class Bazooka extends GameObject {
                 }
             }
         }
-        
+
         if (level.getLastDirection().equalsIgnoreCase("LEFT")) {
             boolean check = true;
-            
-            while (check == true)  {
+
+            while (check == true) {
                 if (!map.getTile(currentTileX - 1, currentTileY).equals("w")) {
                     currentTileX--;
                 } else {
@@ -65,11 +64,11 @@ public class Bazooka extends GameObject {
                 }
             }
         }
-                
+
         if (level.getLastDirection().equalsIgnoreCase("RIGHT")) {
             boolean check = true;
-            
-            while (check == true)  {
+
+            while (check == true) {
                 if (!map.getTile(currentTileX + 1, currentTileY).equals("w")) {
                     currentTileX++;
                 } else {
