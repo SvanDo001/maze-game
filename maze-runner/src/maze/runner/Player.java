@@ -15,8 +15,11 @@ public class Player extends GameObject implements Moveable {
  
     private Image player;
     private Image playerBazooka;
+    private boolean bazookaPickup;
 
     public Player() {
+        bazookaPickup = false;
+        
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/player.png"));
         player = img.getImage();
@@ -37,11 +40,20 @@ public class Player extends GameObject implements Moveable {
 
     @Override
     public Image getGameObject() {
-        return player;
-    }
-    
-    public Image getBazooka() {
-        return playerBazooka;
+        if (bazookaPickup == true) {
+            return playerBazooka;
+        } else {
+            return player;
+        }
+    }   
+        
+    public void setBazookaPickup() {
+        if (bazookaPickup == false) {
+            bazookaPickup = true;
+        }
+        if (bazookaPickup == true) {
+            bazookaPickup = false;
+        }
     }
 
     @Override
