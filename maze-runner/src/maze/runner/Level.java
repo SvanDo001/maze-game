@@ -60,59 +60,59 @@ public class Level extends JPanel implements ActionListener {
             for (int x = 0; x < 14; x++) {
 
                 // Grass tiles
-                if (map.getTile(x, y).equals(map.getTile(x, y))) {
-                    g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
+                if (map.getObject(x, y).equals(map.getObject(x, y))) {
+                    g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                 }
 
                 // Route tiles
-                if (map.getTile(x, y).equals(map.getTile(x, y))) {
+                if (map.getObject(x, y).equals(map.getObject(x, y))) {
                     if (optimalRoute == false) {
-                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                     } else {
-                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
 
                 // Wall check
-                if (map.getTile(x, y).equals(map.getTile(x, y))) {
+                if (map.getObject(x, y).equals(map.getObject(x, y))) {
                     if (x == breakX && y == breakY) {
-                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                     } else {
-                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
 
                 // Cheater tile
-                if (map.getTile(x, y).equals(map.getTile(x, y))) {
+                if (map.getObject(x, y).equals(map.getObject(x, y))) {
                     if (newMap == true) {
-                        map.getTile(x, y).setGameObjectPosition(x, y);
+                        map.getObject(x, y).setGameObjectPosition(x, y);
                     } else {
-                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
 
                 // Friend tile
-                if (map.getTile(x, y).equals(map.getTile(x, y))) {
+                if (map.getObject(x, y).equals(map.getObject(x, y))) {
                     if (newMap == true) {
-                        map.getTile(x, y).setGameObjectPosition(x, y);
+                        map.getObject(x, y).setGameObjectPosition(x, y);
                     } else {
-                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
 
                 // Helper tile
-                if (map.getTile(x, y).equals(map.getTile(x, y))) {
+                if (map.getObject(x, y).equals(map.getObject(x, y))) {
                     if (newMap == true) {
-                        map.getTile(x, y).setGameObjectPosition(x, y);
+                        map.getObject(x, y).setGameObjectPosition(x, y);
                     } else {
-                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals(map.getTile(x, y))) {
+                if (map.getObject(x, y).equals(map.getObject(x, y))) {
                     if (newMap == true) {
-                        map.getTile(x, y).setGameObjectPosition(x, y);
+                        map.getObject(x, y).setGameObjectPosition(x, y);
                     } else {
-                        g.drawImage(map.getTile(x, y).getGameObject(), x * 32, y * 32, null);
+                        g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
                     }
                 }
             }
@@ -132,19 +132,17 @@ public class Level extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent event) {
             int keycode = event.getKeyCode();
 
-            for (int y = 0; y < 14; y++) {
-                for (int x = 0; x < 14; x++) {
                     if (keycode == KeyEvent.VK_UP) {
                         lastDirection = "UP";
-                        if (!map.getTile(player.getTileX(), player.getTileY() - 1).equals(map.getTile(x, y))) {
+                        if (map.getObject(player.getTileX(), player.getTileY() - 1) instanceof Grass) {
                             player.move(0, -1);
                         } else if (player.getTileX() == breakX && (player.getTileY() - 1) == breakY) {
                             player.move(0, -1);
-                        }
+                        } 
                     }
                     if (keycode == KeyEvent.VK_DOWN) {
                         lastDirection = "DOWN";
-                        if (!map.getTile(player.getTileX(), player.getTileY() + 1).equals(map.getTile(x, y))) {
+                        if (map.getObject(player.getTileX(), player.getTileY() + 1) instanceof Grass) {
                             player.move(0, 1);
                         } else if (player.getTileX() == breakX && (player.getTileY() + 1) == breakY) {
                             player.move(0, 1);
@@ -152,7 +150,7 @@ public class Level extends JPanel implements ActionListener {
                     }
                     if (keycode == KeyEvent.VK_LEFT) {
                         lastDirection = "LEFT";
-                        if (!map.getTile(player.getTileX() - 1, player.getTileY()).equals(map.getTile(x, y))) {
+                        if (map.getObject(player.getTileX() - 1, player.getTileY()) instanceof Grass) {
                             player.move(-1, 0);
                         } else if ((player.getTileX() - 1) == breakX && player.getTileY() == breakY) {
                             player.move(-1, 0);
@@ -160,7 +158,7 @@ public class Level extends JPanel implements ActionListener {
                     }
                     if (keycode == KeyEvent.VK_RIGHT) {
                         lastDirection = "RIGHT";
-                        if (!map.getTile(player.getTileX() + 1, player.getTileY()).equals(map.getTile(x, y))) {
+                        if (map.getObject(player.getTileX() + 1, player.getTileY()) instanceof Grass) {
                             player.move(1, 0);
                         } else if ((player.getTileX() + 1) == breakX && player.getTileY() == breakY) {
                             player.move(1, 0);
@@ -181,8 +179,6 @@ public class Level extends JPanel implements ActionListener {
                     keyEvent(player.getTileX(), player.getTileY());
                 }
             }
-        }
-    }
 
     /**
      * Checks whether the player has reached another GameObject and gives back a

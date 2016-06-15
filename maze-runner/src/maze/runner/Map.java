@@ -28,7 +28,7 @@ public final class Map {
         closeFile();
     }
 
-    public GameObject getTile(int x, int y) {
+    public GameObject getObject(int x, int y) {
         GameObject gameObject = objects[x][y];
         return gameObject;
 

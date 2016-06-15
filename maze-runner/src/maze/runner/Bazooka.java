@@ -30,7 +30,7 @@ public class Bazooka extends GameObject {
             boolean check = true;
 
             while (check == true) {
-                if (!map.getTile(currentTileX, currentTileY - 1).equals("w")) {
+                if (!map.getObject(currentTileX, currentTileY - 1).equals("w")) {
                     currentTileY--;
                 } else {
                     check = false;
@@ -43,7 +43,7 @@ public class Bazooka extends GameObject {
             boolean check = true;
 
             while (check == true) {
-                if (!map.getTile(currentTileX, currentTileY + 1).equals("w")) {
+                if (!map.getObject(currentTileX, currentTileY + 1).equals("w")) {
                     currentTileY++;
                 } else {
                     check = false;
@@ -56,7 +56,7 @@ public class Bazooka extends GameObject {
             boolean check = true;
 
             while (check == true) {
-                if (!map.getTile(currentTileX - 1, currentTileY).equals("w")) {
+                if (!map.getObject(currentTileX - 1, currentTileY).equals("w")) {
                     currentTileX--;
                 } else {
                     check = false;
@@ -69,7 +69,7 @@ public class Bazooka extends GameObject {
             boolean check = true;
 
             while (check == true) {
-                if (!map.getTile(currentTileX + 1, currentTileY).equals("w")) {
+                if (!map.getObject(currentTileX + 1, currentTileY).equals("w")) {
                     currentTileX++;
                 } else {
                     check = false;
