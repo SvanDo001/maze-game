@@ -58,7 +58,13 @@ public class Level extends JPanel implements ActionListener {
 
         for (int y = 0; y < 14; y++) {
             for (int x = 0; x < 14; x++) {
+<<<<<<< HEAD
                 if (map.getTile(x, y).equals("w")) {
+=======
+                
+                if (map.getTile(x, y).equals(grass)) {
+                    System.out.println("equals grass");
+>>>>>>> ccf236cd260d0405133529bcbb3b8518c43db554
                     g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                 }
                 if (map.getTile(x, y).equals(helper)) {
