@@ -58,13 +58,8 @@ public class Level extends JPanel implements ActionListener {
 
         for (int y = 0; y < 14; y++) {
             for (int x = 0; x < 14; x++) {
-<<<<<<< HEAD
-                if (map.getTile(x, y).equals("w")) {
-=======
                 
-                if (map.getTile(x, y).equals(grass)) {
-                    System.out.println("equals grass");
->>>>>>> ccf236cd260d0405133529bcbb3b8518c43db554
+                if (map.getTile(x, y).equals(grass)) {                    
                     g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                 }
                 if (map.getTile(x, y).equals(helper)) {
@@ -122,7 +117,7 @@ public class Level extends JPanel implements ActionListener {
         }
         newMap = false;
     }
-
+    
     public class Al extends KeyAdapter {
 
         @Override
@@ -204,8 +199,6 @@ public class Level extends JPanel implements ActionListener {
 
     }
     
-
-    
     public void resetGameAttributes() {
         newMap = true;
         optimalRoute = false;
@@ -235,6 +228,4 @@ public class Level extends JPanel implements ActionListener {
     public Level getLevel() {
         return Level.this;
     }
-    
 }
-
