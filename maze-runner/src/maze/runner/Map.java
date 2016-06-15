@@ -1,5 +1,10 @@
 package maze.runner;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 
 /**
@@ -35,11 +40,27 @@ public final class Map {
     }
     
     private void openFile() {
+        File f = new File("resources/Map"); System.out.println("file path: " + f.getAbsolutePath());
         try {
+//            InputStream is = Hangman1.class.getResourceAsStream("/resources/word.txt");
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+
+//            BufferedReader br = new BufferedReader(new FileReader("somefile.txt"));
+//            BufferedReader infixLines = new BufferedReader ( new FileReader ( "input.infix" ));
+
             currentLevel = ((int) (Math.random() * 3));
             map = new Scanner(classloader.
                     getResourceAsStream(locatie.
-                            get(currentLevel)));
+                            get(0)));
+
+//            InputStream is = Map.class.getResourceAsStream("resources//Map.txt");
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            
+//            BufferedReader reader = new BufferedReader(new FileReader("resources/Map"));
+//            
+//            System.out.println("reader : " + (char)reader.read());
+//            reader.close();
+            
         } catch (Exception e) {
             System.out.println("Error loading map");
             System.out.println(e);
@@ -48,40 +69,44 @@ public final class Map {
 
     private void readFile() {
         while (map.hasNext()) {
-            int y = 14;
-            int x = 14;
-            objects = new GameObject[y][x];
+            objects = new GameObject[14][14];
             
-            for (y = 0; y < objects.length; y++)
+            for (int y = 0; y < objects.length; y++)
             {
                 String a = map.next();
-                for (x = 0; x < objects[y].length; x++)
+                for (int x = 0; x < objects[y].length; x++)
                 {
-                    if (a.contains("w")) {
-                        objects[y][x] = new Wall();
-                        System.out.println(objects[0][0]);
+                    String character = a.substring(x, x + 1);
+                    if (character.equals("w")) {
+                        objects[x][y] = new Wall();
+                        System.out.println("WALL  - X:" + x + " Y:" + y);
                     }
-                    else if (a.contains("g")) {
-                        objects[y][x] = new Friend();
-                        System.out.println(objects[0][1]);
+                    if (character.contains("g")) {
+                        objects[x][y] = new Grass();
+                        System.out.println("GRASS - X:" + x + " Y:" + y);
                     }
-                    else if (a.contains("c")) {
-                        objects[y][x] = new Cheater();
+                    if (character.contains("c")) {
+                        objects[x][y] = new Cheater();
+                        System.out.println("CHEATER - X:" + x + " Y:" + y);
                     }
-                    else if (a.contains("f")) {
-                        objects[y][x] = new Friend();
+                    if (character.equals("f")) {
+                        objects[x][y] = new Friend();
+                        System.out.println("FRIEND - X:" + x + " Y:" + y);
                     }
-                    else if (a.contains("h")) {
-                        objects[y][x] = new Helper();
+                    if (character.equals("h")) {
+                        objects[x][y] = new Helper();
+                        System.out.println("HELPER - X:" + x + " Y:" + y);
                     }
-                    else if (a.contains("b")) {
-                        objects[y][x] = new Bazooka();
+                    if (character.equals("b")) {
+                        objects[x][y] = new Bazooka();
+                        System.out.println("BAZOOKA - X:" + x + " Y:" + y);
                     }
-                    else if (a.contains("r")) {
-                        objects[y][x] = new Helper();
-                    }
+//                    if (a.contains("r")) {
+//                        objects[x][y] = new Helper();
+//                    }
                 }
             }
+
         }
     }
 
