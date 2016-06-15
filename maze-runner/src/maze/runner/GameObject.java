@@ -9,6 +9,7 @@ public abstract class GameObject {
     
     public int tileX;
     public int tileY;
+    String w = "w";
     
     public abstract Image getGameObject();
     

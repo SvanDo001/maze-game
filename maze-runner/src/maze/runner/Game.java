@@ -12,67 +12,61 @@ public class Game extends GameFrame {
 
     private ArrayList<Level> levels; // Verschillende collecties mogelijk
     private JFrame frame;
+    private JPanel panel;
     private Level currentLevel;
 
     // default constructor
     public Game() {
         levels = new ArrayList<>();
         frame = new GameFrame(this);
-    }
-
-    // Add's a new Level to the Array of maze Levels
-    public void addLevel(Level level) {
-        levels.add(level);
-    }
-
-    // Removes a existing Level to the Array of maze Levels
-    public void removeLevel(Level level) {
-        levels.remove(level);
+        panel = new JPanel();
     }
 
     public void game() {
         currentLevel = new Level();
-        frame.add(currentLevel);
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.add(currentLevel);
+        frame.add(panel);
         frame.setVisible(true);
         frame.setTitle("Maze Runner");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         currentLevel.grabFocus();
-        addLevel(currentLevel);
     }
-
+    
     public void start() {
-        frame.remove(currentLevel);
+        panel.remove(currentLevel);
         currentLevel = new Level();
-        frame.add(currentLevel);
+        panel.add(currentLevel);
+        frame.add(panel);
         frame.setVisible(true);
-        currentLevel.grabFocus();
-        addLevel(currentLevel);
+        currentLevel.grabFocus();   
     }
 
     public void restart() {
-        frame.remove(currentLevel);
-        currentLevel.reset();
-        frame.add(currentLevel);
+        panel.remove(currentLevel);
+        currentLevel.resetGameAttributes();
+        panel.add(currentLevel);
+        frame.add(panel);
         frame.setVisible(true);
         currentLevel.grabFocus();
     }
 
     public void manual() {
         JOptionPane.showMessageDialog (null, 
-                "In order to finish the maze, navigate the player towards the \n" +
-                "friend. Avoid the cheater for he will send you back a random \n" +
-                "amount of steps. You can also use the bazooka to destroy a \n" +
-                "wall in the direction you last moved or have the helper show \n" +
-                "you the optimal route.\n\n" +
-                "Controls:\n" +
-                "- Arrow keys to move\n" +
-                "- Space bar to shoot bazooka"
+                "In order to finish the maze, navigate the player towards "
+                        + "the \nfriend. Avoid the cheater for he will send "
+                        + "you back a random \namount of steps. You can also "
+                        + "use the bazooka to destroy a \nwall in the "
+                        + "direction you last moved or have the helper show "
+                        + "\n you the optimal route.\n\nControls:\n- Arrow "
+                        + "keys to move\n- Space bar to shoot bazooka"
         , "Manual", JOptionPane.INFORMATION_MESSAGE);
     }
     
     public void about() {
-        JOptionPane.showMessageDialog(null, "A game by Kenny Dillewaard & Stefan van Doodewaard");
+        JOptionPane.showMessageDialog(null, "A game by Kenny Dillewaard & "
+                + "Stefan van Doodewaard");
 
     }   
 }

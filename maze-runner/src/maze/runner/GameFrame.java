@@ -1,5 +1,6 @@
 package maze.runner;
 
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -21,7 +22,6 @@ public class GameFrame extends JFrame {
         menuBar.add(createInfoMenu());
 
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
-
     }
 
     public GameFrame(Game game) {
@@ -36,7 +36,7 @@ public class GameFrame extends JFrame {
             System.exit(0);
         }
     }
-
+    
     /**
      * Creates the game and info menu
      *
@@ -90,7 +90,7 @@ public class GameFrame extends JFrame {
         return item;
     }
 
-        public JMenuItem createInfoManualItem() {
+    public JMenuItem createInfoManualItem() {
         class InfoManualItemListener implements ActionListener {
 
             @Override

@@ -46,7 +46,7 @@ public class Level extends JPanel implements ActionListener {
         breakX = -1;
         breakY = -1;
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent event) {
         repaint();
@@ -58,45 +58,46 @@ public class Level extends JPanel implements ActionListener {
 
         for (int y = 0; y < 14; y++) {
             for (int x = 0; x < 14; x++) {
-                if (map.getTile(x, y).equals("g")) {
+                System.out.println(map.getTile(x, y));
+                if (map.getTile(x, y).equals(grass)) {
                     g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                 }
-                if (map.getTile(x, y).equals("r")) {
+                if (map.getTile(x, y).equals(helper)) {
                     if (optimalRoute == false) {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     } else {
                         g.drawImage(helper.getOptimaleRoute(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals("w")) {
+                if (map.getTile(x, y).equals(wall)) {
                     if (x == breakX && y == breakY) {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     } else {
                         g.drawImage(wall.getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals("c")) {
+                if (map.getTile(x, y).equals(cheater)) {
                     if (newMap == true) {
                         cheater.setGameObjectPosition(x, y);
                     } else {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals("f")) {
+                if (map.getTile(x, y).equals(friend)) {
                     if (newMap == true) {
                         friend.setGameObjectPosition(x, y);
                     } else {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals("h")) {
+                if (map.getTile(x, y).equals(helper)) {
                     if (newMap == true) {
                         helper.setGameObjectPosition(x, y);
                     } else {
                         g.drawImage(grass.getGameObject(), x * 32, y * 32, null);
                     }
                 }
-                if (map.getTile(x, y).equals("b")) {
+                if (map.getTile(x, y).equals(bazooka)) {
                     if (newMap == true) {
                         bazooka.setGameObjectPosition(x, y);
                     } else {
@@ -185,6 +186,7 @@ public class Level extends JPanel implements ActionListener {
         }
         if (x == friend.getTileX() && y == friend.getTileY()) {
             friend.meetFriend(player);
+            
         }
         if (x == helper.getTileX() && y == helper.getTileY()) {
             helper.meetHelper();
@@ -197,7 +199,9 @@ public class Level extends JPanel implements ActionListener {
 
     }
     
-    public void reset() {
+
+    
+    public void resetGameAttributes() {
         newMap = true;
         optimalRoute = false;
         bazookaPickUp = false;

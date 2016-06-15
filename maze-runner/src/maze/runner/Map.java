@@ -11,7 +11,7 @@ public final class Map {
     private ClassLoader classloader = Thread.currentThread().getContextClassLoader();
     private Scanner map;
     
-    private final String[] MAP = new String[14];
+    private GameObject[][] objects;
     private ArrayList<String> locatie;
     
     private int currentLevel;
@@ -26,10 +26,12 @@ public final class Map {
         readFile();
         closeFile();
     }
-
-    public String getTile(int x, int y) {
-        String tileIndex = MAP[y].substring(x, x + 1);
-        return tileIndex;
+    
+    public GameObject getTile(int x, int y) {
+        GameObject gameObject = objects[y][x];
+        return gameObject;
+        
+        
     }
     
     private void openFile() {
@@ -46,8 +48,39 @@ public final class Map {
 
     private void readFile() {
         while (map.hasNext()) {
-            for (int i = 0; i < 14; i++) {
-                MAP[i] = map.next();
+            int y = 14;
+            int x = 14;
+            objects = new GameObject[y][x];
+            
+            for (y = 0; y < objects.length; y++)
+            {
+                String a = map.next();
+                for (x = 0; x < objects[y].length; x++)
+                {
+                    if (a.contains("w")) {
+                        objects[y][x] = new Wall();
+                        System.out.println(objects[0][0]);
+                    }
+                    else if (a.contains("g")) {
+                        objects[y][x] = new Friend();
+                        System.out.println(objects[0][1]);
+                    }
+                    else if (a.contains("c")) {
+                        objects[y][x] = new Cheater();
+                    }
+                    else if (a.contains("f")) {
+                        objects[y][x] = new Friend();
+                    }
+                    else if (a.contains("h")) {
+                        objects[y][x] = new Helper();
+                    }
+                    else if (a.contains("b")) {
+                        objects[y][x] = new Bazooka();
+                    }
+                    else if (a.contains("r")) {
+                        objects[y][x] = new Helper();
+                    }
+                }
             }
         }
     }
