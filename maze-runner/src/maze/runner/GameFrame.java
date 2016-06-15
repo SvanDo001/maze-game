@@ -36,7 +36,7 @@ public class GameFrame extends JFrame {
             System.exit(0);
         }
     }
-    
+
     /**
      * Creates the game and info menu
      *

@@ -15,22 +15,20 @@ import javax.swing.JOptionPane;
  */
 public class Helper extends GameObject {
 
-    private Image helper;
-    
-    private boolean active;
+    private Image HELPER_TILE;
 
     public Helper(int x, int y) {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/helper.png"));
-        helper = img.getImage();
-        
+        HELPER_TILE = img.getImage();
+
         tileX = x;
         tileY = y;
     }
 
     @Override
     public Image getGameObject() {
-        return helper;
+        return HELPER_TILE;
     }
 
     public void meetHelper() {

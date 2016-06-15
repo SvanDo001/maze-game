@@ -9,36 +9,40 @@ import javax.swing.*;
  */
 public class Bazooka extends GameObject {
 
-    private final Image BAZOOKA;
-    
-    private boolean active;
+    private final Image BAZOOKA_TILE;
 
     public Bazooka() {
-        active = false;
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/bazooka.png"));
-        BAZOOKA = img.getImage();
+        BAZOOKA_TILE = img.getImage();
     }
 
     @Override
     public Image getGameObject() {
-        return BAZOOKA;
+        return BAZOOKA_TILE;
     }
 
     public void destroyWall(Level level, Player player, Map map) {
-        int currentTileX = player.getTileX();
-        int currentTileY = player.getTileY();
+        int x = player.getTileX();
+        int y = player.getTileY();
 
         if (level.getLastDirection().equalsIgnoreCase("UP")) {
             boolean check = true;
+            System.out.println("UP");
 
             while (check == true) {
-                if (!map.getObject(currentTileX, currentTileY - 1).equals("w")) {
-                    currentTileY--;
+                if (map.getObject(x, y - 1) instanceof Wall == false) {
+                    y--;
                 } else {
+                    map.replaceObject(x, y, "grass");
                     check = false;
-                    level.setBreakX_Y(currentTileX, currentTileY - 1);
                 }
+//                if (!map.getObject(currentTileX, currentTileY - 1).equals("w")) {
+//                    currentTileY--;
+//                } else {
+//                    check = false;
+//                    level.setBreakX_Y(currentTileX, currentTileY - 1);
+//                }
             }
         }
 
@@ -46,11 +50,11 @@ public class Bazooka extends GameObject {
             boolean check = true;
 
             while (check == true) {
-                if (!map.getObject(currentTileX, currentTileY + 1).equals("w")) {
-                    currentTileY++;
+                if (!map.getObject(x, y + 1).equals("w")) {
+                    y++;
                 } else {
                     check = false;
-                    level.setBreakX_Y(currentTileX, currentTileY + 1);
+                    level.setBreakX_Y(x, y + 1);
                 }
             }
         }
@@ -59,11 +63,11 @@ public class Bazooka extends GameObject {
             boolean check = true;
 
             while (check == true) {
-                if (!map.getObject(currentTileX - 1, currentTileY).equals("w")) {
-                    currentTileX--;
+                if (!map.getObject(x - 1, y).equals("w")) {
+                    x--;
                 } else {
                     check = false;
-                    level.setBreakX_Y(currentTileX - 1, currentTileY);
+                    level.setBreakX_Y(x - 1, y);
                 }
             }
         }
@@ -72,11 +76,11 @@ public class Bazooka extends GameObject {
             boolean check = true;
 
             while (check == true) {
-                if (!map.getObject(currentTileX + 1, currentTileY).equals("w")) {
-                    currentTileX++;
+                if (!map.getObject(x + 1, y).equals("w")) {
+                    x++;
                 } else {
                     check = false;
-                    level.setBreakX_Y(currentTileX + 1, currentTileY);
+                    level.setBreakX_Y(x + 1, y);
                 }
             }
         }

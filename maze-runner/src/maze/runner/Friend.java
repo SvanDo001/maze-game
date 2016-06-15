@@ -9,17 +9,17 @@ import javax.swing.*;
  */
 public class Friend extends GameObject {
 
-    private Image friend;
+    private Image FRIEND_TILE;
 
     public Friend() {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/friend.png"));
-        friend = img.getImage();
+        FRIEND_TILE = img.getImage();
     }
 
     @Override
     public Image getGameObject() {
-        return friend;
+        return FRIEND_TILE;
     }
 
     public void meetFriend(Player player) {

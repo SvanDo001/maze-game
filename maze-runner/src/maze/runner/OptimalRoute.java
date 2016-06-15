@@ -11,34 +11,21 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Ken
+ * @author Ken & Stefan
  */
 public class OptimalRoute extends GameObject {
-    
-    private Image optimaleRoute;
-    private Image grassRoute;
-    
-    private boolean active;
+
+    private Image ROUTE_TILE;
 
     public OptimalRoute() {
-        active = false;
-
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/routeTile.png"));
-        optimaleRoute = img.getImage();
-        
-        img = new ImageIcon(ClassLoader.
-                getSystemResource("resources/tiles/grassTile.png"));
-        grassRoute = img.getImage();
+        ROUTE_TILE = img.getImage();
+
     }
 
-    
     @Override
     public Image getGameObject() {
-        if (active == true) {
-            return optimaleRoute;
-        } else {
-            return grassRoute;
-        }
-    }   
+        return ROUTE_TILE;
+    }
 }

@@ -12,25 +12,20 @@ public class Player extends GameObject implements Moveable {
 
     public ArrayList<Integer> historyTileX;
     public ArrayList<Integer> historyTileY;
- 
-    private Image player;
-    private Image playerBazooka;
-    
-    private boolean active;
+
+    private Image PLAYER_TILE;
+    private boolean bazookaPickup;
 
     public Player() {
-        active = false;
-        
+        bazookaPickup = false;
+
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/player.png"));
-        player = img.getImage();
-        img = new ImageIcon(ClassLoader.
-                getSystemResource("resources/tiles/playerBazooka.png"));
-        playerBazooka = img.getImage();
+        PLAYER_TILE = img.getImage();
 
         historyTileX = new ArrayList<>();
         historyTileY = new ArrayList<>();
-        
+
         //toevoegen van startpositie X & Y
         historyTileX.add(1);
         historyTileY.add(1);
@@ -41,25 +36,40 @@ public class Player extends GameObject implements Moveable {
 
     @Override
     public Image getGameObject() {
-        if (active == true) {
-            return playerBazooka;
-        } else {
-            return player;
+        return PLAYER_TILE;
+    }
+
+    public void setBazookaPickup() {
+        if (bazookaPickup == false) {
+            bazookaPickup = true;
+            ImageIcon img = new ImageIcon(ClassLoader.
+                    getSystemResource("resources/tiles/player.png"));
+            PLAYER_TILE = img.getImage();
         }
-    }   
+        if (bazookaPickup == true) {
+            bazookaPickup = false;
+            ImageIcon img = new ImageIcon(ClassLoader.
+                    getSystemResource("resources/tiles/playerBazooka.png"));
+            PLAYER_TILE = img.getImage();
+        }
+    }
+
+    public boolean getBazookaPickup() {
+        return bazookaPickup;
+    }
 
     @Override
     public void move(int dx, int dy) {
-            tileX += dx;
-            tileY += dy;
-        }
-    
+        tileX += dx;
+        tileY += dy;
+    }
+
     @Override
     public void moveTo(int dx, int dy) {
         tileX = dx;
         tileY = dy;
     }
-    
+
     @Override
     public ArrayList<Integer> getStepCounterTileX() {
         return historyTileX;

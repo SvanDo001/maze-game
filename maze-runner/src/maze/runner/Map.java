@@ -19,7 +19,7 @@ public final class Map {
 
     public Map() {
         locatie = new ArrayList<>();
-        locatie.add("resources/Map.txt");
+        locatie.add("resources/Map1.txt");
         locatie.add("resources/Map2.txt");
         locatie.add("resources/Map3.txt");
 
@@ -38,7 +38,8 @@ public final class Map {
         try {
             currentLevel = ((int) (Math.random() * 3));
             map = new Scanner(classloader.
-                    getResourceAsStream(locatie.get(currentLevel)));
+                    //                    getResourceAsStream(locatie.get(currentLevel)));
+                    getResourceAsStream("resources/TestMap.txt"));
         } catch (Exception e) {
             System.out.println("Error loading map");
             System.out.println(e);
@@ -72,7 +73,7 @@ public final class Map {
                         objects[x][y] = new Bazooka();
                     }
                     if (character.contains("r")) {
-                        objects[x][y] = new OptimalRoute();
+                        objects[x][y] = new Grass();
                     }
                 }
             }
@@ -81,5 +82,35 @@ public final class Map {
 
     private void closeFile() {
         map.close();
+    }
+
+    public void replaceObject(int x, int y, String type) {
+        if (type.equals("grass")) {
+            objects[x][y] = new Grass();
+            System.out.println("new  Grass() @> objects[" + x + "][" + y + "] : " + objects[x][y]);
+        }
+    }
+
+    public void showOptimaleRoute() {
+        map = new Scanner(classloader.
+                //                    getResourceAsStream(locatie.get(currentLevel)));
+                getResourceAsStream("resources/TestMap.txt"));
+
+        for (int y = 0; y < objects.length; y++) {
+
+            String a = map.next();
+
+            for (int x = 0; x < objects[y].length; x++) {
+
+                String character = a.substring(x, x + 1);
+
+                if (character.contains("r")) {
+                    objects[x][y] = new OptimalRoute();
+                    System.out.println("new  Opt.Route() @> objects[" + x + "][" + y + "] : " + objects[x][y]);
+                }
+            }
+        }
+        closeFile();
+
     }
 }
