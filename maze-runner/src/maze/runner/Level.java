@@ -20,7 +20,6 @@ public class Level extends JPanel implements ActionListener {
     private Helper helper;
     private OptimalRoute optimalRoute;
     private Bazooka bazooka;
-    private int breakX, breakY;
     private String lastDirection;
 
     public Level() {
@@ -50,16 +49,12 @@ public class Level extends JPanel implements ActionListener {
         for (int y = 0; y < 14; y++) {
             for (int x = 0; x < 14; x++) {
 
-                if (map.getObject(x, y).equals(map.getObject(x, y))) {
-                    g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
-                }
-            }
+                // draws every GameObject from objects[x][y]array
+                g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
 
-            g.drawImage(player.getGameObject(), player.getTileX() * 32, player.getTileY() * 32, null);
-            g.drawImage(cheater.getGameObject(), cheater.getTileX() * 32, cheater.getTileY() * 32, null);
-            g.drawImage(friend.getGameObject(), friend.getTileX() * 32, friend.getTileY() * 32, null);
-            g.drawImage(bazooka.getGameObject(), bazooka.getTileX() * 32, bazooka.getTileY() * 32, null);
-            g.drawImage(helper.getGameObject(), helper.getTileX() * 32, helper.getTileY() * 32, null);
+                // draws the player based  on his own X&Y coordinates
+                g.drawImage(player.getGameObject(), player.getTileX() * 32, player.getTileY() * 32, null);
+            }
         }
     }
 
@@ -156,19 +151,6 @@ public class Level extends JPanel implements ActionListener {
 
     public String getLastDirection() {
         return lastDirection;
-    }
-
-    public int getBreakX() {
-        return breakX;
-    }
-
-    public int getBreakY() {
-        return breakY;
-    }
-
-    public void setBreakX_Y(int x, int y) {
-        breakX = x;
-        breakY = y;
     }
 
     public Level getLevel() {

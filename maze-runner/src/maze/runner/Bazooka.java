@@ -45,44 +45,44 @@ public class Bazooka extends GameObject {
 //                }
             }
         }
-
-        if (level.getLastDirection().equalsIgnoreCase("DOWN")) {
-            boolean check = true;
-
-            while (check == true) {
-                if (!map.getObject(x, y + 1).equals("w")) {
-                    y++;
-                } else {
-                    check = false;
-                    level.setBreakX_Y(x, y + 1);
-                }
-            }
-        }
-
-        if (level.getLastDirection().equalsIgnoreCase("LEFT")) {
-            boolean check = true;
-
-            while (check == true) {
-                if (!map.getObject(x - 1, y).equals("w")) {
-                    x--;
-                } else {
-                    check = false;
-                    level.setBreakX_Y(x - 1, y);
-                }
-            }
-        }
-
-        if (level.getLastDirection().equalsIgnoreCase("RIGHT")) {
-            boolean check = true;
-
-            while (check == true) {
-                if (!map.getObject(x + 1, y).equals("w")) {
-                    x++;
-                } else {
-                    check = false;
-                    level.setBreakX_Y(x + 1, y);
-                }
-            }
-        }
+//
+//        if (level.getLastDirection().equalsIgnoreCase("DOWN")) {
+//            boolean check = true;
+//
+//            while (check == true) {
+//                if (!map.getObject(x, y + 1).equals("w")) {
+//                    y++;
+//                } else {
+//                    check = false;
+//                    level.setBreakX_Y(x, y + 1);
+//                }
+//            }
+//        }
+//
+//        if (level.getLastDirection().equalsIgnoreCase("LEFT")) {
+//            boolean check = true;
+//
+//            while (check == true) {
+//                if (!map.getObject(x - 1, y).equals("w")) {
+//                    x--;
+//                } else {
+//                    check = false;
+//                    level.setBreakX_Y(x - 1, y);
+//                }
+//            }
+//        }
+//
+//        if (level.getLastDirection().equalsIgnoreCase("RIGHT")) {
+//            boolean check = true;
+//
+//            while (check == true) {
+//                if (!map.getObject(x + 1, y).equals("w")) {
+//                    x++;
+//                } else {
+//                    check = false;
+//                    level.setBreakX_Y(x + 1, y);
+//                }
+//            }
+//        }
     }
 }
