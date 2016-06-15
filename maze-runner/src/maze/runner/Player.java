@@ -15,6 +15,8 @@ public class Player extends GameObject implements Moveable {
  
     private Image player;
     private Image playerBazooka;
+    
+    private boolean active;
 
     public Player() {
         active = false;

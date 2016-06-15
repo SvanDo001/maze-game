@@ -10,6 +10,8 @@ import javax.swing.*;
 public class Wall extends GameObject {
 
     private final Image WALL_TILE;
+    
+    private boolean active;
 
     public Wall() {
         ImageIcon img = new ImageIcon(ClassLoader.

@@ -16,11 +16,16 @@ import javax.swing.JOptionPane;
 public class Helper extends GameObject {
 
     private Image helper;
+    
+    private boolean active;
 
-    public Helper() {
+    public Helper(int x, int y) {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/helper.png"));
         helper = img.getImage();
+        
+        tileX = x;
+        tileY = y;
     }
 
     @Override
@@ -31,6 +36,5 @@ public class Helper extends GameObject {
     public void meetHelper() {
         JOptionPane.showMessageDialog(null, "Let me help you by showing you the "
                 + "optimal route to your friend!");
-        setGameObjectPosition(-1, -1);
     }
 }

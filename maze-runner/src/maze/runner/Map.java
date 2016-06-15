@@ -66,7 +66,7 @@ public final class Map {
                         objects[x][y] = new Friend();
                     }
                     if (character.equals("h")) {
-                        objects[x][y] = new Helper();
+                        objects[x][y] = new Helper(x, y);
                     }
                     if (character.equals("b")) {
                         objects[x][y] = new Bazooka();

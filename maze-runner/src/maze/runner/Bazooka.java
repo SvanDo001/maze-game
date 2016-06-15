@@ -10,6 +10,8 @@ import javax.swing.*;
 public class Bazooka extends GameObject {
 
     private final Image BAZOOKA;
+    
+    private boolean active;
 
     public Bazooka() {
         active = false;

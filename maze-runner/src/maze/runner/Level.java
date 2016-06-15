@@ -33,7 +33,7 @@ public class Level extends JPanel implements ActionListener {
         player = new Player();
         cheater = new Cheater();
         friend = new Friend();
-        helper = new Helper();
+        helper = new Helper(0, 0);
         bazooka = new Bazooka();
         addKeyListener(new Al());
         setFocusable(true);
@@ -181,6 +181,7 @@ public class Level extends JPanel implements ActionListener {
         if (map.getObject(x, y) instanceof Cheater) {
             cheater.throwBackPlayer(player);
             cheater.setActive();
+            
         }
         if (map.getObject(x, y) instanceof Friend) {
             friend.meetFriend(player);
@@ -192,7 +193,6 @@ public class Level extends JPanel implements ActionListener {
             optimalRoute.setActive();
         }
         if (map.getObject(x, y) instanceof Bazooka) {
-            bazooka.setGameObjectPosition(-1, -1);
             player.setActive();
             bazooka.setActive();
         }

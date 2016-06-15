@@ -11,26 +11,29 @@ import javax.swing.*;
 public class Cheater extends GameObject {
 
     private Image cheater;
-    private Image grassRoute;
+    private boolean active;
 
     public Cheater() {
         active = true;
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/cheater.png"));
         cheater = img.getImage();
-
-        img = new ImageIcon(ClassLoader.
-                getSystemResource("resources/tiles/grassTile.png"));
-        grassRoute = img.getImage();
+    }
+    
+    @Override
+        public void setActive() {
+        if (active == false) {
+            active = true;
+            System.out.println("cheater active = false > true");
+        } else if (active == true) {
+            active = false;
+            System.out.println("cheater active = true > false");
+        }
     }
 
     @Override
     public Image getGameObject() {
-        if (active == true) {
             return cheater;
-        } else {
-            return grassRoute;
-        }
     }
 
     public void throwBackPlayer(Player player) {

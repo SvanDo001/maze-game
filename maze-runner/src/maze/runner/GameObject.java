@@ -10,7 +10,7 @@ public abstract class GameObject {
 
     public int tileX;
     public int tileY;
-    public boolean active;
+    private boolean active;
 
     public abstract Image getGameObject();
     
