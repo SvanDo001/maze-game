@@ -48,38 +48,35 @@ public final class Map {
 
     private void readFile() {
         while (map.hasNext()) {
-            int y = 14;
-            int x = 14;
-            objects = new GameObject[y][x];
+            objects = new GameObject[14][14];
             
-            for (y = 0; y < objects.length; y++)
+            for (int y = 0; y < objects.length; y++)
             {
                 String a = map.next();
-                for (x = 0; x < objects[y].length; x++)
+                for (int x = 0; x < objects[y].length; x++)
                 {
-                    if (a.contains("w")) {
+                    if (a.substring(x, x + 1).equals("w")) {
                         objects[y][x] = new Wall();
-                        System.out.println(objects[0][0]);
+                        System.out.println(objects[13][13]);
                     }
-                    else if (a.contains("g")) {
-                        objects[y][x] = new Friend();
-                        System.out.println(objects[0][1]);
-                    }
-                    else if (a.contains("c")) {
-                        objects[y][x] = new Cheater();
-                    }
-                    else if (a.contains("f")) {
-                        objects[y][x] = new Friend();
-                    }
-                    else if (a.contains("h")) {
-                        objects[y][x] = new Helper();
-                    }
-                    else if (a.contains("b")) {
-                        objects[y][x] = new Bazooka();
-                    }
-                    else if (a.contains("r")) {
-                        objects[y][x] = new Helper();
-                    }
+//                    if (a.equals("g")) {
+//                        objects[y][x] = new Friend();
+//                    }
+//                    if (a.equals("c")) {
+//                        objects[y][x] = new Cheater();
+//                    }
+//                    if (a.equals("f")) {
+//                        objects[y][x] = new Friend();
+//                    }
+//                    if (a.equals("h")) {
+//                        objects[y][x] = new Helper();
+//                    }
+//                    if (a.equals("b")) {
+//                        objects[y][x] = new Bazooka();
+//                    }
+//                    if (a.equals("r")) {
+//                        objects[y][x] = new Helper();
+//                    }
                 }
             }
         }
@@ -87,5 +84,5 @@ public final class Map {
 
     private void closeFile() {
         map.close();
-    }
+    }    
 }
