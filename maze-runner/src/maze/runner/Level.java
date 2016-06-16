@@ -115,7 +115,7 @@ public class Level extends JPanel implements ActionListener {
         if (map.getObject(x, y) instanceof Friend) {
             Friend friend = (Friend) map.getObject(x, y);
             friend.meetFriend(player);
-            map.readFile();
+            newMaze();
         }
         if (map.getObject(x, y) instanceof Helper) {
             Helper helper = (Helper) map.getObject(x, y);

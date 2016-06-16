@@ -37,6 +37,7 @@ public final class Map {
     }
 
     public void nextFile() {
+        System.out.println("nextFile()"); //debugging
         System.out.println(currentLevel);
         if (currentLevel < 3) {
             currentLevel++;
