@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package maze.runner;
 
 import java.awt.Image;
@@ -15,13 +10,14 @@ import javax.swing.JOptionPane;
  */
 public class Helper extends GameObject {
 
-    private Image HELPER_TILE;
+    private final Image HELPER_TILE;
 
     public Helper(int x, int y) {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/helper.png"));
         HELPER_TILE = img.getImage();
 
+        // Wat is het nut nog om deze variabelen mee te geven?
         tileX = x;
         tileY = y;
     }

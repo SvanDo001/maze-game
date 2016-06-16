@@ -25,7 +25,7 @@ public class Friend extends GameObject {
     public void meetFriend(Player player) {
         int steps = player.historyTileX.size() - 1;
         JOptionPane.showMessageDialog(null, "Congratulations, you have "
-                + "reached your friend! " + "\n    You have completed the maze in "
-                + steps + " steps.");
+                + "reached your friend! " + "\n    You have completed the maze "
+                + "in " + steps + " steps.");
     }
 }

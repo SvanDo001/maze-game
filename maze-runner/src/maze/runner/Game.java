@@ -1,6 +1,5 @@
 package maze.runner;
 
-import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 
@@ -60,7 +59,8 @@ public class Game extends GameFrame {
                 + "use the bazooka to destroy a \nwall in the "
                 + "direction you last moved or have the helper show "
                 + "\n you the optimal route.\n\nControls:\n- Arrow "
-                + "keys to move\n- Space bar to shoot bazooka", "Manual", JOptionPane.INFORMATION_MESSAGE);
+                + "keys to move\n- Space bar to shoot bazooka", 
+                "Manual", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void about() {

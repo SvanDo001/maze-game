@@ -12,27 +12,14 @@ public class Level extends JPanel implements ActionListener {
 
     private Timer timer;
     private Map map;
-    private Wall wall;
-    private Grass grass;
     private Player player;
-    private Cheater cheater;
-    private Friend friend;
-    private Helper helper;
-    private OptimalRoute optimalRoute;
-    private Bazooka bazooka;
     private String lastDirection;
 
     public Level() {
         timer = new Timer(25, this);
         timer.start();
         map = new Map();
-        wall = new Wall();
-        grass = new Grass();
         player = new Player();
-        cheater = new Cheater();
-        friend = new Friend();
-        helper = new Helper(0, 0);
-        bazooka = new Bazooka();
         addKeyListener(new Al());
         setFocusable(true);
     }
@@ -52,7 +39,7 @@ public class Level extends JPanel implements ActionListener {
                 // draws every GameObject from objects[x][y]array
                 g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
 
-                // draws the player based  on his own X&Y coordinates
+                // draws the player based on his own x, y coordinates
                 g.drawImage(player.getGameObject(), player.getTileX() * 32, player.getTileY() * 32, null);
             }
         }
@@ -90,17 +77,20 @@ public class Level extends JPanel implements ActionListener {
             }
 
             /* Destroys a wall tile when space is hit and player is carrying a 
-                    /  bazooka. False otherwise.
+             * bazooka. False otherwise.
              */
             if (keycode == KeyEvent.VK_SPACE) {
                 if (player.getBazookaPickup() == true) {
                     System.out.println(player.getBazookaPickup());
-                    bazooka.destroyWall(getLevel(), player, map);
-                    player.setBazookaPickup();
+                    if (map.getObject(player.getTileX(), player.getTileY()) instanceof Grass) {
+                        map.replaceObject(player.getTileX(), player.getTileY(), "bazooka");
+                        Bazooka bazooka = (Bazooka) map.getObject(player.getTileX(), player.getTileY());
+                        System.out.println(bazooka);
+                        bazooka.destroyWall(getLevel(), player, map);
+                    }
                 } else {
                     System.out.println(player.getBazookaPickup());
                 }
-
             }
 
             player.setStepCounterTileX();
@@ -120,13 +110,16 @@ public class Level extends JPanel implements ActionListener {
      */
     public void keyEvent(int x, int y) {
         if (map.getObject(x, y) instanceof Cheater) {
+            Cheater cheater = (Cheater) map.getObject(x, y);
             cheater.throwBackPlayer(player);
             map.replaceObject(x, y, "grass");
         }
         if (map.getObject(x, y) instanceof Friend) {
+            Friend friend = (Friend) map.getObject(x, y);
             friend.meetFriend(player);
         }
         if (map.getObject(x, y) instanceof Helper) {
+            Helper helper = (Helper) map.getObject(x, y);
             helper.meetHelper();
             map.replaceObject(x, y, "grass");
             map.showOptimaleRoute();

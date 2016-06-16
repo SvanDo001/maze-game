@@ -1,7 +1,6 @@
 package maze.runner;
 
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
 
 /**
@@ -31,9 +30,12 @@ public class Cheater extends GameObject {
         int ArraySizeTileX = player.getStepCounterTileX().size() - 1;
         int ArraySizeTileY = player.getStepCounterTileY().size() - 1;
 
-        int throwBackPositionX = player.getStepCounterTileX().get(ArraySizeTileX - random);
-        int throwBackPositionY = player.getStepCounterTileY().get(ArraySizeTileY - random);
+        int throwBackPositionX = player.getStepCounterTileX().
+                get(ArraySizeTileX - random);
+        int throwBackPositionY = player.getStepCounterTileY().
+                get(ArraySizeTileY - random);
 
+        // Kan dit niet netter?
         setGameObjectPosition(-1, -1);
         player.moveTo(throwBackPositionX, throwBackPositionY);
 

@@ -38,8 +38,7 @@ public final class Map {
         try {
             currentLevel = ((int) (Math.random() * 3));
             map = new Scanner(classloader.
-                    //                    getResourceAsStream(locatie.get(currentLevel)));
-                    getResourceAsStream("resources/TestMap.txt"));
+                    getResourceAsStream(locatie.get(currentLevel)));;
         } catch (Exception e) {
             System.out.println("Error loading map");
             System.out.println(e);
@@ -87,14 +86,14 @@ public final class Map {
     public void replaceObject(int x, int y, String type) {
         if (type.equals("grass")) {
             objects[x][y] = new Grass();
-            System.out.println("new  Grass() @> objects[" + x + "][" + y + "] : " + objects[x][y]);
+            System.out.println("new  Grass() @> objects[" + x + "][" + y 
+                    + "] : " + objects[x][y]);
         }
     }
 
     public void showOptimaleRoute() {
         map = new Scanner(classloader.
-                //                    getResourceAsStream(locatie.get(currentLevel)));
-                getResourceAsStream("resources/TestMap.txt"));
+                getResourceAsStream(locatie.get(currentLevel)));
 
         for (int y = 0; y < objects.length; y++) {
 
@@ -111,6 +110,5 @@ public final class Map {
             }
         }
         closeFile();
-
     }
 }

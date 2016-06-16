@@ -1,6 +1,5 @@
 package maze.runner;
 
-import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -119,5 +118,4 @@ public class GameFrame extends JFrame {
         item.addActionListener(listener);
         return item;
     }
-
 }

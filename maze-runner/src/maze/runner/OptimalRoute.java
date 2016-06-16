@@ -7,7 +7,6 @@ package maze.runner;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class OptimalRoute extends GameObject {
 
-    private Image ROUTE_TILE;
+    private final Image ROUTE_TILE;
 
     public OptimalRoute() {
         ImageIcon img = new ImageIcon(ClassLoader.
