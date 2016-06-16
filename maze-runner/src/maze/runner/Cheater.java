@@ -26,17 +26,28 @@ public class Cheater extends GameObject {
         int random = ((int) (Math.random() * 10) + 5);
         JOptionPane.showMessageDialog(null, "Whahaha, I will knock you "
                 + "back " + random + " steps!");
-
+        
+        // println's voor debugging
+        System.out.println("# random steps: " + random); 
+        System.out.println("");
+        
         int ArraySizeTileX = player.getStepCounterTileX().size() - 1;
         int ArraySizeTileY = player.getStepCounterTileY().size() - 1;
-
-        int throwBackPositionX = player.getStepCounterTileX().
-                get(ArraySizeTileX - random);
-        int throwBackPositionY = player.getStepCounterTileY().
-                get(ArraySizeTileY - random);
-
-        // Kan dit niet netter?
-        setGameObjectPosition(-1, -1);
+        
+        System.out.println(player.getStepCounterTileX());
+        System.out.println(player.getStepCounterTileY());
+        System.out.println("");
+        
+        System.out.println("ArraySizeTileX " + ArraySizeTileX);
+        System.out.println("ArraySizeTileY " + ArraySizeTileY);
+        System.out.println("");
+        
+        int throwBackPositionX = player.getStepCounterTileX().get(ArraySizeTileX - random);
+        int throwBackPositionY = player.getStepCounterTileY().get(ArraySizeTileY - random);
+        
+        System.out.println("throwBackPositionX " + throwBackPositionX);
+        System.out.println("throwBackPositionY " + throwBackPositionY);
+        
         player.moveTo(throwBackPositionX, throwBackPositionY);
     }
 }

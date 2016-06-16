@@ -13,48 +13,102 @@ public class Player extends GameObject implements Moveable {
     public ArrayList<Integer> historyTileX;
     public ArrayList<Integer> historyTileY;
 
-    private Image PLAYER;
+    private Image PLAYER_TILE;
     private boolean bazookaPickup;
 
     public Player() {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/player.png"));
-        PLAYER = img.getImage();
+        PLAYER_TILE = img.getImage();
 
         historyTileX = new ArrayList<>();
         historyTileY = new ArrayList<>();
 
-        //toevoegen van startpositie X & Y
+        //Starting player position in position-tracking array
         historyTileX.add(1);
         historyTileY.add(1);
 
+        //Starting player position in-game
         tileX = 1;
         tileY = 1;
-
+                
         bazookaPickup = false;
-    }
-
-    @Override
-    public Image getGameObject() {
-        return PLAYER;
     }
 
     public void setBazookaPickup() {
         if (bazookaPickup == false) {
             bazookaPickup = true;
             ImageIcon img = new ImageIcon(ClassLoader.
-                    getSystemResource("resources/tiles/player.png"));
-            PLAYER = img.getImage();
-        }
-        if (bazookaPickup == true) {
-            ImageIcon img = new ImageIcon(ClassLoader.
                     getSystemResource("resources/tiles/playerBazooka.png"));
-            PLAYER = img.getImage();
+            PLAYER_TILE = img.getImage();
+        } else if (bazookaPickup == true) {
+            bazookaPickup = false;
+            ImageIcon img = new ImageIcon(ClassLoader.
+                    getSystemResource("resources/tiles/player.png"));
+            PLAYER_TILE = img.getImage();
+        }
+    }
+
+    public void destroyWall(Level level, Player player, Map map) {
+        int x = player.getTileX();
+        int y = player.getTileY();
+
+        if (level.getLastDirection().equalsIgnoreCase("UP")) {
+            boolean check = true;
+            while (check == true) {
+                if (map.getObject(x, y - 1) instanceof Wall == false) {
+                    y--;
+                } else {
+                    map.replaceObject(x, y - 1, "grass");
+                    check = false;
+                }
+            }
+        }
+
+        if (level.getLastDirection().equalsIgnoreCase("DOWN")) {
+            boolean check = true;
+            while (check == true) {
+                if (map.getObject(x, y + 1) instanceof Wall == false) {
+                    y--;
+                } else {
+                    map.replaceObject(x, y + 1, "grass");
+                    check = false;
+                }
+            }
+        }
+
+        if (level.getLastDirection().equalsIgnoreCase("LEFT")) {
+            boolean check = true;
+            while (check == true) {
+                if (map.getObject(x - 1, y) instanceof Wall == false) {
+                    y--;
+                } else {
+                    map.replaceObject(x - 1, y, "grass");
+                    check = false;
+                }
+            }
+        }
+
+        if (level.getLastDirection().equalsIgnoreCase("RIGHT")) {
+            boolean check = true;
+            while (check == true) {
+                if (map.getObject(x + 1, y) instanceof Wall == false) {
+                    y--;
+                } else {
+                    map.replaceObject(x + 1, y, "grass");
+                    check = false;
+                }
+            }
         }
     }
 
     public boolean getBazookaPickup() {
         return bazookaPickup;
+    }
+
+    @Override
+    public Image getGameObject() {
+        return PLAYER_TILE;
     }
 
     @Override

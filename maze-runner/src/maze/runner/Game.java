@@ -34,6 +34,7 @@ public class Game extends GameFrame {
     public void start() {
         panel.remove(currentLevel);
         currentLevel = new Level();
+        currentLevel.newMaze();
         panel.add(currentLevel);
         frame.add(panel);
         frame.setVisible(true);
@@ -42,7 +43,7 @@ public class Game extends GameFrame {
 
     public void restart() {
         panel.remove(currentLevel);
-        currentLevel.resetGameAttributes();
+        currentLevel.resetMaze();
         panel.add(currentLevel);
         frame.add(panel);
         frame.setVisible(true);

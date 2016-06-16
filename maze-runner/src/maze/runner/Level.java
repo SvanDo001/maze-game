@@ -80,16 +80,14 @@ public class Level extends JPanel implements ActionListener {
              * bazooka. False otherwise.
              */
             if (keycode == KeyEvent.VK_SPACE) {
+
                 if (player.getBazookaPickup() == true) {
-                    System.out.println(player.getBazookaPickup());
-                    if (map.getObject(player.getTileX(), player.getTileY()) instanceof Grass) {
-                        map.replaceObject(player.getTileX(), player.getTileY(), "bazooka");
-                        Bazooka bazooka = (Bazooka) map.getObject(player.getTileX(), player.getTileY());
-                        System.out.println(bazooka);
-                        bazooka.destroyWall(getLevel(), player, map);
-                    }
-                } else {
-                    System.out.println(player.getBazookaPickup());
+                    player.setBazookaPickup();
+
+                    player.destroyWall(getLevel(), player, map);
+                } else if (player.getBazookaPickup() == false) {
+
+                    System.out.println("Ammo Depleted");
                 }
             }
 
@@ -117,6 +115,7 @@ public class Level extends JPanel implements ActionListener {
         if (map.getObject(x, y) instanceof Friend) {
             Friend friend = (Friend) map.getObject(x, y);
             friend.meetFriend(player);
+            map.readFile();
         }
         if (map.getObject(x, y) instanceof Helper) {
             Helper helper = (Helper) map.getObject(x, y);
@@ -125,21 +124,32 @@ public class Level extends JPanel implements ActionListener {
             map.showOptimaleRoute();
         }
         if (map.getObject(x, y) instanceof Bazooka) {
-            player.setBazookaPickup();
-            System.out.println(player.getBazookaPickup());
-            map.replaceObject(x, y, "grass");
+            
+            // If player already has a bazooka, do not pickup.
+            if (player.getBazookaPickup() == false) {
+                player.setBazookaPickup();
+                map.replaceObject(x, y, "grass");
+            }
+            
         }
 
     }
 
-    public void resetGameAttributes() {
-
-        // hier nog naarr kijken! moet nu dmv nieuwe objecten plaatsen.
-//        optimalRoute.setActive();
-//        player.setActive();
-//        breakX = -1;
-//        breakX = -1;
+    public void newMaze() {
         player.moveTo(1, 1);
+
+        map.nextFile();
+        map.openFile();
+        map.readFile();
+        map.closeFile();
+    }
+
+    public void resetMaze() {
+        player.moveTo(1, 1);
+
+        map.openFile();
+        map.readFile();
+        map.closeFile();
     }
 
     public String getLastDirection() {

@@ -15,9 +15,11 @@ public final class Map {
     private GameObject[][] objects;
     private ArrayList<String> levelFiles;
 
-    private int currentLevel;
+    public int currentLevel;
 
     public Map() {
+        currentLevel = 0;
+        
         levelFiles = new ArrayList<>();
         levelFiles.add("resources/Map1.txt");
         levelFiles.add("resources/Map2.txt");
@@ -34,18 +36,30 @@ public final class Map {
 
     }
 
-    private void openFile() {
+    public void nextFile() {
+        System.out.println(currentLevel);
+        if (currentLevel < 3) {
+            currentLevel++;
+        } else if (currentLevel == 3){
+            currentLevel = 0;
+        }
+        System.out.println(currentLevel);
+    }
+
+    public void openFile() {
+        System.out.println("openFile(" + currentLevel + ")"); //debugging
         try {
-            currentLevel = ((int) (Math.random() * 3));
             map = new Scanner(classloader.
-                    getResourceAsStream(levelFiles.get(currentLevel)));;
+                    getResourceAsStream(levelFiles.get(currentLevel)));
         } catch (Exception e) {
             System.out.println("Error loading map");
             System.out.println(e);
         }
     }
 
-    private void readFile() {
+    public void readFile() {
+        System.out.println("readFile()"); //debugging
+
         while (map.hasNext()) {
             objects = new GameObject[14][14];
 
@@ -79,36 +93,31 @@ public final class Map {
         }
     }
 
-    private void closeFile() {
+    public void closeFile() {
+        System.out.println("closeFile()"); //debugging
         map.close();
     }
 
     public void replaceObject(int x, int y, String type) {
         if (type.equals("grass")) {
             objects[x][y] = new Grass();
-            System.out.println("new  Grass() @> objects[" + x + "][" + y 
-                    + "] : " + objects[x][y]);
         }
     }
 
     public void showOptimaleRoute() {
-        map = new Scanner(classloader.
-                getResourceAsStream(levelFiles.get(currentLevel)));
+        openFile();
 
         for (int y = 0; y < objects.length; y++) {
-
             String a = map.next();
-
             for (int x = 0; x < objects[y].length; x++) {
-
                 String character = a.substring(x, x + 1);
-
                 if (character.contains("r")) {
                     objects[x][y] = new OptimalRoute();
-                    System.out.println("new  Opt.Route() @> objects[" + x + "][" + y + "] : " + objects[x][y]);
                 }
             }
         }
+        
         closeFile();
     }
+
 }

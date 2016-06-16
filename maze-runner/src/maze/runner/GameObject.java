@@ -20,9 +20,4 @@ public abstract class GameObject {
     public int getTileY() {
         return tileY;
     }
-
-    public void setGameObjectPosition(int x, int y) {
-        tileX = x;
-        tileY = y;
-    }
 }
