@@ -37,18 +37,13 @@ public final class Map {
     }
 
     public void nextFile() {
-        System.out.println("nextFile()"); //debugging
-        System.out.println(currentLevel);
-        if (currentLevel < 3) {
-            currentLevel++;
-        } else if (currentLevel == 3){
+        currentLevel++;
+        if (currentLevel >= 3) {
             currentLevel = 0;
         }
-        System.out.println(currentLevel);
     }
 
     public void openFile() {
-        System.out.println("openFile(" + currentLevel + ")"); //debugging
         try {
             map = new Scanner(classloader.
                     getResourceAsStream(levelFiles.get(currentLevel)));
@@ -59,7 +54,6 @@ public final class Map {
     }
 
     public void readFile() {
-        System.out.println("readFile()"); //debugging
 
         while (map.hasNext()) {
             objects = new GameObject[14][14];
@@ -95,7 +89,6 @@ public final class Map {
     }
 
     public void closeFile() {
-        System.out.println("closeFile()"); //debugging
         map.close();
     }
 

@@ -53,29 +53,37 @@ public class Level extends JPanel implements ActionListener {
 
             if (keycode == KeyEvent.VK_UP) {
                 lastDirection = "UP";
-                if (map.getObject(player.getTileX(), player.getTileY() - 1) instanceof Wall == false) {
-                    player.move(0, -1);
+                if (player.getTileY() - 1 >= 0) {
+                    if (map.getObject(player.getTileX(), player.getTileY() - 1) instanceof Wall == false) {
+                        player.move(0, -1);
+                    }
                 }
             }
             if (keycode == KeyEvent.VK_DOWN) {
                 lastDirection = "DOWN";
-                if (map.getObject(player.getTileX(), player.getTileY() + 1) instanceof Wall == false) {
-                    player.move(0, 1);
+                if (player.getTileY() + 1 <= 13) {
+                    if (map.getObject(player.getTileX(), player.getTileY() + 1) instanceof Wall == false) {
+                        player.move(0, 1);
+                    }
                 }
             }
             if (keycode == KeyEvent.VK_LEFT) {
                 lastDirection = "LEFT";
-                if (map.getObject(player.getTileX() - 1, player.getTileY()) instanceof Wall == false) {
-                    player.move(-1, 0);
+                if (player.getTileX() - 1 >= -1) {
+                    if (map.getObject(player.getTileX() - 1, player.getTileY()) instanceof Wall == false) {
+                        player.move(-1, 0);
+                    }
                 }
             }
             if (keycode == KeyEvent.VK_RIGHT) {
                 lastDirection = "RIGHT";
-                if (map.getObject(player.getTileX() + 1, player.getTileY()) instanceof Wall == false) {
-                    player.move(1, 0);
+                if (player.getTileX() + 1 <= 13) {
+                    if (map.getObject(player.getTileX() + 1, player.getTileY()) instanceof Wall == false) {
+                        player.move(1, 0);
+                    }
                 }
             }
-
+            
             /* Destroys a wall tile when space is hit and player is carrying a 
              * bazooka. False otherwise.
              */
@@ -124,24 +132,20 @@ public class Level extends JPanel implements ActionListener {
             map.showOptimaleRoute();
         }
         if (map.getObject(x, y) instanceof Bazooka) {
-            
+
             // If player already has a bazooka, do not pickup.
             if (player.getBazookaPickup() == false) {
                 player.setBazookaPickup();
                 map.replaceObject(x, y, "grass");
             }
-            
+
         }
 
     }
 
     public void newMaze() {
-        player.moveTo(1, 1);
-
         map.nextFile();
-        map.openFile();
-        map.readFile();
-        map.closeFile();
+        resetMaze();
     }
 
     public void resetMaze() {

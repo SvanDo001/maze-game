@@ -59,7 +59,7 @@ public class Player extends GameObject implements Moveable {
                 if (map.getObject(x, y - 1) instanceof Wall == false) {
                     y--;
                 } else {
-                    map.replaceObject(x, y - 1, "grass");
+                        map.replaceObject(x, y - 1, "grass");
                     check = false;
                 }
             }
@@ -113,7 +113,11 @@ public class Player extends GameObject implements Moveable {
 
     @Override
     public void move(int dx, int dy) {
+        
         tileX += dx;
+        if (tileX == 0) {
+            tileX = 1;
+        }
         tileY += dy;
     }
 
