@@ -69,7 +69,7 @@ public class Player extends GameObject implements Moveable {
             boolean check = true;
             while (check == true) {
                 if (map.getObject(x, y + 1) instanceof Wall == false) {
-                    y--;
+                    y++;
                 } else {
                     map.replaceObject(x, y + 1, "grass");
                     check = false;
@@ -81,7 +81,7 @@ public class Player extends GameObject implements Moveable {
             boolean check = true;
             while (check == true) {
                 if (map.getObject(x - 1, y) instanceof Wall == false) {
-                    y--;
+                    x--;
                 } else {
                     map.replaceObject(x - 1, y, "grass");
                     check = false;
@@ -93,7 +93,7 @@ public class Player extends GameObject implements Moveable {
             boolean check = true;
             while (check == true) {
                 if (map.getObject(x + 1, y) instanceof Wall == false) {
-                    y--;
+                    x++;
                 } else {
                     map.replaceObject(x + 1, y, "grass");
                     check = false;
