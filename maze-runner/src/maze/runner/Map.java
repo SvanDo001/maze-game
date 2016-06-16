@@ -13,15 +13,15 @@ public final class Map {
     private Scanner map;
 
     private GameObject[][] objects;
-    private ArrayList<String> locatie;
+    private ArrayList<String> levelFiles;
 
     private int currentLevel;
 
     public Map() {
-        locatie = new ArrayList<>();
-        locatie.add("resources/Map1.txt");
-        locatie.add("resources/Map2.txt");
-        locatie.add("resources/Map3.txt");
+        levelFiles = new ArrayList<>();
+        levelFiles.add("resources/Map1.txt");
+        levelFiles.add("resources/Map2.txt");
+        levelFiles.add("resources/Map3.txt");
 
         openFile();
         readFile();
@@ -38,7 +38,7 @@ public final class Map {
         try {
             currentLevel = ((int) (Math.random() * 3));
             map = new Scanner(classloader.
-                    getResourceAsStream(locatie.get(currentLevel)));;
+                    getResourceAsStream(levelFiles.get(currentLevel)));;
         } catch (Exception e) {
             System.out.println("Error loading map");
             System.out.println(e);
@@ -66,7 +66,7 @@ public final class Map {
                         objects[x][y] = new Friend();
                     }
                     if (character.equals("h")) {
-                        objects[x][y] = new Helper(x, y);
+                        objects[x][y] = new Helper();
                     }
                     if (character.equals("b")) {
                         objects[x][y] = new Bazooka();
@@ -93,7 +93,7 @@ public final class Map {
 
     public void showOptimaleRoute() {
         map = new Scanner(classloader.
-                getResourceAsStream(locatie.get(currentLevel)));
+                getResourceAsStream(levelFiles.get(currentLevel)));
 
         for (int y = 0; y < objects.length; y++) {
 

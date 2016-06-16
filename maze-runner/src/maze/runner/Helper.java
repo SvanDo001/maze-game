@@ -10,21 +10,19 @@ import javax.swing.JOptionPane;
  */
 public class Helper extends GameObject {
 
-    private final Image HELPER_TILE;
+    private final Image HELPER;
 
-    public Helper(int x, int y) {
+    public Helper() {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/helper.png"));
-        HELPER_TILE = img.getImage();
+        HELPER = img.getImage();
 
         // Wat is het nut nog om deze variabelen mee te geven?
-        tileX = x;
-        tileY = y;
     }
 
     @Override
     public Image getGameObject() {
-        return HELPER_TILE;
+        return HELPER;
     }
 
     public void meetHelper() {

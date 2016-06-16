@@ -9,14 +9,12 @@ import javax.swing.*;
  */
 public class Game extends GameFrame {
 
-    private ArrayList<Level> levels; // Verschillende collecties mogelijk
     private JFrame frame;
     private JPanel panel;
     private Level currentLevel;
 
     // default constructor
     public Game() {
-        levels = new ArrayList<>();
         frame = new GameFrame(this);
         panel = new JPanel();
     }

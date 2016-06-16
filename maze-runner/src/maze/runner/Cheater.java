@@ -9,7 +9,7 @@ import javax.swing.*;
  */
 public class Cheater extends GameObject {
 
-    private Image CHEATER_TILE;
+    private final Image CHEATER_TILE;
 
     public Cheater() {
         ImageIcon img = new ImageIcon(ClassLoader.
@@ -38,6 +38,5 @@ public class Cheater extends GameObject {
         // Kan dit niet netter?
         setGameObjectPosition(-1, -1);
         player.moveTo(throwBackPositionX, throwBackPositionY);
-
     }
 }

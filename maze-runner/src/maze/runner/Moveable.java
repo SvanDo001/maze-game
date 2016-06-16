@@ -13,15 +13,15 @@ import java.util.ArrayList;
  */
 public interface Moveable {
 
-    public void move(int dx, int dy);
+    void move(int dx, int dy);
 
-    public void moveTo(int dx, int dy);
+    void moveTo(int dx, int dy);
 
-    public ArrayList<Integer> getStepCounterTileX();
+    ArrayList<Integer> getStepCounterTileX();
 
-    public void setStepCounterTileX();
+    void setStepCounterTileX();
 
-    public ArrayList<Integer> getStepCounterTileY();
+    ArrayList<Integer> getStepCounterTileY();
 
-    public void setStepCounterTileY();
+    void setStepCounterTileY();
 }

@@ -13,13 +13,13 @@ public class Player extends GameObject implements Moveable {
     public ArrayList<Integer> historyTileX;
     public ArrayList<Integer> historyTileY;
 
-    private Image PLAYER_TILE;
+    private Image PLAYER;
     private boolean bazookaPickup;
 
     public Player() {
         ImageIcon img = new ImageIcon(ClassLoader.
                 getSystemResource("resources/tiles/player.png"));
-        PLAYER_TILE = img.getImage();
+        PLAYER = img.getImage();
 
         historyTileX = new ArrayList<>();
         historyTileY = new ArrayList<>();
@@ -36,7 +36,7 @@ public class Player extends GameObject implements Moveable {
 
     @Override
     public Image getGameObject() {
-        return PLAYER_TILE;
+        return PLAYER;
     }
 
     public void setBazookaPickup() {
@@ -44,12 +44,12 @@ public class Player extends GameObject implements Moveable {
             bazookaPickup = true;
             ImageIcon img = new ImageIcon(ClassLoader.
                     getSystemResource("resources/tiles/player.png"));
-            PLAYER_TILE = img.getImage();
+            PLAYER = img.getImage();
         }
         if (bazookaPickup == true) {
             ImageIcon img = new ImageIcon(ClassLoader.
                     getSystemResource("resources/tiles/playerBazooka.png"));
-            PLAYER_TILE = img.getImage();
+            PLAYER = img.getImage();
         }
     }
 
