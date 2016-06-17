@@ -68,10 +68,10 @@ public class GameFrame extends JFrame {
             }
         }
 
-        JMenuItem item = new JMenuItem("Start New Level");
+        JMenuItem start = new JMenuItem("Start New Level");
         ActionListener listener = new NewGameItemListener();
-        item.addActionListener(listener);
-        return item;
+        start.addActionListener(listener);
+        return start;
     }
 
     public JMenuItem createRestartGameItem() {
@@ -83,10 +83,10 @@ public class GameFrame extends JFrame {
             }
         }
 
-        JMenuItem item = new JMenuItem("Restart Level");
+        JMenuItem restart = new JMenuItem("Restart Level");
         ActionListener listener = new RestartGameItemListener();
-        item.addActionListener(listener);
-        return item;
+        restart.addActionListener(listener);
+        return restart;
     }
 
     public JMenuItem createInfoManualItem() {
@@ -98,10 +98,10 @@ public class GameFrame extends JFrame {
             }
         }
 
-        JMenuItem item = new JMenuItem("Manual");
+        JMenuItem manual = new JMenuItem("Manual");
         ActionListener listener = new InfoManualItemListener();
-        item.addActionListener(listener);
-        return item;
+        manual.addActionListener(listener);
+        return manual;
     }
 
     public JMenuItem createInfoAboutItem() {
@@ -113,9 +113,9 @@ public class GameFrame extends JFrame {
             }
         }
 
-        JMenuItem item = new JMenuItem("About");
+        JMenuItem about = new JMenuItem("About");
         ActionListener listener = new InfoAboutItemListener();
-        item.addActionListener(listener);
-        return item;
+        about.addActionListener(listener);
+        return about;
     }
 }

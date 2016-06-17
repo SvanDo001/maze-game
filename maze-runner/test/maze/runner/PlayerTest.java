@@ -99,7 +99,7 @@ public class PlayerTest{
         instance.tileX = 4;
         
         //saves the current X position of player in array
-        instance.setStepCounterTileX();
+        instance.setStepCounterTileXY();
         
         assertEquals(instance.getStepCounterTileX(), testX);
     }

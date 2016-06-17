@@ -11,7 +11,7 @@ public class Game extends GameFrame {
 
     private JFrame frame;
     private JPanel panel;
-    private Level currentLevel;
+    private Board board;
 
     // default constructor
     public Game() {
@@ -20,23 +20,23 @@ public class Game extends GameFrame {
     }
 
     public void game() {
-        currentLevel = new Level();
+        board = new Board();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(currentLevel);
+        panel.add(board);
         frame.add(panel);
         frame.setVisible(true);
         frame.setTitle("Maze Runner");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        currentLevel.grabFocus();
+        board.grabFocus();
     }
 
     public void start() {
-        currentLevel.newMaze();
+        board.newMaze();
     }
 
     public void restart() {
-        currentLevel.resetMaze();
+        board.resetMaze();
     }
 
     public void manual() {

@@ -24,7 +24,7 @@ public class Helper extends GameObject {
     public Image getGameObject() {
         return HELPER_TILE;
     }
-
+    
     public void meetHelper() {
         JOptionPane.showMessageDialog(null, "Let me help you by showing you the "
                 + "optimal route to your friend!");

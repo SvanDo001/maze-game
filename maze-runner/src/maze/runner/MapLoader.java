@@ -6,18 +6,18 @@ import java.util.*;
  *
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
-public final class Map {
+public final class MapLoader {
 
     private ClassLoader classloader = Thread.currentThread().
             getContextClassLoader();
-    private Scanner map;
+    private Scanner mapScanner;
 
     private GameObject[][] objects;
     private ArrayList<String> levelFiles;
 
     public int currentLevel;
 
-    public Map() {
+    public MapLoader() {
         currentLevel = 0;
         
         levelFiles = new ArrayList<>();
@@ -45,7 +45,7 @@ public final class Map {
 
     public void openFile() {
         try {
-            map = new Scanner(classloader.
+            mapScanner = new Scanner(classloader.
                     getResourceAsStream(levelFiles.get(currentLevel)));
         } catch (Exception e) {
             System.out.println("Error loading map");
@@ -55,11 +55,11 @@ public final class Map {
 
     public void readFile() {
 
-        while (map.hasNext()) {
+        while (mapScanner.hasNext()) {
             objects = new GameObject[14][14];
 
             for (int y = 0; y < objects.length; y++) {
-                String a = map.next();
+                String a = mapScanner.next();
                 for (int x = 0; x < objects[y].length; x++) {
                     String character = a.substring(x, x + 1);
                     if (character.equals("w")) {
@@ -89,7 +89,7 @@ public final class Map {
     }
 
     public void closeFile() {
-        map.close();
+        mapScanner.close();
     }
 
     public void replaceObject(int x, int y, String type) {
@@ -102,7 +102,7 @@ public final class Map {
         openFile();
 
         for (int y = 0; y < objects.length; y++) {
-            String a = map.next();
+            String a = mapScanner.next();
             for (int x = 0; x < objects[y].length; x++) {
                 String character = a.substring(x, x + 1);
                 if (character.contains("r")) {
@@ -113,5 +113,4 @@ public final class Map {
         
         closeFile();
     }
-
 }

@@ -13,9 +13,9 @@ import static org.junit.Assert.*;
  *
  * @author Ken
  */
-public class LevelTest {
+public class BoardTest {
     
-    public LevelTest() {
+    public BoardTest() {
     }
     
     @BeforeClass
@@ -38,7 +38,7 @@ public class LevelTest {
     public void testActionPerformed() {
         System.out.println("actionPerformed");
         ActionEvent event = null;
-        Level instance = new Level();
+        Board instance = new Board();
         instance.actionPerformed(event);
     }
 
@@ -46,7 +46,7 @@ public class LevelTest {
     public void testPaint() {
         System.out.println("paint");
         Graphics g = null;
-        Level instance = new Level();
+        Board instance = new Board();
         instance.paint(g);
     }
 
@@ -54,7 +54,7 @@ public class LevelTest {
     public void testThrowBackPlayer() {
         System.out.println("throwBackPlayer");
         int steps = 0;
-        Level instance = new Level();
+        Board instance = new Board();
         instance.throwBackPlayer(steps);
     }
 
@@ -63,21 +63,21 @@ public class LevelTest {
         System.out.println("keyEvent");
         int x = 0;
         int y = 0;
-        Level instance = new Level();
+        Board instance = new Board();
         instance.keyEvent(x, y);
     }
 
     @Test
     public void testDestroyWall() {
         System.out.println("destroyWall");
-        Level instance = new Level();
+        Board instance = new Board();
         instance.destroyWall();
     }
 
     @Test
     public void testReset() {
         System.out.println("reset");
-        Level instance = new Level();
+        Board instance = new Board();
         instance.reset();
     }
     

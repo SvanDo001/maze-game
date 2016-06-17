@@ -8,17 +8,17 @@ import java.awt.*;
  *
  * @author Stefan & Kenny
  */
-public class Level extends JPanel implements ActionListener {
+public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
-    private Map map;
+    private MapLoader mapLoader;
     private Player player;
     private String lastDirection;
 
-    public Level() {
+    public Board() {
         timer = new Timer(25, this);
         timer.start();
-        map = new Map();
+        mapLoader = new MapLoader();
         player = new Player();
         addKeyListener(new Al());
         setFocusable(true);
@@ -37,7 +37,7 @@ public class Level extends JPanel implements ActionListener {
             for (int y = 0; y < 14; y++) {
 
                 // draws every GameObject from objects[x][y]array
-                g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
+                g.drawImage(mapLoader.getObject(x, y).getGameObject(), x * 32, y * 32, null);
 
                 // draws the player based on his own x, y coordinates
                 g.drawImage(player.getGameObject(), player.getTileX() * 32, player.getTileY() * 32, null);
@@ -54,7 +54,7 @@ public class Level extends JPanel implements ActionListener {
             if (keycode == KeyEvent.VK_UP) {
                 lastDirection = "UP";
                 if (player.getTileY() - 1 >= 0) {
-                    if (map.getObject(player.getTileX(), player.getTileY() - 1) instanceof Wall == false) {
+                    if (mapLoader.getObject(player.getTileX(), player.getTileY() - 1) instanceof Wall == false) {
                         player.move(0, -1);
                     }
                 } else {
@@ -65,7 +65,7 @@ public class Level extends JPanel implements ActionListener {
             if (keycode == KeyEvent.VK_DOWN) {
                 lastDirection = "DOWN";
                 if (player.getTileY() + 1 <= 13) {
-                    if (map.getObject(player.getTileX(), player.getTileY() + 1) instanceof Wall == false) {
+                    if (mapLoader.getObject(player.getTileX(), player.getTileY() + 1) instanceof Wall == false) {
                         player.move(0, 1);
                     }
                 } else {
@@ -76,7 +76,7 @@ public class Level extends JPanel implements ActionListener {
             if (keycode == KeyEvent.VK_LEFT) {
                 lastDirection = "LEFT";
                 if (player.getTileX() - 1 >= 0) {
-                    if (map.getObject(player.getTileX() - 1, player.getTileY()) instanceof Wall == false) {
+                    if (mapLoader.getObject(player.getTileX() - 1, player.getTileY()) instanceof Wall == false) {
                         player.move(-1, 0);
                     }
                 } else {
@@ -87,7 +87,7 @@ public class Level extends JPanel implements ActionListener {
             if (keycode == KeyEvent.VK_RIGHT) {
                 lastDirection = "RIGHT";
                 if (player.getTileX() + 1 <= 13) {
-                    if (map.getObject(player.getTileX() + 1, player.getTileY()) instanceof Wall == false) {
+                    if (mapLoader.getObject(player.getTileX() + 1, player.getTileY()) instanceof Wall == false) {
                         player.move(1, 0);
                     }
                 } else {
@@ -104,15 +104,14 @@ public class Level extends JPanel implements ActionListener {
                 if (player.getBazookaPickup() == true) {
                     player.setBazookaPickup();
 
-                    player.destroyWall(getLevel(), player, map);
+                    player.destroyWall(getLevel(), player, mapLoader);
                 } else if (player.getBazookaPickup() == false) {
 
                     System.out.println("Ammo Depleted");
                 }
             }
 
-            player.setStepCounterTileX();
-            player.setStepCounterTileY();
+            player.setStepCounterTileXY();
 
             keyEvent(player.getTileX(), player.getTileY());
         }
@@ -127,28 +126,28 @@ public class Level extends JPanel implements ActionListener {
      * @param y the coordinate of the y axis
      */
     public void keyEvent(int x, int y) {
-        if (map.getObject(x, y) instanceof Cheater) {
-            Cheater cheater = (Cheater) map.getObject(x, y);
+        if (mapLoader.getObject(x, y) instanceof Cheater) {
+            Cheater cheater = (Cheater) mapLoader.getObject(x, y);
             cheater.throwBackPlayer(player);
-            map.replaceObject(x, y, "grass");
+            mapLoader.replaceObject(x, y, "grass");
         }
-        if (map.getObject(x, y) instanceof Friend) {
-            Friend friend = (Friend) map.getObject(x, y);
+        if (mapLoader.getObject(x, y) instanceof Friend) {
+            Friend friend = (Friend) mapLoader.getObject(x, y);
             friend.meetFriend(player);
             newMaze();
         }
-        if (map.getObject(x, y) instanceof Helper) {
-            Helper helper = (Helper) map.getObject(x, y);
+        if (mapLoader.getObject(x, y) instanceof Helper) {
+            Helper helper = (Helper) mapLoader.getObject(x, y);
             helper.meetHelper();
-            map.replaceObject(x, y, "grass");
-            map.showOptimaleRoute();
+            mapLoader.replaceObject(x, y, "grass");
+            mapLoader.showOptimaleRoute();
         }
-        if (map.getObject(x, y) instanceof Bazooka) {
+        if (mapLoader.getObject(x, y) instanceof Bazooka) {
 
             // If player already has a bazooka, do not pickup.
             if (player.getBazookaPickup() == false) {
                 player.setBazookaPickup();
-                map.replaceObject(x, y, "grass");
+                mapLoader.replaceObject(x, y, "grass");
             }
 
         }
@@ -156,7 +155,7 @@ public class Level extends JPanel implements ActionListener {
     }
 
     public void newMaze() {
-        map.nextFile();
+        mapLoader.nextFile();
         resetMaze();
     }
 
@@ -165,18 +164,17 @@ public class Level extends JPanel implements ActionListener {
         
         if (player.getBazookaPickup() == true) {
                 player.setBazookaPickup();
-        }
-        
-        map.openFile();
-        map.readFile();
-        map.closeFile();
+        }        
+        mapLoader.openFile();
+        mapLoader.readFile();
+        mapLoader.closeFile();
     }
 
     public String getLastDirection() {
         return lastDirection;
     }
 
-    public Level getLevel() {
-        return Level.this;
+    public Board getLevel() {
+        return Board.this;
     }
 }

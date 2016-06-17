@@ -49,7 +49,7 @@ public class Player extends GameObject implements Moveable {
         }
     }
     
-    public void destroyWall(Level level, Player player, Map map) {
+    public void destroyWall(Board level, Player player, MapLoader map) {
         try {
             int x = player.getTileX();
             int y = player.getTileY();
@@ -117,7 +117,6 @@ public class Player extends GameObject implements Moveable {
 
     @Override
     public void move(int dx, int dy) {
-        
         tileX += dx;
         tileY += dy;
     }
@@ -134,17 +133,16 @@ public class Player extends GameObject implements Moveable {
     }
 
     @Override
-    public void setStepCounterTileX() {
+    public void setStepCounterTileXY() {
+        if (historyTileX.get(historyTileX.size() - 1) != tileX || historyTileY.
+                get(historyTileY.size() - 1) != tileY){
         historyTileX.add(tileX);
+        historyTileY.add(tileY);
+        }
     }
 
     @Override
     public ArrayList<Integer> getStepCounterTileY() {
         return historyTileY;
-    }
-
-    @Override
-    public void setStepCounterTileY() {
-        historyTileY.add(tileY);
     }
 }

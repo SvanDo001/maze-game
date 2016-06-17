@@ -19,9 +19,7 @@ public interface Moveable {
 
     ArrayList<Integer> getStepCounterTileX();
 
-    void setStepCounterTileX();
+    void setStepCounterTileXY();
 
     ArrayList<Integer> getStepCounterTileY();
-
-    void setStepCounterTileY();
 }
