@@ -4,7 +4,9 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
+ * Handles the cheater objects and randomly throws the player back to an earlier
+ * position when the cheater is met.
+ * 
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public class Cheater extends GameObject {
@@ -22,6 +24,13 @@ public class Cheater extends GameObject {
         return CHEATER_TILE;
     }
 
+    /**
+     * Random throws back the player when an interaction occurs between player
+     * and cheater.
+     * 
+     * @param player variable of object Player which passes an player object
+     * to be used in the method.
+     */
     public void throwBackPlayer(Player player) {
         int random = ((int) (Math.random() * 10) + 5);
         JOptionPane.showMessageDialog(null, "Whahaha, I will knock you "

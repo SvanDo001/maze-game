@@ -4,6 +4,8 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
+ * Creates a menu for the JFrame and sets the size. Also it creates an
+ * inner class with an ExitItemListener that exits the application.
  *
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
@@ -27,7 +29,12 @@ public class GameFrame extends JFrame {
         this();
         this.game = game;
     }
-
+     
+    /**
+     * Listener that exits the program when the exit MenuItem is clicked.
+     * 
+     * @param event returns an ActionEvent from the listener.
+     */
     class ExitItemListener implements ActionListener {
 
         @Override
@@ -37,7 +44,7 @@ public class GameFrame extends JFrame {
     }
 
     /**
-     * Creates the game and info menu
+     * Creates the game menu.
      *
      * @return the menu
      */
@@ -52,6 +59,11 @@ public class GameFrame extends JFrame {
         return menu;
     }
 
+    /**
+     * Creates the info menu.
+     *
+     * @return the menu
+     */
     public JMenu createInfoMenu() {
         JMenu menu = new JMenu("Info");
         menu.add(createInfoManualItem());
@@ -59,6 +71,10 @@ public class GameFrame extends JFrame {
         return menu;
     }
 
+    /**
+     * 
+     * Listener that starts a maze when the newGameItem is clicked.
+     */
     public JMenuItem createNewGameItem() {
         class NewGameItemListener implements ActionListener {
 
@@ -74,6 +90,10 @@ public class GameFrame extends JFrame {
         return start;
     }
 
+    /**
+     * 
+     * Listener that restarts a maze when the newGameItem is clicked.
+     */
     public JMenuItem createRestartGameItem() {
         class RestartGameItemListener implements ActionListener {
 
@@ -89,6 +109,11 @@ public class GameFrame extends JFrame {
         return restart;
     }
 
+    /**
+     * 
+     * Listener that shows a message with the manual information when the 
+     * newGameItem is clicked.
+     */
     public JMenuItem createInfoManualItem() {
         class InfoManualItemListener implements ActionListener {
 
@@ -104,6 +129,11 @@ public class GameFrame extends JFrame {
         return manual;
     }
 
+    /**
+     * 
+     * Listener that shows a message with the about information when the 
+     * newGameItem is clicked.
+     */
     public JMenuItem createInfoAboutItem() {
         class InfoAboutItemListener implements ActionListener {
 

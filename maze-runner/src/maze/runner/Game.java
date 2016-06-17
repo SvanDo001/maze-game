@@ -4,7 +4,9 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- *
+ * Handles the menu actions. Initiates the first maze. Starts a new maze,
+ * restarts the current maze, shows the manual and the about messages.
+ * 
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public class Game extends GameFrame {
@@ -19,6 +21,9 @@ public class Game extends GameFrame {
         panel = new JPanel();
     }
 
+    /*
+     * Initiates the first maze on the board when the application is started.
+     */
     public void game() {
         board = new Board();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -31,14 +36,17 @@ public class Game extends GameFrame {
         board.grabFocus();
     }
 
+    // starts a new mazefile.
     public void start() {
         board.newMaze();
     }
 
+    // restarts the current mazefile.
     public void restart() {
         board.resetMaze();
     }
 
+    // shows a message with information about the game.
     public void manual() {
         JOptionPane.showMessageDialog(null,
                 "In order to finish the maze, navigate the player towards "
@@ -51,6 +59,7 @@ public class Game extends GameFrame {
                 "Manual", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    // show a message with information about the creators of the game.
     public void about() {
         JOptionPane.showMessageDialog(null, "A game by Kenny Dillewaard & "
                 + "Stefan van Doodewaard");

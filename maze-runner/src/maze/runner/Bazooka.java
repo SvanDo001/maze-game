@@ -4,7 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
+ * Handles the bazooka objects
+ * 
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public class Bazooka extends GameObject {

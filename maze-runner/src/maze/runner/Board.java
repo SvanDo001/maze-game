@@ -5,8 +5,10 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * Paints and repaints the board. Handles the key press events, the interaction
+ * of the objects, starts a new maze and resets the current maze.
  *
- * @author Stefan & Kenny
+ * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public class Board extends JPanel implements ActionListener {
 
@@ -24,11 +26,19 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
     }
 
+    /**
+     * @param event returns an ActionEvent from the listener.
+     */
     @Override
     public void actionPerformed(ActionEvent event) {
+        // repaints the level after an keystroke is hit
         repaint();
     }
 
+    /**
+     *
+     * @param g object type of Graphical object from the Graphics class
+     */
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -45,12 +55,19 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
+    /**
+     * Handles the keystrokes of the arrow keys and the space bar.
+     */
     public class Al extends KeyAdapter {
 
         @Override
         public void keyPressed(KeyEvent event) {
             int keycode = event.getKeyCode();
 
+            /* checks whether a player hits a wall after the non number arrow 
+             * key up is pressed. It also checks if a player is getting out of
+             * bounds. If so, it prints a message.
+             */
             if (keycode == KeyEvent.VK_UP) {
                 lastDirection = "UP";
                 if (player.getTileY() - 1 >= 0) {
@@ -62,6 +79,11 @@ public class Board extends JPanel implements ActionListener {
                             + "the grid ;-)");
                 }
             }
+
+            /* checks whether a player hits a wall after the non number arrow 
+             * key down is pressed. It also checks if a player is getting out of
+             * bounds. If so, it prints a message.
+             */
             if (keycode == KeyEvent.VK_DOWN) {
                 lastDirection = "DOWN";
                 if (player.getTileY() + 1 <= 13) {
@@ -72,6 +94,11 @@ public class Board extends JPanel implements ActionListener {
                     JOptionPane.showMessageDialog(null, "You cannot walk off "
                             + "the grid ;-)");
                 }
+
+            /* checks whether a player hits a wall after the non number arrow 
+             * key left is pressed. It also checks if a player is getting out of
+             * bounds. If so, it prints a message.
+             */
             }
             if (keycode == KeyEvent.VK_LEFT) {
                 lastDirection = "LEFT";
@@ -84,6 +111,11 @@ public class Board extends JPanel implements ActionListener {
                             + "the grid ;-)");
                 }
             }
+
+            /* checks whether a player hits a wall after the non number arrow 
+             * key right is pressed. It also checks if a player is getting out of
+             * bounds. If so, it prints a message.
+             */
             if (keycode == KeyEvent.VK_RIGHT) {
                 lastDirection = "RIGHT";
                 if (player.getTileX() + 1 <= 13) {
@@ -95,9 +127,9 @@ public class Board extends JPanel implements ActionListener {
                             + "the grid ;-)");
                 }
             }
-            
-            /* Destroys a wall tile when space is hit and player is carrying a 
-             * bazooka. False otherwise.
+
+            /* Destroys a wall tile when space is hit and the player is carrying 
+             * a bazooka. False otherwise. Also it prints a message.
              */
             if (keycode == KeyEvent.VK_SPACE) {
 
@@ -111,16 +143,21 @@ public class Board extends JPanel implements ActionListener {
                 }
             }
 
+            /* Saves the last position of player in two seperated arrays and
+             * only if the player doesn't bump a wall.
+             */
             player.setStepCounterTileXY();
 
+            // method call KeyEvent()
             keyEvent(player.getTileX(), player.getTileY());
         }
     }
 
     /**
-     * Checks whether the player has reached another GameObject and gives back a
-     * message with a specific action attached to it. Places the reached
-     * GameObject outside of the grid.
+     * Checks whether the player has reached an interactive GameObject and gives 
+     * back a message with a specific action attached to it. Replaces an 
+     * interactive GameObject when the conditions of the specific interactive
+     * GameObject are met.
      *
      * @param x the coordinate of the x axis
      * @param y the coordinate of the y axis
@@ -149,36 +186,43 @@ public class Board extends JPanel implements ActionListener {
                 player.setBazookaPickup();
                 mapLoader.replaceObject(x, y, "grass");
             }
-
         }
 
     }
 
+    // Loads a new maze file on the board and calls the resetMaze() method
     public void newMaze() {
         mapLoader.nextFile();
         resetMaze();
     }
 
+    /** Resets the current maze file by pulling the player back to the start
+     * position, removes the current bazooka from player and clears the
+     * last positions of player on the map. Also it adds the start position
+     * back in the arrays.
+     */
     public void resetMaze() {
         player.moveTo(1, 1);
-        
+
         if (player.getBazookaPickup() == true) {
-                player.setBazookaPickup();
-        }        
+            player.setBazookaPickup();
+        }
         mapLoader.openFile();
         mapLoader.readFile();
         mapLoader.closeFile();
-        
+
         player.getStepCounterTileX().clear();
         player.getStepCounterTileY().clear();
         player.getStepCounterTileX().add(1);
         player.getStepCounterTileY().add(1);
     }
 
+    // returns the last direct of the player
     public String getLastDirection() {
         return lastDirection;
     }
 
+    // returns the current level instance
     public Board getLevel() {
         return Board.this;
     }

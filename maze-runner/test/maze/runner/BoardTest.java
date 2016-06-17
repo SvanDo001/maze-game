@@ -7,7 +7,6 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -51,34 +50,11 @@ public class BoardTest {
     }
 
     @Test
-    public void testThrowBackPlayer() {
-        System.out.println("throwBackPlayer");
-        int steps = 0;
-        Board instance = new Board();
-        instance.throwBackPlayer(steps);
-    }
-
-    @Test
     public void testKeyEvent() {
         System.out.println("keyEvent");
         int x = 0;
         int y = 0;
         Board instance = new Board();
         instance.keyEvent(x, y);
-    }
-
-    @Test
-    public void testDestroyWall() {
-        System.out.println("destroyWall");
-        Board instance = new Board();
-        instance.destroyWall();
-    }
-
-    @Test
-    public void testReset() {
-        System.out.println("reset");
-        Board instance = new Board();
-        instance.reset();
-    }
-    
+    } 
 }

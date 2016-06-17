@@ -49,14 +49,7 @@ public class PlayerTest{
         assertNotNull(result);
     }
 
-    @Test
-    public void testGetBazooka() {
-        System.out.println("getBazooka");
-        Player instance = new Player();
-        Image result = instance.getBazooka();
-        assertNotNull(result);
-    }
-
+    // Doen we!
     @Test
     public void testMove() {
         System.out.println("move");
@@ -73,18 +66,6 @@ public class PlayerTest{
         int dy = 0;
         Player instance = new Player();
         instance.moveTo(dx, dy);
-    }
-
-    @Test
-    public void testSetGameObjectPosition() {
-        System.out.println("setGameObjectPosition");
-        int x = 5;
-        int y = 5;
-        Player instance = new Player();
-        instance.setGameObjectPosition(x, y);
-
-        assertEquals(instance.tileX, x);
-        assertEquals(instance.tileY, y);
     }
  
     @Test
@@ -114,9 +95,7 @@ public class PlayerTest{
         
         //sets the actual Y position of player
         instance.tileY = 4;
-        
-        //saves the current X position of player in array
-        instance.setStepCounterTileY();
+        instance.setStepCounterTileXY();
         
         assertEquals(instance.getStepCounterTileY(), testY);
     }
@@ -139,5 +118,59 @@ public class PlayerTest{
         ArrayList<Integer> result = instance.getStepCounterTileY();
         
         assertEquals(testY, result);
+    }
+
+    // Doen we!
+    /**
+     * Test of setBazookaPickup method, of class Player.
+     */
+    @Test
+    public void testSetBazookaPickup() {
+        System.out.println("setBazookaPickup");
+        Player instance = new Player();
+        instance.setBazookaPickup();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of destroyWall method, of class Player.
+     */
+    @Test
+    public void testDestroyWall() {
+        System.out.println("destroyWall");
+        Board level = null;
+        Player player = null;
+        MapLoader map = null;
+        Player instance = new Player();
+        instance.destroyWall(level, player, map);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getBazookaPickup method, of class Player.
+     */
+    @Test
+    public void testGetBazookaPickup() {
+        System.out.println("getBazookaPickup");
+        Player instance = new Player();
+        boolean expResult = false;
+        boolean result = instance.getBazookaPickup();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setStepCounterTileXY method, of class Player.
+     */
+    @Test
+    public void testSetStepCounterTileXY() {
+        System.out.println("setStepCounterTileXY");
+        Player instance = new Player();
+        instance.setStepCounterTileXY();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 }

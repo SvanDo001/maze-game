@@ -4,8 +4,10 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
- * @author Kenny Dillewaard & Stefan van Doodewaard
+ * Handles the friend objects and shows an message when the end of the mapfile
+ * is reached.
+ * 
+ * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public class Friend extends GameObject {
 
@@ -22,6 +24,13 @@ public class Friend extends GameObject {
         return FRIEND_TILE;
     }
 
+    /**
+     * Shows an message with the total amount of steps that the player needed to
+     * reach the end position of the current map, the friend object. 
+     * 
+     * @param player variable of object Player which passes an player object
+     * to be used in the method.
+     */
     public void meetFriend(Player player) {
         int steps = player.getStepCounterTileX().size() - 1;
         JOptionPane.showMessageDialog(null, "Congratulations, you have "
