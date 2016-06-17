@@ -168,6 +168,11 @@ public class Board extends JPanel implements ActionListener {
         mapLoader.openFile();
         mapLoader.readFile();
         mapLoader.closeFile();
+        
+        player.getStepCounterTileX().clear();
+        player.getStepCounterTileY().clear();
+        player.getStepCounterTileX().add(1);
+        player.getStepCounterTileY().add(1);
     }
 
     public String getLastDirection() {
