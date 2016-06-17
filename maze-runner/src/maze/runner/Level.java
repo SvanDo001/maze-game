@@ -33,8 +33,8 @@ public class Level extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
 
-        for (int y = 0; y < 14; y++) {
-            for (int x = 0; x < 14; x++) {
+        for (int x = 0; x < 14; x++) {
+            for (int y = 0; y < 14; y++) {
 
                 // draws every GameObject from objects[x][y]array
                 g.drawImage(map.getObject(x, y).getGameObject(), x * 32, y * 32, null);
@@ -57,6 +57,9 @@ public class Level extends JPanel implements ActionListener {
                     if (map.getObject(player.getTileX(), player.getTileY() - 1) instanceof Wall == false) {
                         player.move(0, -1);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "You cannot walk off "
+                            + "the grid ;-)");
                 }
             }
             if (keycode == KeyEvent.VK_DOWN) {
@@ -65,14 +68,20 @@ public class Level extends JPanel implements ActionListener {
                     if (map.getObject(player.getTileX(), player.getTileY() + 1) instanceof Wall == false) {
                         player.move(0, 1);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "You cannot walk off "
+                            + "the grid ;-)");
                 }
             }
             if (keycode == KeyEvent.VK_LEFT) {
                 lastDirection = "LEFT";
-                if (player.getTileX() - 1 >= -1) {
+                if (player.getTileX() - 1 >= 0) {
                     if (map.getObject(player.getTileX() - 1, player.getTileY()) instanceof Wall == false) {
                         player.move(-1, 0);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "You cannot walk off "
+                            + "the grid ;-)");
                 }
             }
             if (keycode == KeyEvent.VK_RIGHT) {
@@ -81,6 +90,9 @@ public class Level extends JPanel implements ActionListener {
                     if (map.getObject(player.getTileX() + 1, player.getTileY()) instanceof Wall == false) {
                         player.move(1, 0);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "You cannot walk off "
+                            + "the grid ;-)");
                 }
             }
             
@@ -150,7 +162,11 @@ public class Level extends JPanel implements ActionListener {
 
     public void resetMaze() {
         player.moveTo(1, 1);
-
+        
+        if (player.getBazookaPickup() == true) {
+                player.setBazookaPickup();
+        }
+        
         map.openFile();
         map.readFile();
         map.closeFile();
