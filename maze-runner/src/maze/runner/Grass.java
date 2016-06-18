@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
+ * Handles the grass objects.
  *
  * @author Stefan van Doodewaard
  */

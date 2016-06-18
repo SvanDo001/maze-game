@@ -5,8 +5,11 @@ import java.util.*;
 import javax.swing.*;
 
 /**
- *
- * @author Stefan & Kenny
+ *  Handles the player object. Replaces the player image with an bazooka image
+ *  if a bazooka is picked up. Also if the player is firing an bazooka the
+ *  destroy wall method is executed.
+ * 
+ * @author Stefan van Doodewaard & Kenny Dillewaard
  */
 public class Player extends GameObject implements Moveable {
 
@@ -35,6 +38,11 @@ public class Player extends GameObject implements Moveable {
         bazookaPickup = false;
     }
 
+    /**
+     * 
+     * Replaces the player image with an player bazooka image when a player
+     * picks up a bazooka.
+     */
     public void setBazookaPickup() {
         if (bazookaPickup == false) {
             bazookaPickup = true;
@@ -49,6 +57,15 @@ public class Player extends GameObject implements Moveable {
         }
     }
     
+    /**
+     * When the player fires a bazooka the destroyWall() method is executed. It
+     * replaces the bazooka that is picked up with and grass tile and destorys
+     * the first wall in the last direction the player is facing.
+     * 
+     * @param level object type of Level from the Level class
+     * @param player object type of Player from the Player class
+     * @param map object type of Map from the Map class
+     */
     public void destroyWall(Board level, Player player, MapLoader map) {
         try {
             int x = player.getTileX();
@@ -106,6 +123,7 @@ public class Player extends GameObject implements Moveable {
         }
     }
 
+    // returns a boolean and checks if a player carries a bazooka
     public boolean getBazookaPickup() {
         return bazookaPickup;
     }

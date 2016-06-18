@@ -3,6 +3,10 @@ package maze.runner;
 import java.util.*;
 
 /**
+ * Returns GameObjects. Reads, opens and closes and iterate files in the
+ * correct order. The strings of the files are interpreted and object instances
+ * are created that are stored in the ArrayList of GameObjects. Also, it
+ * replaces objects and the file shows the optimal route when the helper is met.
  *
  * @author Stefan van Doodewaard & Kenny Dillewaard
  */
@@ -36,6 +40,11 @@ public final class MapLoader {
 
     }
 
+    /** 
+     * 
+     * Iterates the maze files in the correct order and restarts the sequence
+     * after the last maze file is used and a new map file is called.
+     */
     public void nextFile() {
         currentLevel++;
         if (currentLevel >= 3) {
@@ -43,6 +52,7 @@ public final class MapLoader {
         }
     }
 
+    // Opens the map files.
     public void openFile() {
         try {
             mapScanner = new Scanner(classloader.
@@ -53,8 +63,13 @@ public final class MapLoader {
         }
     }
 
+    /**
+     * 
+     * Creates an Array of objects and reads the the strings of the maze files
+     * and compares individual strings. If the comparison is true an GameObject
+     * will be created and places in the 2d ArrayList of objects.
+     */
     public void readFile() {
-
         while (mapScanner.hasNext()) {
             objects = new GameObject[14][14];
 
@@ -88,16 +103,23 @@ public final class MapLoader {
         }
     }
 
+    // Closes the file.
     public void closeFile() {
         mapScanner.close();
     }
 
+    // Replaces an certain object with an grass object.
     public void replaceObject(int x, int y, String type) {
         if (type.equals("grass")) {
             objects[x][y] = new Grass();
         }
     }
 
+    /**
+     * 
+     * Replaces the grass tiles of the positions in the file with route tiles
+     * objects and shows them on the maze.
+     */
     public void showOptimaleRoute() {
         openFile();
 

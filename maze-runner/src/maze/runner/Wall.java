@@ -4,7 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
+ * Handles the wall objects.
+ * 
  * @author Stefan van Doodewaard
  */
 public class Wall extends GameObject {

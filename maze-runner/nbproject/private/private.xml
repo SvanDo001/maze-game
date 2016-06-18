@@ -2,21 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/Helper.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/Board.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/Cheater.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/resources/Map1.txt</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/GameFrame.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/Moveable.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/Friend.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/MapLoader.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/Grass.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/Program.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/OptimalRoute.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/Game.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/GameObject.java</file>
-            <file>file:/C:/Users/Stefan/Documents/Sourcetree/maze-runner/maze-runner/src/maze/runner/Player.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
